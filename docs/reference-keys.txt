@@ -16,3 +16,4 @@ course-learning-outcomes
 in-class-exercise-and-final-project
 course-schedule-tentative
 homework-and-projects-collaboration-and-submission-policy
+readings
