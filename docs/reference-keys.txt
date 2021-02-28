@@ -8,3 +8,11 @@ applications
 example-one
 example-two
 final-words
+course-syllabus
+course-description
+course-prerequisites
+logistics
+course-learning-outcomes
+in-class-exercise-and-final-project
+course-schedule-tentative
+homework-and-projects-collaboration-and-submission-policy
