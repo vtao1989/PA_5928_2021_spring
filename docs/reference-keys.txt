@@ -31,3 +31,4 @@ conditional-statement-if
 loops
 functions
 references
+weekly-assignment-and-final-project

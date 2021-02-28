@@ -42,15 +42,22 @@ The online note is the main study material in this course.  The course has sever
 2. Wickham, H., & Grolemund, G. (2016). *R for data science: import, tidy, transform, visualize, and model data*. O'Reilly Media, Inc.
 
 
-## In-class exercise and final project
+## Weekly assignment and final project
 
-1. An in-class exercise will be assigned during each class for the students to practice what they have learned. 
-2. The in-class exercises will be mostly finished during the class time, and students are still required to submit their codes on the same day with necessary notes to indicate their ideas.
-3. Students will use the knowledge from this course to complete a final project (data analysis for a interested research question and make a poster to show off their work).
-4. Grading policy
+1. Weekly assignment includes in-class exercise and after-class assignment. Students are required to submit both of them with necessary notes.
+2. Students will use the knowledge from this course to complete a final project (data analysis for a interested research question and make a poster to show off their work).
+3. Grading policy
 
 * Weekly assignment: 70%
 * Final project: 30%
+
+Weekly assignment grading rubric
+
+| Item                                                                                     | Grades |
+|------------------------------------------------------------------------------------------|:------:|
+| Codes could generate the results required by the problems                                | 6      |
+| Necessary notes to indicate the general idea (usage, function, purpose, or mechanism)    | 3      |
+| Codes and notes are neat and well-organized                                              | 1      |
 
 ## Course schedule (Tentative)
 
@@ -76,5 +83,6 @@ The online note is the main study material in this course.  The course has sever
 ## Homework and projects collaboration and submission policy
 
 1. **Students can discuss their works with other students, but must code and write up notes by themselves. [Plagiarism](https://communitystandards.umn.edu/content/plagiarism) is not allowed by the university policies. Please do be careful about this.**
-2. In-class exercises and projects should be submitted through **Canvas**. If you cannot attend the class, please write a email to the instructor including a valid reason before the class. Then you can make up the in-class exercise in the following one week after the class.
-3. When you communicate the instructor with emails, please include ``PA 5928`` at the beginning of your title.
+2. Weekly assignments and projects should be submitted through Canvas.
+3. If you cannot attend the class, please write a email to the instructor including a valid reason before the class.
+4. When you communicate the instructor with emails, please include ``PA 5928`` at the beginning of your title.
