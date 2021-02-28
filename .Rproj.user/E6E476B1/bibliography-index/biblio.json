@@ -1,27 +1,342 @@
 {
     "sources": [
         {
-            "URL": "http://yihui.name/knitr/",
+            "URL": "https://datascienceplus.com/introduction-to-rstudio/",
             "author": [
                 {
-                    "family": "Xie",
-                    "given": "Yihui"
+                    "family": "Selvam",
+                    "given": "Sindhu"
                 }
             ],
-            "edition": "2nd",
-            "id": "xie2015",
+            "id": "Selvam2019",
             "issued": {
                 "date-parts": [
                     [
-                        2015
+                        2019,
+                        10,
+                        8
                     ]
                 ]
             },
-            "note": "ISBN 978-1498716963",
-            "publisher": "Chapman; Hall/CRC",
-            "publisher-place": "Boca Raton, Florida",
-            "title": "Dynamic documents with R and knitr",
-            "type": "book"
+            "title": "Introduction to RStudio",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://www.statmethods.net/input/datatypes.html",
+            "author": [
+                {
+                    "family": "Kabacoff",
+                    "given": "Robert I."
+                }
+            ],
+            "id": "Kabacoff2019",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        10,
+                        8
+                    ]
+                ]
+            },
+            "title": "Data types",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/",
+            "author": [
+                {
+                    "family": "Blischak",
+                    "given": "John"
+                },
+                {
+                    "family": "Chen",
+                    "given": "Daniel"
+                },
+                {
+                    "family": "Dashnow",
+                    "given": "Harriet"
+                },
+                {
+                    "family": "Haine",
+                    "given": "Denis"
+                }
+            ],
+            "id": "Blischak2019",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        10,
+                        8
+                    ]
+                ]
+            },
+            "title": "Data types and structures",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://www.tutorialspoint.com/r/r_operators.htm",
+            "author": [
+                {
+                    "family": "tutorialspoint"
+                }
+            ],
+            "id": "tutorialspoint2019",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        10,
+                        8
+                    ]
+                ]
+            },
+            "title": "R - operators",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://www.datamentor.io/r-programming/operator/",
+            "author": [
+                {
+                    "family": "DataMentor"
+                }
+            ],
+            "id": "DM2019",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        10,
+                        11
+                    ]
+                ]
+            },
+            "title": "R operators",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://www.tutorialspoint.com/r/r_variables.htm",
+            "author": [
+                {
+                    "family": "tutorialspoint"
+                }
+            ],
+            "id": "tutorialspoint2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        10,
+                        13
+                    ]
+                ]
+            },
+            "title": "R - variables",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://staffblogs.le.ac.uk/bayeswithstata/2014/11/13/stata-vs-r/",
+            "author": [
+                {
+                    "family": "Thompson",
+                    "given": "John"
+                }
+            ],
+            "id": "john2014",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        10,
+                        13
+                    ]
+                ]
+            },
+            "title": "Stata vs r",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://www.quora.com/What-advantages-and-disadvantages-does-R-have-over-Stata-i-e-what-is-R’s-ability-to-quickly-put-together-a-picture-of-the-development-of-a-firm-country-city-or-of-other-macro-data-versus-Strata’s-capability-to-do-the-same",
+            "author": [
+                {
+                    "family": "Bailey",
+                    "given": "Michael"
+                }
+            ],
+            "id": "michael2014",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        10,
+                        13
+                    ]
+                ]
+            },
+            "title": "What advantages and disadvantages does r have over stata, i.e., What is r’s ability to quickly put together a picture of the development of a firm, country, city, or of other macro-data versus strata’s capability to do the same?",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://www.statmethods.net/input/importingdata.html",
+            "author": [
+                {
+                    "family": "Quick-R"
+                }
+            ],
+            "id": "quickr1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        10,
+                        21
+                    ]
+                ]
+            },
+            "title": "Importing data",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://www.statmethods.net/input/exportingdata.html",
+            "author": [
+                {
+                    "family": "Quick-R"
+                }
+            ],
+            "id": "quickr2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        10,
+                        21
+                    ]
+                ]
+            },
+            "title": "Exporting data",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://www.statmethods.net/input/contents.html",
+            "author": [
+                {
+                    "family": "Quick-R"
+                }
+            ],
+            "id": "quickr3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        10,
+                        21
+                    ]
+                ]
+            },
+            "title": "Getting information on a dataset",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://genomicsclass.github.io/book/pages/dplyr_tutorial.html",
+            "author": [
+                {
+                    "family": "BiomedicalDataScience"
+                }
+            ],
+            "id": "biomed1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        10,
+                        23
+                    ]
+                ]
+            },
+            "title": "Dplyr tutorial",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html",
+            "author": [
+                {
+                    "family": "r-project"
+                }
+            ],
+            "id": "rpro1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        10,
+                        23
+                    ]
+                ]
+            },
+            "title": "Introduction to dplyr",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://www.datacamp.com/courses/data-visualization-with-ggplot2-1",
+            "author": [
+                {
+                    "family": "DataCamp"
+                }
+            ],
+            "id": "datacamp1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        11,
+                        3
+                    ]
+                ]
+            },
+            "title": "Data visualization with ggplot2",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://ggplot2.tidyverse.org/reference/theme.html",
+            "author": [
+                {
+                    "family": "ggplot2"
+                }
+            ],
+            "id": "ggplot1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        11,
+                        5
+                    ]
+                ]
+            },
+            "title": "Modify components of a theme",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://vincentarelbundock.github.io/Rdatasets/doc/carData/GSSvocab.html",
+            "author": [
+                {
+                    "family": "Arel-Bundock",
+                    "given": "Vincent"
+                }
+            ],
+            "id": "GSSvocab",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        11,
+                        11
+                    ]
+                ]
+            },
+            "title": "Data from the general social survey (GSS) from the national opinion research center of the university of chicago",
+            "type": "webpage"
         },
         {
             "URL": "https://www.R-project.org/",

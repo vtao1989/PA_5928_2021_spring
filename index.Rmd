@@ -11,13 +11,13 @@ description: "This is the website for couse PA 5928 in the University of Minneso
 
 # Course Syllabus
 
-## Course Description
+## Course description
 
 Introduction to ``RStudio`` software. Use of ``RStudio`` to carry out ``R`` file and related dataset management functions. Tools and techniques for data analysis and statistical programming in quantitative research or related applied areas. Topics include data selection, data manipulation, and data visualization (including charts, plots, histograms, maps, and other graphs).
 
-## Course Prerequisites
+## Course prerequisites
 
-Introductory statistics (regression is not necessary); ability to create bar graphs, line graphs, and scatter plots in MS Excel; and familiarity with principles of data visualization.
+Introductory statistics; ability to create bar graphs, line graphs, and scatter plots in MS Excel; and familiarity with principles of data visualization.
 
 ## Logistics
 
@@ -25,9 +25,9 @@ Introductory statistics (regression is not necessary); ability to create bar gra
 **Instructor**: Tao Tao, taotao@umn.edu  
 **Instruction mode**: Completely online (Link in Canvas)  
 **Office hour**: 4:00-5:00 Tuesday (Link in Canvas) or by appointment  
-**Canvas**: All course notes will be posted in this course website, but links will be updated on ``Canvas`` simultaneously. ``Canvas`` will also be used to submit your assignments, final project, and grades. Make sure you have enabled the notification of this course on ``Canvas``.
+**Canvas**: All course notes will be posted in this course website, but links will be updated on Canvas simultaneously. Canvas will also be used to submit your assignments, final project, and grades. Make sure you have enabled the notification of this course on Canvas.
 
-## Course Learning Outcomes
+## Course learning outcomes
 
 At the end of this course, students will be able to:
 
@@ -37,7 +37,7 @@ At the end of this course, students will be able to:
 4. Use R to carry out exploratory data analysis
 
 ## Readings
-The online note is the main study material in this course.  The course has several supplementary reading materials, which are available online from the university library.  
+The online note is the main study material in this course.  The course has several supplementary reading materials, which are available on Canvas.  
 1. Wickham, H. (2016). *ggplot2: elegant graphics for data analysis*. Springer.  
 2. Wickham, H., & Grolemund, G. (2016). *R for data science: import, tidy, transform, visualize, and model data*. O'Reilly Media, Inc.
 
@@ -49,29 +49,29 @@ The online note is the main study material in this course.  The course has sever
 3. Students will use the knowledge from this course to complete a final project (data analysis for a interested research question and make a poster to show off their work).
 4. Grading policy
 
-* Weekly assignment: 70% (10% for each week)
+* Weekly assignment: 70%
 * Final project: 30%
 
-## Course Schedule (Tentative)
+## Course schedule (Tentative)
 
 
 | Week       | Date   | Topic                                         |
 |------------|--------|-----------------------------------------------|
-| Week 1 Tue | Mar 9  | Course introduction + Introduction to RStudio |
-| Week 1 Thu | Mar 11 | Introduction to R                             |
-| Week 2 Tue | Mar 16 | Data source introduction                      |
-| Week 2 Thu | Mar 18 | Data manipulation with base functions         |
-| Week 3 Tue | Mar 23 | Data manipulation with dplyr Part I           |
-| Week 3 Thu | Mar 25 | Data manipulation with dplyr Part II          |
-| Week 4 Tue | Mar 30 | Data visualization with base functions        |
-| Week 4 Thu | Apr 1  | Data visualization with ggplot2 Part I        |
-| Week 5     |        | Spring break                                  |
-| Week 6 Tue | Apr 13 | Data visualization with ggplot2 Part II       |
-| Week 6 Thu | Apr 15 | Data visualization with ggplot2 Part III      |
-| Week 7 Tue | Apr 20 | Simple statistics in R Part I                 |
-| Week 7 Thu | Apr 22 | Simple statistics in R Part II                |
-| Week 8 Tue | Apr 27 | Exploratory Data Analysis Part I              |
-| Week 8 Thu | Apr 29 | Exploratory Data Analysis Part II             |
+| Week 1 Tue | Mar 9  | **Course introduction + Introduction to RStudio** |
+| Week 1 Thu | Mar 11 | **Introduction to R**                             |
+| Week 2 Tue | Mar 16 | **Data source introduction**                      |
+| Week 2 Thu | Mar 18 | **Data manipulation with base functions**         |
+| Week 3 Tue | Mar 23 | **Data manipulation with dplyr Part I**           |
+| Week 3 Thu | Mar 25 | **Data manipulation with dplyr Part II**          |
+| Week 4 Tue | Mar 30 | **Data visualization with base functions**        |
+| Week 4 Thu | Apr 1  | **Data visualization with ggplot2 Part I**        |
+| Week 5     |        | **Spring break**                                  |
+| Week 6 Tue | Apr 13 | **Data visualization with ggplot2 Part II**       |
+| Week 6 Thu | Apr 15 | **Data visualization with ggplot2 Part III**      |
+| Week 7 Tue | Apr 20 | **Simple statistics in R Part I**                 |
+| Week 7 Thu | Apr 22 | **Simple statistics in R Part II**                |
+| Week 8 Tue | Apr 27 | **Exploratory Data Analysis Part I**              |
+| Week 8 Thu | Apr 29 | **Exploratory Data Analysis Part II**             |
 
 ## Homework and projects collaboration and submission policy
 

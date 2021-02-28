@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Introduction to R | PA 5928 Data Management &amp; Visualization with R (Spring 2021)</title>
+  <meta name="description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Introduction to R | PA 5928 Data Management &amp; Visualization with R (Spring 2021)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Introduction to R | PA 5928 Data Management &amp; Visualization with R (Spring 2021)" />
+  
+  <meta name="twitter:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  
+
+<meta name="author" content="Tao Tao (University of Minnesota)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-rstudio.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PA 5928 R course</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Course Syllabus</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course Description</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-prerequisites"><i class="fa fa-check"></i><b>1.2</b> Course Prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#logistics"><i class="fa fa-check"></i><b>1.3</b> Logistics</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-learning-outcomes"><i class="fa fa-check"></i><b>1.4</b> Course Learning Outcomes</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#readings"><i class="fa fa-check"></i><b>1.5</b> Readings</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#in-class-exercise-and-final-project"><i class="fa fa-check"></i><b>1.6</b> In-class exercise and final project</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#course-schedule-tentative"><i class="fa fa-check"></i><b>1.7</b> Course Schedule (Tentative)</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#homework-and-projects-collaboration-and-submission-policy"><i class="fa fa-check"></i><b>1.8</b> Homework and projects collaboration and submission policy</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction to RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-r"><i class="fa fa-check"></i><b>2.1</b> What is R</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2</b> What is RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-r-rstudio"><i class="fa fa-check"></i><b>2.3</b> Install R + RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#familiar-with-the-user-interface-of-rstudio"><i class="fa fa-check"></i><b>2.4</b> Familiar with the user interface of RStudio</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#create-and-save-r-file"><i class="fa fa-check"></i><b>2.5</b> Create and save R file</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#print-hello-world"><i class="fa fa-check"></i><b>2.6</b> Print Hello, world</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-and-use-r-packages"><i class="fa fa-check"></i><b>2.7</b> Install and use R Packages</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#make-notes"><i class="fa fa-check"></i><b>2.8</b> Make notes</a></li>
+<li class="chapter" data-level="2.9" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#tips"><i class="fa fa-check"></i><b>2.9</b> Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#why-r-and-why-not-r"><i class="fa fa-check"></i><b>3.1</b> Why R and why not R?</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variable-name"><i class="fa fa-check"></i><b>3.2</b> Variable name</a></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variable-types"><i class="fa fa-check"></i><b>3.3</b> Variable types</a></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operations"><i class="fa fa-check"></i><b>3.4</b> Operations</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assignment-operations"><i class="fa fa-check"></i><b>3.4.1</b> Assignment operations</a></li>
+<li class="chapter" data-level="3.4.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#arithmetic-operations"><i class="fa fa-check"></i><b>3.4.2</b> Arithmetic operations</a></li>
+<li class="chapter" data-level="3.4.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#relational-operations"><i class="fa fa-check"></i><b>3.4.3</b> Relational operations</a></li>
+<li class="chapter" data-level="3.4.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#logical-operations"><i class="fa fa-check"></i><b>3.4.4</b> Logical operations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-structures"><i class="fa fa-check"></i><b>3.5</b> Data structures</a></li>
+<li class="chapter" data-level="3.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#conditional-statement-if"><i class="fa fa-check"></i><b>3.6</b> Conditional statement (if)</a></li>
+<li class="chapter" data-level="3.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#loops"><i class="fa fa-check"></i><b>3.7</b> Loops</a></li>
+<li class="chapter" data-level="3.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions"><i class="fa fa-check"></i><b>3.8</b> Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>4</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PA 5928 Data Management &amp; Visualization with R (Spring 2021)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-r" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Introduction to R</h1>
+<div id="why-r-and-why-not-r" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Why R and why not R?</h2>
+<p>Before learning R, we need to know why we use R and why we do not use R.</p>
+<p><strong>Advantages of R</strong> (More flexible but less formal)</p>
+<ul>
+<li>Free and Open source</li>
+<li>More advanced technique packages</li>
+<li>Deal with more than one datasets (big data) at the same time</li>
+<li>Deal with not only data analysis tasks (data visualization, text analysis, creating website, etc.)</li>
+</ul>
+<p><strong>Advantages of STATA</strong> (More formal but less flexible)</p>
+<ul>
+<li>More algorithms, packages, and implementations of econometrics</li>
+<li>Faster</li>
+<li>It is supported by Statacorp so the result is reliable</li>
+<li>It presents results in a clear format</li>
+<li>Syntax is simple and standard for most data analysis</li>
+<li>Help document is formal</li>
+</ul>
+<p>Besides those advantages, they have a lot of overlaps with each other. People cannot say one is absolutely better than the other. People choose them based on their task requirements. Sometimes, people use both of them for their daily work (e.g., my laptop has both R and STATA).</p>
+</div>
+<div id="variable-name" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Variable name</h2>
+<p>A variable is used to store data including value, vector, data frame, etc., which R could use to manipulate <span class="citation">(<a href="references.html#ref-tutorialspoint2" role="doc-biblioref">tutorialspoint 2019b</a>)</span>. This chapter introduces variable types, operations between variables, data structures, conditional statements, loops, and functions.</p>
+<p>Before we start, let’s first see how to name a variable. The valid variable name could be constructed with letters, numbers, the dot character (<code>.</code>), and underline character (<code>_</code>). Besides that, a valid variable name should start with a letter or the dot character not followed by a number. Below are some examples of variable names (either good or not good).</p>
+<table>
+<colgroup>
+<col width="12%" />
+<col width="10%" />
+<col width="77%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Examples</th>
+<th>Validity</th>
+<th>Discussion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>var.name</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>var_name</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>_var_name</td>
+<td>☓</td>
+<td>Cannot start with the underline</td>
+</tr>
+<tr class="even">
+<td>.var_name</td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>var%name</td>
+<td>☓</td>
+<td>Cannot contain %</td>
+</tr>
+<tr class="even">
+<td>.2var_name</td>
+<td>☓</td>
+<td>Cannot use the dot followed by a number to start a variable name</td>
+</tr>
+<tr class="odd">
+<td>2var_name</td>
+<td>☓</td>
+<td>Cannot start with a number</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="variable-types" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Variable types</h2>
+<p>There are several types of variables which R could recognize, including character, numeric, integer, logical, and complex <span class="citation">(<a href="references.html#ref-Blischak2019" role="doc-biblioref">Blischak et al. 2019</a>)</span>. The type of one variable is decided by the type of value it stores. We can use <code>class()</code> function to check the type of each variable.</p>
+<p><strong>Character</strong> (also known as strings)</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="introduction-to-r.html#cb14-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="st">&quot;Hello, world!&quot;</span></span>
+<span id="cb14-2"><a href="introduction-to-r.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(v)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p><strong>Numeric</strong> (real or decimal number/integer)</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="introduction-to-r.html#cb16-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fl">59.28</span></span>
+<span id="cb16-2"><a href="introduction-to-r.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(v)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p><strong>Integer</strong> (<code>L</code> tells R that this number is an integer)</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="introduction-to-r.html#cb18-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> 2L</span>
+<span id="cb18-2"><a href="introduction-to-r.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(v)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="introduction-to-r.html#cb20-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span><span class="dv">2</span></span>
+<span id="cb20-2"><a href="introduction-to-r.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(v)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p><strong>Logical</strong> (Usually True or false)</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="introduction-to-r.html#cb22-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb22-2"><a href="introduction-to-r.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(v)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="introduction-to-r.html#cb24-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb24-2"><a href="introduction-to-r.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(v)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<p><strong>Complex</strong> (complex number is another type of number, different with real number)</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="introduction-to-r.html#cb26-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> 4i</span>
+<span id="cb26-2"><a href="introduction-to-r.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(v)</span></code></pre></div>
+<pre><code>## [1] &quot;complex&quot;</code></pre>
+<p>It is important to clearly know the type of the variable since different types of variables may have different functions or operations to deal with. Another caveat is that the outlook of the variable may not show its real variable type. For example, a common situation is listed below.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="introduction-to-r.html#cb28-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="st">&quot;59.28&quot;</span></span>
+<span id="cb28-2"><a href="introduction-to-r.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(v)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>Here, the number has quotation marks outside, which means it has been transferred to type character. <strong>Therefore, please be careful about variable types!</strong></p>
+</div>
+<div id="operations" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Operations</h2>
+<p>An operation tells R the mathematical or logical manipulations among variables <span class="citation">(<a href="references.html#ref-tutorialspoint2019" role="doc-biblioref">tutorialspoint 2019a</a>)</span>.</p>
+<div id="assignment-operations" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Assignment operations</h3>
+<p>Assignment operators assign values to variables.</p>
+<p><strong>Left assignment</strong></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="introduction-to-r.html#cb30-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb30-2"><a href="introduction-to-r.html#cb30-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;&lt;-</span> <span class="st">&quot;Hello, world!&quot;</span></span>
+<span id="cb30-3"><a href="introduction-to-r.html#cb30-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span></code></pre></div>
+<p><strong>Right assignment</strong></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introduction-to-r.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="ot">-&gt;</span> a</span>
+<span id="cb31-2"><a href="introduction-to-r.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="ot">-&gt;&gt;</span> b</span></code></pre></div>
+</div>
+<div id="arithmetic-operations" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Arithmetic operations</h3>
+<p><strong>Add</strong></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="introduction-to-r.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p><strong>Subtract</strong></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="introduction-to-r.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">-</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p><strong>Multiple</strong></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="introduction-to-r.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<p><strong>Divide</strong></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="introduction-to-r.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">-</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p><strong>Power</strong></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="introduction-to-r.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">^</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 25</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="introduction-to-r.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">**</span> <span class="dv">2</span> <span class="co"># you can also do power operation like this</span></span></code></pre></div>
+<pre><code>## [1] 25</code></pre>
+<p><strong>Mode</strong> (find the remainder)</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="introduction-to-r.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">%%</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+</div>
+<div id="relational-operations" class="section level3" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Relational operations</h3>
+<p>The relational operators compare the two elements and return a logical value (<code>TRUE</code> or <code>FALSE</code>).</p>
+<p><strong>Larger</strong></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="introduction-to-r.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">&gt;</span> <span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="introduction-to-r.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p><strong>Smaller</strong></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="introduction-to-r.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">&lt;</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introduction-to-r.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">&lt;</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p><strong>Equal</strong></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introduction-to-r.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">==</span> <span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="introduction-to-r.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p><strong>No less than</strong> (larger or equal to)</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="introduction-to-r.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">&gt;=</span> <span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="introduction-to-r.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">&gt;=</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p><strong>No larger than</strong> (smaller or equal to)</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="introduction-to-r.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&lt;=</span> <span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="introduction-to-r.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&lt;=</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p><strong>Not equal</strong></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="introduction-to-r.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">!=</span> <span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="introduction-to-r.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">!=</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="logical-operations" class="section level3" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> Logical operations</h3>
+<p>Logical operators are operations only for logical, numeric, or complex variable types. Most of the time, we apply them on logical values or variables. For numeric variables, 0 is considered <code>FALSE</code> and non-zero numbers are taken as <code>TRUE</code> <span class="citation">(<a href="references.html#ref-DM2019" role="doc-biblioref">DataMentor 2019</a>)</span>. You could use <code>T</code> for <code>TRUE</code> or <code>F</code> for <code>FALSE</code> as abbreviation.</p>
+<p><strong>Logical And</strong></p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="introduction-to-r.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">&amp;</span> <span class="cn">TRUE</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="introduction-to-r.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">&amp;</span> <span class="cn">TRUE</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="introduction-to-r.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">&amp;</span> <span class="cn">FALSE</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p><strong>Logical Or</strong></p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="introduction-to-r.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">|</span> <span class="cn">TRUE</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="introduction-to-r.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">|</span> <span class="cn">TRUE</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="introduction-to-r.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">|</span> <span class="cn">FALSE</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p><strong>Logical Not</strong></p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="introduction-to-r.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span> <span class="cn">TRUE</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="introduction-to-r.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span> <span class="cn">FALSE</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+</div>
+<div id="data-structures" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Data structures</h2>
+<p>Variables and values could construct different data structures including vector, matrix, data frame, list, and factor <span class="citation">(<a href="references.html#ref-Kabacoff2019" role="doc-biblioref">Kabacoff 2019</a>)</span>.</p>
+<p><strong>Vector</strong></p>
+<p>You could create a vector with <code>c()</code> function.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="introduction-to-r.html#cb86-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">2</span>, <span class="dv">8</span>) <span class="co"># create a numeric vector</span></span>
+<span id="cb86-2"><a href="introduction-to-r.html#cb86-2" aria-hidden="true" tabindex="-1"></a>a <span class="co"># show the value of this vector</span></span></code></pre></div>
+<pre><code>## [1] 5 9 2 8</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="introduction-to-r.html#cb88-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;hello&#39;</span>, <span class="st">&#39;world&#39;</span>, <span class="st">&#39;!&#39;</span>) <span class="co"># character vector</span></span>
+<span id="cb88-2"><a href="introduction-to-r.html#cb88-2" aria-hidden="true" tabindex="-1"></a>b</span></code></pre></div>
+<pre><code>## [1] &quot;hello&quot; &quot;world&quot; &quot;!&quot;</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="introduction-to-r.html#cb90-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="st">&#39;good&#39;</span>) <span class="co"># if you create a vector containing mixed variable types, such as numeric and character, R will restrict them to be the same variable type, here, character</span></span>
+<span id="cb90-2"><a href="introduction-to-r.html#cb90-2" aria-hidden="true" tabindex="-1"></a>c</span></code></pre></div>
+<pre><code>## [1] &quot;5&quot;    &quot;good&quot;</code></pre>
+<p>You could select elements in the vector by using <code>var_name[#]</code>. Please pay attention on how R indexes its elements in the data structure.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="introduction-to-r.html#cb92-1" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">3</span>] <span class="co"># select the 3rd element</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="introduction-to-r.html#cb94-1" aria-hidden="true" tabindex="-1"></a>b[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] <span class="co"># select from the 1st to the 3rd element</span></span></code></pre></div>
+<pre><code>## [1] &quot;hello&quot; &quot;world&quot; &quot;!&quot;</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="introduction-to-r.html#cb96-1" aria-hidden="true" tabindex="-1"></a>c[<span class="dv">2</span>] <span class="co"># select the 2nd element</span></span></code></pre></div>
+<pre><code>## [1] &quot;good&quot;</code></pre>
+<p><code>1:3</code> means from 1 to 3, so it actually stands for three numbers here, which are 1, 2, 3.</p>
+<p><strong>Matrix</strong></p>
+<p>You could create a matrix using <code>matrix()</code> function.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="introduction-to-r.html#cb98-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,      <span class="co"># the data to be put in the matrix, here we use numbers from 1 to 6</span></span>
+<span id="cb98-2"><a href="introduction-to-r.html#cb98-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">nrow =</span> <span class="dv">2</span>, <span class="co"># number of rows in the matrix</span></span>
+<span id="cb98-3"><a href="introduction-to-r.html#cb98-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">ncol =</span> <span class="dv">3</span>, <span class="co"># number of columns in the matrix</span></span>
+<span id="cb98-4"><a href="introduction-to-r.html#cb98-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">byrow =</span> <span class="cn">FALSE</span>) <span class="co"># how to arrange the data in the matrix, FALSE means by columns, TURE means by rows.</span></span>
+<span id="cb98-5"><a href="introduction-to-r.html#cb98-5" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6</code></pre>
+<p>For variable selection, the intuitive way is using coordinates.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="introduction-to-r.html#cb100-1" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">2</span>,<span class="dv">3</span>] <span class="co"># select the elements in the 2nd row and 3rd column</span></span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>You could also select the entire row or column.</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="introduction-to-r.html#cb102-1" aria-hidden="true" tabindex="-1"></a>a[ ,<span class="dv">2</span>] <span class="co"># the 2nd column</span></span></code></pre></div>
+<pre><code>## [1] 3 4</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="introduction-to-r.html#cb104-1" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">1</span>, ] <span class="co"># the 1st row</span></span></code></pre></div>
+<pre><code>## [1] 1 3 5</code></pre>
+<p><strong>Data frame</strong></p>
+<p>Data frame is a <strong>frequently-used</strong> data type in R. It could include columns with different types of values stored in them. Let’s create a data frame with mixed variables types using <code>data.frame()</code> function.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="introduction-to-r.html#cb106-1" aria-hidden="true" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="co"># create ID</span></span>
+<span id="cb106-2"><a href="introduction-to-r.html#cb106-2" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create Name</span></span>
+<span id="cb106-3"><a href="introduction-to-r.html#cb106-3" aria-hidden="true" tabindex="-1"></a>Score <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="fl">81.5</span>, <span class="dv">90</span>) <span class="co"># create Score</span></span>
+<span id="cb106-4"><a href="introduction-to-r.html#cb106-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Name, Score) <span class="co"># combine the variables into one data frame called df</span></span>
+<span id="cb106-5"><a href="introduction-to-r.html#cb106-5" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##   ID Name Score
+## 1  1    A  69.5
+## 2  2    B  77.5
+## 3  3    C  81.5
+## 4  4    D  90.0</code></pre>
+<p>We created a data frame storing the students’ ID, name, and their test scores. We can select elements from this data frame with couple of ways.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="introduction-to-r.html#cb108-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">2</span>,<span class="dv">3</span>] <span class="co"># 2nd row and 3rd column</span></span></code></pre></div>
+<pre><code>## [1] 77.5</code></pre>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="introduction-to-r.html#cb110-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;ID&#39;</span>] <span class="co"># column of variable ID</span></span></code></pre></div>
+<pre><code>##   ID
+## 1  1
+## 2  2
+## 3  3
+## 4  4</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="introduction-to-r.html#cb112-1" aria-hidden="true" tabindex="-1"></a>df[<span class="fu">c</span>(<span class="st">&#39;ID&#39;</span>, <span class="st">&#39;Score&#39;</span>)] <span class="co"># column of ID and Score</span></span></code></pre></div>
+<pre><code>##   ID Score
+## 1  1  69.5
+## 2  2  77.5
+## 3  3  81.5
+## 4  4  90.0</code></pre>
+<p>There is another way to select the column by its name, which is more frequently used. When you type <code>$</code> after the name of the data frame, RStudio will list all the variables in that data frame.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="introduction-to-r.html#cb114-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Name <span class="co"># column of variable Name</span></span></code></pre></div>
+<pre><code>## [1] A B C D
+## Levels: A B C D</code></pre>
+<p><strong>List</strong></p>
+<p>A list could store mixed types of values, which is different from vector.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="introduction-to-r.html#cb116-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ID =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>), <span class="at">Score =</span> <span class="fu">c</span>(<span class="fl">69.5</span>, <span class="dv">89</span>))</span></code></pre></div>
+<p>When you want to select elements from a list, you could do it in a similar way as a vector. However, list does not define row or column, so you cannot use 2-D coordinates to select elements like a data frame.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="introduction-to-r.html#cb117-1" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## $ID
+## [1] 1 2</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="introduction-to-r.html#cb119-1" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## $Name
+## [1] &quot;A&quot; &quot;B&quot;
+## 
+## $Score
+## [1] 69.5 89.0</code></pre>
+<p>Someone might be confusing since list looks similar to data frame. <a href="https://stackoverflow.com/questions/15901224/what-is-difference-between-dataframe-and-list-in-r">Here</a> is a good discussion about it. Due to the time limitation, we will not cover this discussion in class. The main idea is that list is more flexible than data frame, while data frame has more restrictions. However, since data frame is more similar to 2-D table structure which is more frequently used in our daily work, we use data frame more than list.</p>
+<p><strong>Factor</strong></p>
+<p>Factor is the nominal variable in R. This type will be very useful when we want to analyze data from different groups, such as gender, school, etc.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="introduction-to-r.html#cb121-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb121-2"><a href="introduction-to-r.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="introduction-to-r.html#cb123-1" aria-hidden="true" tabindex="-1"></a>afactor <span class="ot">&lt;-</span> <span class="fu">factor</span>(a)</span>
+<span id="cb123-2"><a href="introduction-to-r.html#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(afactor)</span></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+</div>
+<div id="conditional-statement-if" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Conditional statement (if)</h2>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="introduction-to-r.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (test_expression){</span>
+<span id="cb125-2"><a href="introduction-to-r.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  statement_1</span>
+<span id="cb125-3"><a href="introduction-to-r.html#cb125-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb125-4"><a href="introduction-to-r.html#cb125-4" aria-hidden="true" tabindex="-1"></a>  statement_2</span>
+<span id="cb125-5"><a href="introduction-to-r.html#cb125-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>If the <code>test_expression</code> returns <code>TRUE</code>, then the codes will go to <code>statement_1</code>, if it returns <code>FALSE</code>, the codes will go to <code>statement_2</code>. You could also omit the <code>else</code> part.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="introduction-to-r.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (test_expression){</span>
+<span id="cb126-2"><a href="introduction-to-r.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  statement_1</span>
+<span id="cb126-3"><a href="introduction-to-r.html#cb126-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>If the <code>test_expression</code> returns <code>FALSE</code>, the codes will continue to next line.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="introduction-to-r.html#cb127-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb127-2"><a href="introduction-to-r.html#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">3</span>){</span>
+<span id="cb127-3"><a href="introduction-to-r.html#cb127-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&#39;x is larger than 3&#39;</span>)</span>
+<span id="cb127-4"><a href="introduction-to-r.html#cb127-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb127-5"><a href="introduction-to-r.html#cb127-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&#39;x is not larger than 3&#39;</span>)</span>
+<span id="cb127-6"><a href="introduction-to-r.html#cb127-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;x is larger than 3&quot;</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="introduction-to-r.html#cb129-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb129-2"><a href="introduction-to-r.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">3</span>){</span>
+<span id="cb129-3"><a href="introduction-to-r.html#cb129-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&#39;x is larger than 3&#39;</span>)</span>
+<span id="cb129-4"><a href="introduction-to-r.html#cb129-4" aria-hidden="true" tabindex="-1"></a>} </span></code></pre></div>
+<p>Some other conditional statements include <code>switch</code> and <code>which</code>.</p>
+</div>
+<div id="loops" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Loops</h2>
+<p>Loops help us repeat the codes we want to run in more than one time. <code>for</code> loop is the intuitive and commonly-used one.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="introduction-to-r.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (range){</span>
+<span id="cb130-2"><a href="introduction-to-r.html#cb130-2" aria-hidden="true" tabindex="-1"></a>  statement</span>
+<span id="cb130-3"><a href="introduction-to-r.html#cb130-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><code>range</code> will provide the range for a variable.</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="introduction-to-r.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>){</span>
+<span id="cb131-2"><a href="introduction-to-r.html#cb131-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb131-3"><a href="introduction-to-r.html#cb131-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3</code></pre>
+</div>
+<div id="functions" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Functions</h2>
+<p>Functions are codes have been defined with specific usage. You only need to input some necessary variables and functions will do the tasks and return the result. For example, <code>sum()</code> function could help you add the all the numbers togethor in a vector or data frame and return the result.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="introduction-to-r.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">5</span>))</span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<p>Another example is <code>mean()</code> function, which could help you average the numbers in a vector or data frame and return the result.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="introduction-to-r.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">5</span>))</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>It is important to use the right function to do the right task. To do this, you have to be familiar with the functions you are using. It needs more practice.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
