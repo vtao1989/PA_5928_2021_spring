@@ -3,7 +3,7 @@ title: "PA 5928 Data Management & Visualization with R (Spring 2021)"
 author: "Tao Tao (University of Minnesota)"
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: [book.bib, packages.bib]
+bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
 description: "This is the website for couse PA 5928 in the University of Minnesota"
@@ -45,22 +45,22 @@ The online note is the main study material in this course.  The course has sever
 ## Weekly assignment and final project
 
 1. Weekly assignment includes in-class exercise and after-class assignment. Students are required to submit both of them with necessary notes.
-2. Students will use the knowledge from this course to complete a final project (data analysis for a interested research question and make a poster to show off their work).
-3. Grading policy
+2. Weekly assignment is always due on next Monday 11:59 pm. *Missing deadline results in a penalty in grades (10% of the total grades for each 24 hours, less than 24 hours will be counted as 24 hours)*. Check your files before submission. *Wrong submission results in a penalty in grades (20% of the total grades)*.
+3. Students will use the knowledge from this course to complete a final project (data analysis for a interested research question and make a poster to show off their work). You can find the description of the final project in the chapter of [final project](./final-project.html)).  
+4. Grading policy
 
 * Weekly assignment: 70%
 * Final project: 30%
 
 Weekly assignment grading rubric
 
-| Item                                                                                     | Grades |
+| Requirements                                                                             | Grades |
 |------------------------------------------------------------------------------------------|:------:|
 | Codes could generate the results required by the problems                                | 6      |
 | Necessary notes to indicate the general idea (usage, function, purpose, or mechanism)    | 3      |
 | Codes and notes are neat and well-organized                                              | 1      |
 
 ## Course schedule (Tentative)
-
 
 | Week       | Date   | Topic                                         |
 |------------|--------|-----------------------------------------------|

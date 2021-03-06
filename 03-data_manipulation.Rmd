@@ -1,0 +1,271 @@
+# Data Manipulation with Base Functions
+
+We will introduce how to manipulate with different datasets using base functions in R.
+
+## Import and save datasets
+
+There couple of ways to importing and saving different types of datasets [@quickr1;@quickr2].
+
+### Import data from commonly-used file types
+
+**CSV file**
+```{r, eval=FALSE}
+mydata <- read.csv('c:/minneapolis.csv', ## file location and name
+                   header = TRUE, ## read the first 
+                   sep = ',') ## which type of separation
+```
+
+**EXCEL file**
+```{r, eval=FALSE}
+library(readxl)
+dataset <- read_excel('c:/mydata.xlsx', # file location and name
+                      sheet = 'data') # name or index of the sheet
+```
+
+**dta STATA file**
+```{r, eval=FALSE}
+library(foreign)
+mydata <- read.dta('c:/mydata.dta') # file location and name
+```
+
+Below is an easy way to load datasets in RStudio.
+
+**System tool**
+Besides importing data by codes, you could also import data with the system tool. If this is your first time to use this tool, there may be a process to install the packages depending your options. But don't worry, RStudio can do it by itself. You just need to click the button to approve the installation.
+
+```
+File -> Import dataset -> choose the type of dataset you want to import
+```
+There are some other options or parameters you could set in the import functions listed above (e.g., specify a variable type or try to skip some of the rows). Sometimes it is sort of complex to do it. So for me, I just do those things after I import the dataset.
+
+### Save file
+**CSV file**
+```{r, eval=FALSE}
+write.csv(df, # data
+          'c:/filename.csv') # file location and name
+```
+
+**EXCEL file**
+```{r, eval=FALSE}
+library(xlsx)
+write.xlsx(mydata, # data
+           "c:/mydata.xlsx") # file location and name
+```
+
+**dta STATA file**
+```{r, eval=FALSE}
+library(foreign)
+write.dta(mydata, "c:/mydata.dta")
+```
+
+Usually, it takes less time to save file in CSV and CSV file has a smaller size in storage.
+
+### File location
+
+As you can see in the examples, you need to specify the location (or path) of the file to make sure that R could find your file in the right position. Usually you could find it by checking the system property of the file.
+
+You could avoid this. First, put your R file and dataset in the same folder. Then start the R file by double clicking it. R will use the folder where the R file locates as the working folder. Then you could only specify the name of the file.
+
+This is recommended. Since it will be easier for others to check your codes since they do not need to change the path of the file.
+
+## View data
+
+You could view the variable names and simple description in the ``Environment`` pane on the right-top position of RStudio. If you want to view more information, click the variable name and view the variable in a new window. Here, we use the Minneapolis population data as a example. 
+
+```{r}
+minneapolis <- read.csv('minneapolis.csv')
+```
+
+You could also view the data in the new window by ``View()`` function. Please pay attention that it is initial-capitalized.
+
+```{r, eval=FALSE}
+View(minneapolis)
+```
+
+View the first ten observations (rows) in the dataset. <dbl> stands for double class, which is a sub-type of numerical variable type.
+```{r}
+head(minneapolis, n = 10)
+```
+
+view the last five observations in the dataset.
+
+```{r}
+tail(minneapolis, n = 5)
+```
+
+
+List the variables in the dataset [@quickr3].
+```{r}
+names(minneapolis)
+colnames(minneapolis)
+```
+
+List the structure of the dataset.
+```{r}
+str(minneapolis)
+```
+
+List the dimensions of the dataset
+```{r}
+dim(minneapolis)
+```
+
+List the number of rows in the dataset
+```{r}
+nrow(minneapolis)
+```
+
+List the number of columns in the dataset.
+```{r}
+ncol(minneapolis)
+```
+
+## Data selection
+Select one column with 5 rows of observations.
+```{r}
+head(minneapolis$YEAR, n = 5) # by name
+head(minneapolis[1], n = 5) # by index
+```
+
+Select several columns with 5 rows of observations.
+```{r}
+head(minneapolis[c('YEAR', 'SEX')], n = 5) # by name
+head(minneapolis[c(1, 3, 5)], n = 5) # by index
+```
+
+Select one row by index
+```{r}
+minneapolis[2,] # by index number
+```
+
+Select several rows
+```{r}
+minneapolis[2:3, ] # by index
+minneapolis[c(1,5,9), ] # by index
+```
+
+## Conditional selection
+
+```{r}
+newdata <- minneapolis[minneapolis$YEAR == 2010, ]
+head(newdata)
+```
+
+```{r}
+newdata <- minneapolis[(minneapolis$YEAR == 2010) & (minneapolis$EDUC < 5), ]
+head(newdata)
+```
+
+```{r}
+newdata <- minneapolis$INCTOT[minneapolis$YEAR == 2010]
+head(newdata)
+```
+
+## Deal with missing values
+In R, the missing values is presented as ``NA``.
+
+Test the existence of missing values with ``is.na()`` function. We use an revised old example here.
+
+```{r}
+ID <- c(1:4) # create variable ID
+Name <- c('A', NA, 'C', 'D') # create variable Name
+Score <- c(69.5, 77.5, NA, 90) # create variable Score
+df <- data.frame(ID, Name, Score) # combine the varibles into one data frame called df
+is.na(df)
+```
+
+Assign missing values
+```{r}
+df$Score[df$Score == 90] <- NA
+df
+```
+
+NAs will influence some functions.
+```{r}
+mean(df$Score) # get the mean value (does not ignore NA)
+mean(df$Score, na.rm=TRUE) # (ignore NA)
+```
+
+Test if the observations in the dataset has NAs.
+```{r}
+complete.cases(df)
+```
+
+Find the observations with no NAs.
+```{r}
+na.omit(df)
+```
+
+## Subset
+
+``subset()`` is another way to select the data you want.
+
+Select observations in the Minneapolis population dataset when ``YEAR`` is equal to 2010.
+```{r}
+newdata <- subset(minneapolis, YEAR == 2010)
+head(newdata)
+```
+
+Select two columns from the dataset.
+```{r}
+newdata <- subset(minneapolis, select = c('YEAR', 'AGE'))
+head(newdata, n = 5)
+```
+
+## Merge two datasets
+
+``merge()`` function does the same work as ``vlookup()`` in excel and 'Join' function in ArcGIS. It links two datasets based on their common variable (the variable they both have).
+
+```{r}
+ID <- c(1:4) # create variable ID
+Name <- c('A', 'B', 'C', 'D') # create variable Name
+Score1 <- c(69.5, 77.5, 99, 90) # create variable Score1
+df1 <- data.frame(ID, Name, Score1) # combine the varibles into one data frame called df1
+df1
+
+Name <- c('A', 'D', 'C') # create variable Name
+Score2 <- c(98, 46, 55) # create variable Score2
+df2 <- data.frame(Name, Score2) # combine the varibles into one data frame called df2
+df2
+```
+
+```{r}
+merge(df1, df2,       # dataframes needs to be merged
+      by = 'Name',    # name of the column/variable used for merging
+      all.x = TRUE)   # keep all observations in the first dataframe after merging
+```
+
+```{r}
+merge(df1, df2, 
+      by = 'Name',
+      all.y = TRUE) # keep all observations in the first dataframe after merging
+```
+
+You could keep all the observations in both two data frames by set ``all = TRUE`` in the function.
+
+## Column operation
+
+Column operation or vector operation is a very important idea in R. It applies the operations in two columns or the function in one column directly rather than applies them on each element one by one. 
+```{r}
+ID <- c(1:4) # create variable ID
+Name <- c('A', 'B', 'C', 'D') # create variable Name
+Score1 <- c(69.5, 77.5, 99, 90) # create variable Score1
+Score2 <- c(98, 46, 55, 70) # create variable Score2
+df <- data.frame(ID, Name, Score1, Score2) # combine the varibles into one data frame called df
+df
+```
+
+Create a new column in the dataframe to calculate the sum of score 1 and score 2
+```{r}
+df$totalsocre <- df$Score1 + df$Score2
+df
+```
+
+Create a new column in the dataframe to calculate the mean of score 1 and score 2
+```{r}
+df$meansocre <- (df$Score1 + df$Score2)/2
+df
+```
+
+
+

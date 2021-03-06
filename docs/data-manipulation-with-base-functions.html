@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Data Manipulation with Base Functions | PA 5928 Data Management &amp; Visualization with R (Spring 2021)</title>
+  <meta name="description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Data Manipulation with Base Functions | PA 5928 Data Management &amp; Visualization with R (Spring 2021)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Data Manipulation with Base Functions | PA 5928 Data Management &amp; Visualization with R (Spring 2021)" />
+  
+  <meta name="twitter:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  
+
+<meta name="author" content="Tao Tao (University of Minnesota)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-r.html"/>
+<link rel="next" href="final-project.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PA 5928 R course</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Course Syllabus</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course description</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-prerequisites"><i class="fa fa-check"></i><b>1.2</b> Course prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#logistics"><i class="fa fa-check"></i><b>1.3</b> Logistics</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-learning-outcomes"><i class="fa fa-check"></i><b>1.4</b> Course learning outcomes</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#readings"><i class="fa fa-check"></i><b>1.5</b> Readings</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#weekly-assignment-and-final-project"><i class="fa fa-check"></i><b>1.6</b> Weekly assignment and final project</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#course-schedule-tentative"><i class="fa fa-check"></i><b>1.7</b> Course schedule (Tentative)</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#homework-and-projects-collaboration-and-submission-policy"><i class="fa fa-check"></i><b>1.8</b> Homework and projects collaboration and submission policy</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction to RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-r"><i class="fa fa-check"></i><b>2.1</b> What is R</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2</b> What is RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-r-rstudio"><i class="fa fa-check"></i><b>2.3</b> Install R + RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#familiar-with-the-user-interface-of-rstudio"><i class="fa fa-check"></i><b>2.4</b> Familiar with the user interface of RStudio</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#create-and-save-r-file"><i class="fa fa-check"></i><b>2.5</b> Create and save R file</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#print-hello-world"><i class="fa fa-check"></i><b>2.6</b> Print Hello, world</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-and-use-r-packages"><i class="fa fa-check"></i><b>2.7</b> Install and use R Packages</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#make-notes"><i class="fa fa-check"></i><b>2.8</b> Make notes</a></li>
+<li class="chapter" data-level="2.9" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#tips"><i class="fa fa-check"></i><b>2.9</b> Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#why-r-and-why-not-r"><i class="fa fa-check"></i><b>3.1</b> Why R and why not R?</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variable-name"><i class="fa fa-check"></i><b>3.2</b> Variable name</a></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variable-types"><i class="fa fa-check"></i><b>3.3</b> Variable types</a></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operations"><i class="fa fa-check"></i><b>3.4</b> Operations</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assignment-operations"><i class="fa fa-check"></i><b>3.4.1</b> Assignment operations</a></li>
+<li class="chapter" data-level="3.4.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#arithmetic-operations"><i class="fa fa-check"></i><b>3.4.2</b> Arithmetic operations</a></li>
+<li class="chapter" data-level="3.4.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#relational-operations"><i class="fa fa-check"></i><b>3.4.3</b> Relational operations</a></li>
+<li class="chapter" data-level="3.4.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#logical-operations"><i class="fa fa-check"></i><b>3.4.4</b> Logical operations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-structures"><i class="fa fa-check"></i><b>3.5</b> Data structures</a></li>
+<li class="chapter" data-level="3.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#conditional-statement-if"><i class="fa fa-check"></i><b>3.6</b> Conditional statement (if)</a></li>
+<li class="chapter" data-level="3.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#loops"><i class="fa fa-check"></i><b>3.7</b> Loops</a></li>
+<li class="chapter" data-level="3.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions"><i class="fa fa-check"></i><b>3.8</b> Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation with Base Functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-and-save-datasets"><i class="fa fa-check"></i><b>4.1</b> Import and save datasets</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-data-from-commonly-used-file-types"><i class="fa fa-check"></i><b>4.1.1</b> Import data from commonly-used file types</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#save-file"><i class="fa fa-check"></i><b>4.1.2</b> Save file</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#file-location"><i class="fa fa-check"></i><b>4.1.3</b> File location</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#view-data"><i class="fa fa-check"></i><b>4.2</b> View data</a></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#data-selection"><i class="fa fa-check"></i><b>4.3</b> Data selection</a></li>
+<li class="chapter" data-level="4.4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#conditional-selection"><i class="fa fa-check"></i><b>4.4</b> Conditional selection</a></li>
+<li class="chapter" data-level="4.5" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#deal-with-missing-values"><i class="fa fa-check"></i><b>4.5</b> Deal with missing values</a></li>
+<li class="chapter" data-level="4.6" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#subset"><i class="fa fa-check"></i><b>4.6</b> Subset</a></li>
+<li class="chapter" data-level="4.7" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#merge-two-datasets"><i class="fa fa-check"></i><b>4.7</b> Merge two datasets</a></li>
+<li class="chapter" data-level="4.8" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#column-operation"><i class="fa fa-check"></i><b>4.8</b> Column operation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i><b>5</b> Final Project</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="final-project.html"><a href="final-project.html#description"><i class="fa fa-check"></i><b>5.1</b> Description</a></li>
+<li class="chapter" data-level="5.2" data-path="final-project.html"><a href="final-project.html#timeline"><i class="fa fa-check"></i><b>5.2</b> Timeline</a></li>
+<li class="chapter" data-level="5.3" data-path="final-project.html"><a href="final-project.html#proposal"><i class="fa fa-check"></i><b>5.3</b> Proposal</a></li>
+<li class="chapter" data-level="5.4" data-path="final-project.html"><a href="final-project.html#final-submission"><i class="fa fa-check"></i><b>5.4</b> Final submission</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>6</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PA 5928 Data Management &amp; Visualization with R (Spring 2021)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-manipulation-with-base-functions" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Data Manipulation with Base Functions</h1>
+<p>We will introduce how to manipulate with different datasets using base functions in R.</p>
+<div id="import-and-save-datasets" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Import and save datasets</h2>
+<p>There couple of ways to importing and saving different types of datasets <span class="citation">(<a href="references.html#ref-quickr1" role="doc-biblioref">Quick-R 2019c</a>, <a href="references.html#ref-quickr2" role="doc-biblioref">2019a</a>)</span>.</p>
+<div id="import-data-from-commonly-used-file-types" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Import data from commonly-used file types</h3>
+<p><strong>CSV file</strong></p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="data-manipulation-with-base-functions.html#cb137-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;c:/minneapolis.csv&#39;</span>, <span class="do">## file location and name</span></span>
+<span id="cb137-2"><a href="data-manipulation-with-base-functions.html#cb137-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="do">## read the first </span></span>
+<span id="cb137-3"><a href="data-manipulation-with-base-functions.html#cb137-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sep =</span> <span class="st">&#39;,&#39;</span>) <span class="do">## which type of separation</span></span></code></pre></div>
+<p><strong>EXCEL file</strong></p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="data-manipulation-with-base-functions.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb138-2"><a href="data-manipulation-with-base-functions.html#cb138-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;c:/mydata.xlsx&#39;</span>, <span class="co"># file location and name</span></span>
+<span id="cb138-3"><a href="data-manipulation-with-base-functions.html#cb138-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">sheet =</span> <span class="st">&#39;data&#39;</span>) <span class="co"># name or index of the sheet</span></span></code></pre></div>
+<p><strong>dta STATA file</strong></p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="data-manipulation-with-base-functions.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb139-2"><a href="data-manipulation-with-base-functions.html#cb139-2" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.dta</span>(<span class="st">&#39;c:/mydata.dta&#39;</span>) <span class="co"># file location and name</span></span></code></pre></div>
+<p>Below is an easy way to load datasets in RStudio.</p>
+<p><strong>System tool</strong>
+Besides importing data by codes, you could also import data with the system tool. If this is your first time to use this tool, there may be a process to install the packages depending your options. But don’t worry, RStudio can do it by itself. You just need to click the button to approve the installation.</p>
+<pre><code>File -&gt; Import dataset -&gt; choose the type of dataset you want to import</code></pre>
+<p>There are some other options or parameters you could set in the import functions listed above (e.g., specify a variable type or try to skip some of the rows). Sometimes it is sort of complex to do it. So for me, I just do those things after I import the dataset.</p>
+</div>
+<div id="save-file" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Save file</h3>
+<p><strong>CSV file</strong></p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="data-manipulation-with-base-functions.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(df, <span class="co"># data</span></span>
+<span id="cb141-2"><a href="data-manipulation-with-base-functions.html#cb141-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">&#39;c:/filename.csv&#39;</span>) <span class="co"># file location and name</span></span></code></pre></div>
+<p><strong>EXCEL file</strong></p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="data-manipulation-with-base-functions.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xlsx)</span>
+<span id="cb142-2"><a href="data-manipulation-with-base-functions.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.xlsx</span>(mydata, <span class="co"># data</span></span>
+<span id="cb142-3"><a href="data-manipulation-with-base-functions.html#cb142-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;c:/mydata.xlsx&quot;</span>) <span class="co"># file location and name</span></span></code></pre></div>
+<p><strong>dta STATA file</strong></p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="data-manipulation-with-base-functions.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb143-2"><a href="data-manipulation-with-base-functions.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.dta</span>(mydata, <span class="st">&quot;c:/mydata.dta&quot;</span>)</span></code></pre></div>
+<p>Usually, it takes less time to save file in CSV and CSV file has a smaller size in storage.</p>
+</div>
+<div id="file-location" class="section level3" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> File location</h3>
+<p>As you can see in the examples, you need to specify the location (or path) of the file to make sure that R could find your file in the right position. Usually you could find it by checking the system property of the file.</p>
+<p>You could avoid this. First, put your R file and dataset in the same folder. Then start the R file by double clicking it. R will use the folder where the R file locates as the working folder. Then you could only specify the name of the file.</p>
+<p>This is recommended. Since it will be easier for others to check your codes since they do not need to change the path of the file.</p>
+</div>
+</div>
+<div id="view-data" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> View data</h2>
+<p>You could view the variable names and simple description in the <code>Environment</code> pane on the right-top position of RStudio. If you want to view more information, click the variable name and view the variable in a new window. Here, we use the Minneapolis population data as a example.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="data-manipulation-with-base-functions.html#cb144-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;minneapolis.csv&#39;</span>)</span></code></pre></div>
+<p>You could also view the data in the new window by <code>View()</code> function. Please pay attention that it is initial-capitalized.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="data-manipulation-with-base-functions.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(minneapolis)</span></code></pre></div>
+<p>View the first ten observations (rows) in the dataset. <dbl> stands for double class, which is a sub-type of numerical variable type.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="data-manipulation-with-base-functions.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(minneapolis, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##    YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
+## 1  2010   2  59    1      0   10       1  33100   49100
+## 2  2010   2  29    1      0   10       1  16000   49100
+## 3  2010   1  54    2      0    7       3   1100      NA
+## 4  2010   2  47    2      0    5       2   4800    4800
+## 5  2010   1  59    2      0   10       2      0    4800
+## 6  2010   2  10    2      0    1       0     NA    4800
+## 7  2010   1  24    1      0    5       1  15000   15000
+## 8  2010   1  26    2      3    6       1  18000   18000
+## 9  2010   1  51    1      0    6       1  35200   74400
+## 10 2010   2  47    1      0    6       1  39200   74400</code></pre>
+<p>view the last five observations in the dataset.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="data-manipulation-with-base-functions.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(minneapolis, <span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##       YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
+## 25531 2019   2  66    1      0    7       1  77000   77000
+## 25532 2019   2  29    3      1    6       3      0   38000
+## 25533 2019   1  28    3      1    0       1  38000   38000
+## 25534 2019   1   6    3      1    1       0     NA   38000
+## 25535 2019   1   1    3      1    0       0     NA   38000</code></pre>
+<p>List the variables in the dataset <span class="citation">(<a href="references.html#ref-quickr3" role="doc-biblioref">Quick-R 2019b</a>)</span>.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-manipulation-with-base-functions.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(minneapolis)</span></code></pre></div>
+<pre><code>## [1] &quot;YEAR&quot;    &quot;SEX&quot;     &quot;AGE&quot;     &quot;RACE&quot;    &quot;HISPAN&quot;  &quot;EDUC&quot;    &quot;EMPSTAT&quot;
+## [8] &quot;INCTOT&quot;  &quot;FTOTINC&quot;</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-manipulation-with-base-functions.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(minneapolis)</span></code></pre></div>
+<pre><code>## [1] &quot;YEAR&quot;    &quot;SEX&quot;     &quot;AGE&quot;     &quot;RACE&quot;    &quot;HISPAN&quot;  &quot;EDUC&quot;    &quot;EMPSTAT&quot;
+## [8] &quot;INCTOT&quot;  &quot;FTOTINC&quot;</code></pre>
+<p>List the structure of the dataset.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-manipulation-with-base-functions.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(minneapolis)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    25535 obs. of  9 variables:
+##  $ YEAR   : int  2010 2010 2010 2010 2010 2010 2010 2010 2010 2010 ...
+##  $ SEX    : int  2 2 1 2 1 2 1 1 1 2 ...
+##  $ AGE    : int  59 29 54 47 59 10 24 26 51 47 ...
+##  $ RACE   : int  1 1 2 2 2 2 1 2 1 1 ...
+##  $ HISPAN : int  0 0 0 0 0 0 0 3 0 0 ...
+##  $ EDUC   : int  10 10 7 5 10 1 5 6 6 6 ...
+##  $ EMPSTAT: int  1 1 3 2 2 0 1 1 1 1 ...
+##  $ INCTOT : num  33100 16000 1100 4800 0 NA 15000 18000 35200 39200 ...
+##  $ FTOTINC: num  49100 49100 NA 4800 4800 4800 15000 18000 74400 74400 ...</code></pre>
+<p>List the dimensions of the dataset</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-manipulation-with-base-functions.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(minneapolis)</span></code></pre></div>
+<pre><code>## [1] 25535     9</code></pre>
+<p>List the number of rows in the dataset</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="data-manipulation-with-base-functions.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(minneapolis)</span></code></pre></div>
+<pre><code>## [1] 25535</code></pre>
+<p>List the number of columns in the dataset.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-manipulation-with-base-functions.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(minneapolis)</span></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+</div>
+<div id="data-selection" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Data selection</h2>
+<p>Select one column with 5 rows of observations.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="data-manipulation-with-base-functions.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(minneapolis<span class="sc">$</span>YEAR, <span class="at">n =</span> <span class="dv">5</span>) <span class="co"># by name</span></span></code></pre></div>
+<pre><code>## [1] 2010 2010 2010 2010 2010</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="data-manipulation-with-base-functions.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(minneapolis[<span class="dv">1</span>], <span class="at">n =</span> <span class="dv">5</span>) <span class="co"># by index</span></span></code></pre></div>
+<pre><code>##   YEAR
+## 1 2010
+## 2 2010
+## 3 2010
+## 4 2010
+## 5 2010</code></pre>
+<p>Select several columns with 5 rows of observations.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="data-manipulation-with-base-functions.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(minneapolis[<span class="fu">c</span>(<span class="st">&#39;YEAR&#39;</span>, <span class="st">&#39;SEX&#39;</span>)], <span class="at">n =</span> <span class="dv">5</span>) <span class="co"># by name</span></span></code></pre></div>
+<pre><code>##   YEAR SEX
+## 1 2010   2
+## 2 2010   2
+## 3 2010   1
+## 4 2010   2
+## 5 2010   1</code></pre>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="data-manipulation-with-base-functions.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(minneapolis[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)], <span class="at">n =</span> <span class="dv">5</span>) <span class="co"># by index</span></span></code></pre></div>
+<pre><code>##   YEAR AGE HISPAN
+## 1 2010  59      0
+## 2 2010  29      0
+## 3 2010  54      0
+## 4 2010  47      0
+## 5 2010  59      0</code></pre>
+<p>Select one row by index</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="data-manipulation-with-base-functions.html#cb170-1" aria-hidden="true" tabindex="-1"></a>minneapolis[<span class="dv">2</span>,] <span class="co"># by index number</span></span></code></pre></div>
+<pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
+## 2 2010   2  29    1      0   10       1  16000   49100</code></pre>
+<p>Select several rows</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="data-manipulation-with-base-functions.html#cb172-1" aria-hidden="true" tabindex="-1"></a>minneapolis[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, ] <span class="co"># by index</span></span></code></pre></div>
+<pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
+## 2 2010   2  29    1      0   10       1  16000   49100
+## 3 2010   1  54    2      0    7       3   1100      NA</code></pre>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="data-manipulation-with-base-functions.html#cb174-1" aria-hidden="true" tabindex="-1"></a>minneapolis[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">9</span>), ] <span class="co"># by index</span></span></code></pre></div>
+<pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
+## 1 2010   2  59    1      0   10       1  33100   49100
+## 5 2010   1  59    2      0   10       2      0    4800
+## 9 2010   1  51    1      0    6       1  35200   74400</code></pre>
+</div>
+<div id="conditional-selection" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Conditional selection</h2>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="data-manipulation-with-base-functions.html#cb176-1" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> minneapolis[minneapolis<span class="sc">$</span>YEAR <span class="sc">==</span> <span class="dv">2010</span>, ]</span>
+<span id="cb176-2"><a href="data-manipulation-with-base-functions.html#cb176-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(newdata)</span></code></pre></div>
+<pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
+## 1 2010   2  59    1      0   10       1  33100   49100
+## 2 2010   2  29    1      0   10       1  16000   49100
+## 3 2010   1  54    2      0    7       3   1100      NA
+## 4 2010   2  47    2      0    5       2   4800    4800
+## 5 2010   1  59    2      0   10       2      0    4800
+## 6 2010   2  10    2      0    1       0     NA    4800</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="data-manipulation-with-base-functions.html#cb178-1" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> minneapolis[(minneapolis<span class="sc">$</span>YEAR <span class="sc">==</span> <span class="dv">2010</span>) <span class="sc">&amp;</span> (minneapolis<span class="sc">$</span>EDUC <span class="sc">&lt;</span> <span class="dv">5</span>), ]</span>
+<span id="cb178-2"><a href="data-manipulation-with-base-functions.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(newdata)</span></code></pre></div>
+<pre><code>##    YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
+## 6  2010   2  10    2      0    1       0     NA    4800
+## 11 2010   2   8    1      0    1       0     NA   74400
+## 41 2010   1  16    2      0    4       3      0    7900
+## 42 2010   2  85    1      0    2       3  12000      NA
+## 47 2010   1  10    3      0    1       0     NA      NA
+## 55 2010   1   5    1      0    1       0     NA  132000</code></pre>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="data-manipulation-with-base-functions.html#cb180-1" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> minneapolis<span class="sc">$</span>INCTOT[minneapolis<span class="sc">$</span>YEAR <span class="sc">==</span> <span class="dv">2010</span>]</span>
+<span id="cb180-2"><a href="data-manipulation-with-base-functions.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(newdata)</span></code></pre></div>
+<pre><code>## [1] 33100 16000  1100  4800     0    NA</code></pre>
+</div>
+<div id="deal-with-missing-values" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Deal with missing values</h2>
+<p>In R, the missing values is presented as <code>NA</code>.</p>
+<p>Test the existence of missing values with <code>is.na()</code> function. We use an revised old example here.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="data-manipulation-with-base-functions.html#cb182-1" aria-hidden="true" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></span>
+<span id="cb182-2"><a href="data-manipulation-with-base-functions.html#cb182-2" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="cn">NA</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></span>
+<span id="cb182-3"><a href="data-manipulation-with-base-functions.html#cb182-3" aria-hidden="true" tabindex="-1"></a>Score <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="cn">NA</span>, <span class="dv">90</span>) <span class="co"># create variable Score</span></span>
+<span id="cb182-4"><a href="data-manipulation-with-base-functions.html#cb182-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Name, Score) <span class="co"># combine the varibles into one data frame called df</span></span>
+<span id="cb182-5"><a href="data-manipulation-with-base-functions.html#cb182-5" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(df)</span></code></pre></div>
+<pre><code>##         ID  Name Score
+## [1,] FALSE FALSE FALSE
+## [2,] FALSE  TRUE FALSE
+## [3,] FALSE FALSE  TRUE
+## [4,] FALSE FALSE FALSE</code></pre>
+<p>Assign missing values</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="data-manipulation-with-base-functions.html#cb184-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Score[df<span class="sc">$</span>Score <span class="sc">==</span> <span class="dv">90</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb184-2"><a href="data-manipulation-with-base-functions.html#cb184-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##   ID Name Score
+## 1  1    A  69.5
+## 2  2 &lt;NA&gt;  77.5
+## 3  3    C    NA
+## 4  4    D    NA</code></pre>
+<p>NAs will influence some functions.</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="data-manipulation-with-base-functions.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>Score) <span class="co"># get the mean value (does not ignore NA)</span></span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="data-manipulation-with-base-functions.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>Score, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="co"># (ignore NA)</span></span></code></pre></div>
+<pre><code>## [1] 73.5</code></pre>
+<p>Test if the observations in the dataset has NAs.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="data-manipulation-with-base-functions.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complete.cases</span>(df)</span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE</code></pre>
+<p>Find the observations with no NAs.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="data-manipulation-with-base-functions.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">na.omit</span>(df)</span></code></pre></div>
+<pre><code>##   ID Name Score
+## 1  1    A  69.5</code></pre>
+</div>
+<div id="subset" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Subset</h2>
+<p><code>subset()</code> is another way to select the data you want.</p>
+<p>Select observations in the Minneapolis population dataset when <code>YEAR</code> is equal to 2010.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="data-manipulation-with-base-functions.html#cb194-1" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> <span class="fu">subset</span>(minneapolis, YEAR <span class="sc">==</span> <span class="dv">2010</span>)</span>
+<span id="cb194-2"><a href="data-manipulation-with-base-functions.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(newdata)</span></code></pre></div>
+<pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
+## 1 2010   2  59    1      0   10       1  33100   49100
+## 2 2010   2  29    1      0   10       1  16000   49100
+## 3 2010   1  54    2      0    7       3   1100      NA
+## 4 2010   2  47    2      0    5       2   4800    4800
+## 5 2010   1  59    2      0   10       2      0    4800
+## 6 2010   2  10    2      0    1       0     NA    4800</code></pre>
+<p>Select two columns from the dataset.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="data-manipulation-with-base-functions.html#cb196-1" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> <span class="fu">subset</span>(minneapolis, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&#39;YEAR&#39;</span>, <span class="st">&#39;AGE&#39;</span>))</span>
+<span id="cb196-2"><a href="data-manipulation-with-base-functions.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(newdata, <span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##   YEAR AGE
+## 1 2010  59
+## 2 2010  29
+## 3 2010  54
+## 4 2010  47
+## 5 2010  59</code></pre>
+</div>
+<div id="merge-two-datasets" class="section level2" number="4.7">
+<h2><span class="header-section-number">4.7</span> Merge two datasets</h2>
+<p><code>merge()</code> function does the same work as <code>vlookup()</code> in excel and ‘Join’ function in ArcGIS. It links two datasets based on their common variable (the variable they both have).</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="data-manipulation-with-base-functions.html#cb198-1" aria-hidden="true" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></span>
+<span id="cb198-2"><a href="data-manipulation-with-base-functions.html#cb198-2" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></span>
+<span id="cb198-3"><a href="data-manipulation-with-base-functions.html#cb198-3" aria-hidden="true" tabindex="-1"></a>Score1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="dv">99</span>, <span class="dv">90</span>) <span class="co"># create variable Score1</span></span>
+<span id="cb198-4"><a href="data-manipulation-with-base-functions.html#cb198-4" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Name, Score1) <span class="co"># combine the varibles into one data frame called df1</span></span>
+<span id="cb198-5"><a href="data-manipulation-with-base-functions.html#cb198-5" aria-hidden="true" tabindex="-1"></a>df1</span></code></pre></div>
+<pre><code>##   ID Name Score1
+## 1  1    A   69.5
+## 2  2    B   77.5
+## 3  3    C   99.0
+## 4  4    D   90.0</code></pre>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="data-manipulation-with-base-functions.html#cb200-1" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;D&#39;</span>, <span class="st">&#39;C&#39;</span>) <span class="co"># create variable Name</span></span>
+<span id="cb200-2"><a href="data-manipulation-with-base-functions.html#cb200-2" aria-hidden="true" tabindex="-1"></a>Score2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">98</span>, <span class="dv">46</span>, <span class="dv">55</span>) <span class="co"># create variable Score2</span></span>
+<span id="cb200-3"><a href="data-manipulation-with-base-functions.html#cb200-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Name, Score2) <span class="co"># combine the varibles into one data frame called df2</span></span>
+<span id="cb200-4"><a href="data-manipulation-with-base-functions.html#cb200-4" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
+<pre><code>##   Name Score2
+## 1    A     98
+## 2    D     46
+## 3    C     55</code></pre>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="data-manipulation-with-base-functions.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">merge</span>(df1, df2,       <span class="co"># dataframes needs to be merged</span></span>
+<span id="cb202-2"><a href="data-manipulation-with-base-functions.html#cb202-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">by =</span> <span class="st">&#39;Name&#39;</span>,    <span class="co"># name of the column/variable used for merging</span></span>
+<span id="cb202-3"><a href="data-manipulation-with-base-functions.html#cb202-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">all.x =</span> <span class="cn">TRUE</span>)   <span class="co"># keep all observations in the first dataframe after merging</span></span></code></pre></div>
+<pre><code>##   Name ID Score1 Score2
+## 1    A  1   69.5     98
+## 2    B  2   77.5     NA
+## 3    C  3   99.0     55
+## 4    D  4   90.0     46</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="data-manipulation-with-base-functions.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">merge</span>(df1, df2, </span>
+<span id="cb204-2"><a href="data-manipulation-with-base-functions.html#cb204-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">by =</span> <span class="st">&#39;Name&#39;</span>,</span>
+<span id="cb204-3"><a href="data-manipulation-with-base-functions.html#cb204-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">all.y =</span> <span class="cn">TRUE</span>) <span class="co"># keep all observations in the first dataframe after merging</span></span></code></pre></div>
+<pre><code>##   Name ID Score1 Score2
+## 1    A  1   69.5     98
+## 2    C  3   99.0     55
+## 3    D  4   90.0     46</code></pre>
+<p>You could keep all the observations in both two data frames by set <code>all = TRUE</code> in the function.</p>
+</div>
+<div id="column-operation" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> Column operation</h2>
+<p>Column operation or vector operation is a very important idea in R. It applies the operations in two columns or the function in one column directly rather than applies them on each element one by one.</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="data-manipulation-with-base-functions.html#cb206-1" aria-hidden="true" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></span>
+<span id="cb206-2"><a href="data-manipulation-with-base-functions.html#cb206-2" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></span>
+<span id="cb206-3"><a href="data-manipulation-with-base-functions.html#cb206-3" aria-hidden="true" tabindex="-1"></a>Score1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="dv">99</span>, <span class="dv">90</span>) <span class="co"># create variable Score1</span></span>
+<span id="cb206-4"><a href="data-manipulation-with-base-functions.html#cb206-4" aria-hidden="true" tabindex="-1"></a>Score2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">98</span>, <span class="dv">46</span>, <span class="dv">55</span>, <span class="dv">70</span>) <span class="co"># create variable Score2</span></span>
+<span id="cb206-5"><a href="data-manipulation-with-base-functions.html#cb206-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Name, Score1, Score2) <span class="co"># combine the varibles into one data frame called df</span></span>
+<span id="cb206-6"><a href="data-manipulation-with-base-functions.html#cb206-6" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##   ID Name Score1 Score2
+## 1  1    A   69.5     98
+## 2  2    B   77.5     46
+## 3  3    C   99.0     55
+## 4  4    D   90.0     70</code></pre>
+<p>Create a new column in the dataframe to calculate the sum of score 1 and score 2</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="data-manipulation-with-base-functions.html#cb208-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>totalsocre <span class="ot">&lt;-</span> df<span class="sc">$</span>Score1 <span class="sc">+</span> df<span class="sc">$</span>Score2</span>
+<span id="cb208-2"><a href="data-manipulation-with-base-functions.html#cb208-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##   ID Name Score1 Score2 totalsocre
+## 1  1    A   69.5     98      167.5
+## 2  2    B   77.5     46      123.5
+## 3  3    C   99.0     55      154.0
+## 4  4    D   90.0     70      160.0</code></pre>
+<p>Create a new column in the dataframe to calculate the mean of score 1 and score 2</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="data-manipulation-with-base-functions.html#cb210-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>meansocre <span class="ot">&lt;-</span> (df<span class="sc">$</span>Score1 <span class="sc">+</span> df<span class="sc">$</span>Score2)<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb210-2"><a href="data-manipulation-with-base-functions.html#cb210-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##   ID Name Score1 Score2 totalsocre meansocre
+## 1  1    A   69.5     98      167.5     83.75
+## 2  2    B   77.5     46      123.5     61.75
+## 3  3    C   99.0     55      154.0     77.00
+## 4  4    D   90.0     70      160.0     80.00</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="final-project.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
