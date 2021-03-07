@@ -70,7 +70,7 @@ This is recommended. Since it will be easier for others to check your codes sinc
 
 ## View data
 
-You could view the variable names and simple description in the ``Environment`` pane on the right-top position of RStudio. If you want to view more information, click the variable name and view the variable in a new window. Here, we use the Minneapolis population data as a example. 
+You could view the variable names and simple description in the ``Environment`` pane on the right-top position of RStudio. If you want to view more information, click the variable name and view the variable in a new window. Here, we use the Minneapolis one-year ACS data as a example. 
 
 ```{r}
 minneapolis <- read.csv('minneapolis.csv')
@@ -104,6 +104,56 @@ List the structure of the dataset.
 ```{r}
 str(minneapolis)
 ```
+
+The table below lists the variable names and their descriptions.
+
++----------+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| Variable | Name                   | Description                                                                                                                                |
++----------+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| YEAR     | Year                   | The year when the data was collected.                                                                                                      |
++----------+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| SEX      | Gender                 | Gender of the respondent.\                                                                                                                  |
+|          |                        | 1 = Male\                                                                                                                                   |
+|          |                        | 2 = Female\                                                                                                                                 |
++----------+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| AGE      | Age                    | Age of the respondent (0 indicates age is smaller than 1).                                                                                 |
++----------+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| RACE     | Race                   | Race of the respondent.\                                                                                                                    |
+|          |                        | 1 = White\                                                                                                                                  |
+|          |                        | 2 = Black/African American/Negro\                                                                                                           |
+|          |                        | 3 = American Indian or Alaska Native\                                                                                                       |
++----------+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| HISPAN   | Hispanic origin        | Hispanic origin of the respondent.\                                                                                                         |
+|          |                        | 0 = Not Hispanic\                                                                                                                           |
+|          |                        | 1 = Mexican\                                                                                                                                |
+|          |                        | 2 = Puerto Rican\                                                                                                                           |
+|          |                        | 3 = Cuban\                                                                                                                                  |
+|          |                        | 4 = Other\                                                                                                                                  |
++----------+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| EDUC     | Educational attainment | Respondents' educational attainment, as measured by the highest year of school or degree completed.\                                        |
+|          |                        | 0 = N/A or no schooling\                                                                                                                    |
+|          |                        | 1 = Nursery school to grade 4\                                                                                                              |
+|          |                        | 2 = Grade 5, 6, 7, or 8\                                                                                                                    |
+|          |                        | 3 = Grade 9\                                                                                                                                |
+|          |                        | 4 = Grade 10\                                                                                                                               |
+|          |                        | 5 = Grade 11\                                                                                                                               |
+|          |                        | 6 = Grade 12\                                                                                                                               |
+|          |                        | 7 = 1 year of college\                                                                                                                      |
+|          |                        | 8 = 2 years of college\                                                                                                                     |
+|          |                        | 9 = 3 years of college\                                                                                                                     |
+|          |                        | 10 = 4 years of college\                                                                                                                    |
+|          |                        | 11 = 5+ years of college                                                                                                                   |
++----------+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| EMPSTAT  | Employment status      | Whether the respondent was a part of the labor force -- working or seekingwork -- and, if so, whether the person was currently unemployed.\ |
+|          |                        | 0 = N/A\                                                                                                                                    |
+|          |                        | 1 = Employed\                                                                                                                               |
+|          |                        | 2 = Unemployed\                                                                                                                             |
+|          |                        | 3 = Not in labor force                                                                                                                     |
++----------+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| INCTOT   | Total personal income  | Each respondent's total pre-tax personal income or losses from all sources for the previous year                                            |
++----------+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| FTOTINC  | Total family income    | The total pre-tax money income earned by one's family from all sources for the previous year.                       |
++----------+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
 
 List the dimensions of the dataset
 ```{r}
