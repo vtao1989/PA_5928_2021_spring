@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Data Manipulation with dplyr | PA 5928 Data Management &amp; Visualization with R (Spring 2021)</title>
+  <meta name="description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Data Manipulation with dplyr | PA 5928 Data Management &amp; Visualization with R (Spring 2021)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Data Manipulation with dplyr | PA 5928 Data Management &amp; Visualization with R (Spring 2021)" />
+  
+  <meta name="twitter:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  
+
+<meta name="author" content="Tao Tao (University of Minnesota)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-manipulation-with-base-functions.html"/>
+<link rel="next" href="final-project.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PA 5928 R course</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Course Syllabus</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course description</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-prerequisites"><i class="fa fa-check"></i><b>1.2</b> Course prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#logistics"><i class="fa fa-check"></i><b>1.3</b> Logistics</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-learning-outcomes"><i class="fa fa-check"></i><b>1.4</b> Course learning outcomes</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#readings"><i class="fa fa-check"></i><b>1.5</b> Readings</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#weekly-assignment-and-final-project"><i class="fa fa-check"></i><b>1.6</b> Weekly assignment and final project</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#course-schedule-tentative"><i class="fa fa-check"></i><b>1.7</b> Course schedule (Tentative)</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#homework-and-projects-collaboration-and-submission-policy"><i class="fa fa-check"></i><b>1.8</b> Homework and projects collaboration and submission policy</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction to RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-r"><i class="fa fa-check"></i><b>2.1</b> What is R</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2</b> What is RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-r-rstudio"><i class="fa fa-check"></i><b>2.3</b> Install R + RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#familiar-with-the-user-interface-of-rstudio"><i class="fa fa-check"></i><b>2.4</b> Familiar with the user interface of RStudio</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#create-and-save-r-file"><i class="fa fa-check"></i><b>2.5</b> Create and save R file</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#print-hello-world"><i class="fa fa-check"></i><b>2.6</b> Print Hello, world</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-and-use-r-packages"><i class="fa fa-check"></i><b>2.7</b> Install and use R Packages</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#make-notes"><i class="fa fa-check"></i><b>2.8</b> Make notes</a></li>
+<li class="chapter" data-level="2.9" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#tips"><i class="fa fa-check"></i><b>2.9</b> Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#why-r-and-why-not-r"><i class="fa fa-check"></i><b>3.1</b> Why R and why not R?</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variable-name"><i class="fa fa-check"></i><b>3.2</b> Variable name</a></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variable-types"><i class="fa fa-check"></i><b>3.3</b> Variable types</a></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operations"><i class="fa fa-check"></i><b>3.4</b> Operations</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assignment-operations"><i class="fa fa-check"></i><b>3.4.1</b> Assignment operations</a></li>
+<li class="chapter" data-level="3.4.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#arithmetic-operations"><i class="fa fa-check"></i><b>3.4.2</b> Arithmetic operations</a></li>
+<li class="chapter" data-level="3.4.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#relational-operations"><i class="fa fa-check"></i><b>3.4.3</b> Relational operations</a></li>
+<li class="chapter" data-level="3.4.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#logical-operations"><i class="fa fa-check"></i><b>3.4.4</b> Logical operations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-structures"><i class="fa fa-check"></i><b>3.5</b> Data structures</a></li>
+<li class="chapter" data-level="3.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#conditional-statement-if"><i class="fa fa-check"></i><b>3.6</b> Conditional statement (if)</a></li>
+<li class="chapter" data-level="3.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#loops"><i class="fa fa-check"></i><b>3.7</b> Loops</a></li>
+<li class="chapter" data-level="3.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions"><i class="fa fa-check"></i><b>3.8</b> Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation with Base Functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-and-save-datasets"><i class="fa fa-check"></i><b>4.1</b> Import and save datasets</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-data-from-commonly-used-file-types"><i class="fa fa-check"></i><b>4.1.1</b> Import data from commonly-used file types</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#save-file"><i class="fa fa-check"></i><b>4.1.2</b> Save file</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#file-location"><i class="fa fa-check"></i><b>4.1.3</b> File location</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#view-data"><i class="fa fa-check"></i><b>4.2</b> View data</a></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#data-selection"><i class="fa fa-check"></i><b>4.3</b> Data selection</a></li>
+<li class="chapter" data-level="4.4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#conditional-selection"><i class="fa fa-check"></i><b>4.4</b> Conditional selection</a></li>
+<li class="chapter" data-level="4.5" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#deal-with-missing-values"><i class="fa fa-check"></i><b>4.5</b> Deal with missing values</a></li>
+<li class="chapter" data-level="4.6" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#subset"><i class="fa fa-check"></i><b>4.6</b> Subset</a></li>
+<li class="chapter" data-level="4.7" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#merge-two-datasets"><i class="fa fa-check"></i><b>4.7</b> Merge two datasets</a></li>
+<li class="chapter" data-level="4.8" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#column-operation"><i class="fa fa-check"></i><b>4.8</b> Column operation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select"><i class="fa fa-check"></i><b>5.1</b> select()</a></li>
+<li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filter"><i class="fa fa-check"></i><b>5.2</b> filter()</a></li>
+<li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#arrange"><i class="fa fa-check"></i><b>5.3</b> arrange()</a></li>
+<li class="chapter" data-level="5.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#mutate"><i class="fa fa-check"></i><b>5.4</b> mutate()</a></li>
+<li class="chapter" data-level="5.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#group_by-and-summarise"><i class="fa fa-check"></i><b>5.5</b> group_by() and summarise()</a></li>
+<li class="chapter" data-level="5.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#join"><i class="fa fa-check"></i><b>5.6</b> join()</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i><b>6</b> Final Project</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="final-project.html"><a href="final-project.html#description"><i class="fa fa-check"></i><b>6.1</b> Description</a></li>
+<li class="chapter" data-level="6.2" data-path="final-project.html"><a href="final-project.html#timeline"><i class="fa fa-check"></i><b>6.2</b> Timeline</a></li>
+<li class="chapter" data-level="6.3" data-path="final-project.html"><a href="final-project.html#proposal"><i class="fa fa-check"></i><b>6.3</b> Proposal</a></li>
+<li class="chapter" data-level="6.4" data-path="final-project.html"><a href="final-project.html#final-submission"><i class="fa fa-check"></i><b>6.4</b> Final submission</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PA 5928 Data Management &amp; Visualization with R (Spring 2021)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-manipulation-with-dplyr" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Data Manipulation with dplyr</h1>
+<p>In this chapter, we will learn a very popular package <code>dplyr</code> to deal with data manipulation. We will mainly go through its main functions <span class="citation">(<a href="references.html#ref-biomed1" role="doc-biblioref">BiomedicalDataScience 2019</a>; <a href="references.html#ref-rpro1" role="doc-biblioref">r-project 2019</a>)</span>.</p>
+<div id="select" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> select()</h2>
+<p>Before the lecture, install the package in your computer.</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="data-manipulation-with-dplyr.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;dplyr&#39;</span>) <span class="do">## you only need to install this package once</span></span></code></pre></div>
+<p>Let’s first import this package. Also, we import the Minneapolis ACS dataset.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="data-manipulation-with-dplyr.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb213-2"><a href="data-manipulation-with-dplyr.html#cb213-2" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;minneapolis.csv&#39;</span>)</span></code></pre></div>
+<p>If we want to select one or more columns (i.e., variables) from the dataset. We could use the <code>select()</code> function in <code>dplyr</code>. It is similar to the <code>subset()</code> function, but here, you do not need to use <code>select = c('mpg', 'disp')</code>. You use the names of the columns directly in the function.</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="data-manipulation-with-dplyr.html#cb214-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">select</span>(minneapolis, <span class="co"># name of the data frame</span></span>
+<span id="cb214-2"><a href="data-manipulation-with-dplyr.html#cb214-2" aria-hidden="true" tabindex="-1"></a>       YEAR, SEX, AGE) <span class="co"># column/variable names you want to select</span></span>
+<span id="cb214-3"><a href="data-manipulation-with-dplyr.html#cb214-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##   YEAR SEX AGE
+## 1 2010   2  59
+## 2 2010   2  29
+## 3 2010   1  54</code></pre>
+<p>You could also use the index of the columns.</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="data-manipulation-with-dplyr.html#cb216-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">select</span>(minneapolis, <span class="co"># name of the data frame</span></span>
+<span id="cb216-2"><a href="data-manipulation-with-dplyr.html#cb216-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)) <span class="co"># index of the columns/variables you want to select</span></span>
+<span id="cb216-3"><a href="data-manipulation-with-dplyr.html#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##   YEAR SEX AGE
+## 1 2010   2  59
+## 2 2010   2  29
+## 3 2010   1  54</code></pre>
+<p>The codes above is kind of a <em>traditional</em> way to do the work. We start with a function and put parameters in the function. However, this is not the typical way to use <code>dplyr</code>.</p>
+<p>The codes below is a more <code>dplyr</code> way people use the package. We start with the name of the data frame. Then, we put a special sign <code>%&gt;%</code> called <code>pipe</code> after it. We continue from a new line and write the function we want to use. Besides that, we could add more functions with the pipe operator. For example, only show first three observations with <code>head()</code> functions.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="data-manipulation-with-dplyr.html#cb218-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> <span class="co"># name of the data frame</span></span>
+<span id="cb218-2"><a href="data-manipulation-with-dplyr.html#cb218-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(YEAR, SEX, AGE) <span class="sc">%&gt;%</span> <span class="co"># select the columns by their names</span></span>
+<span id="cb218-3"><a href="data-manipulation-with-dplyr.html#cb218-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##   YEAR SEX AGE
+## 1 2010   2  59
+## 2 2010   2  29
+## 3 2010   1  54</code></pre>
+<p>The original codes include more (see below). When comparing the codes above and below, you will find that original codes use <code>.</code> as the input of the data frame in the function. However, for easy coding, this <code>.</code> could be omitted.</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="data-manipulation-with-dplyr.html#cb220-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb220-2"><a href="data-manipulation-with-dplyr.html#cb220-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(., YEAR, SEX, AGE) <span class="sc">%&gt;%</span> </span>
+<span id="cb220-3"><a href="data-manipulation-with-dplyr.html#cb220-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(., <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##   YEAR SEX AGE
+## 1 2010   2  59
+## 2 2010   2  29
+## 3 2010   1  54</code></pre>
+<p>You can also write the codes in only one line, just like the codes below. However, it is recommended to write codes with one function in one line to improve the readiness of the codes.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="data-manipulation-with-dplyr.html#cb222-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> <span class="fu">select</span>(YEAR, SEX, AGE) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##   YEAR SEX AGE
+## 1 2010   2  59
+## 2 2010   2  29
+## 3 2010   1  54</code></pre>
+<p>We will keep using the fashion of pipe in the following lectures. In addition, you can use <code>Ctrl + Shift + M</code> in RStudio to quickly input the pipe.</p>
+<p>Besides choosing some columns you want, you could also exclude the column you do not want by putting a negative sign <code>-</code> before the variable.</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="data-manipulation-with-dplyr.html#cb224-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb224-2"><a href="data-manipulation-with-dplyr.html#cb224-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>HISPAN, <span class="sc">-</span> FTOTINC) <span class="sc">%&gt;%</span></span>
+<span id="cb224-3"><a href="data-manipulation-with-dplyr.html#cb224-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##   YEAR SEX AGE RACE EDUC EMPSTAT INCTOT
+## 1 2010   2  59    1   10       1  33100
+## 2 2010   2  29    1   10       1  16000
+## 3 2010   1  54    2    7       3   1100</code></pre>
+<p>You could use <code>:</code> to select a range of variables.</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="data-manipulation-with-dplyr.html#cb226-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb226-2"><a href="data-manipulation-with-dplyr.html#cb226-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(YEAR<span class="sc">:</span>RACE) <span class="sc">%&gt;%</span> <span class="co"># select from mpg to hp in the data frame</span></span>
+<span id="cb226-3"><a href="data-manipulation-with-dplyr.html#cb226-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##   YEAR SEX AGE RACE
+## 1 2010   2  59    1
+## 2 2010   2  29    1
+## 3 2010   1  54    2</code></pre>
+</div>
+<div id="filter" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> filter()</h2>
+<p>In <code>dplyr</code>, we could use <code>filter()</code> function to select the rows satisfying some conditions.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="data-manipulation-with-dplyr.html#cb228-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb228-2"><a href="data-manipulation-with-dplyr.html#cb228-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2015</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb228-3"><a href="data-manipulation-with-dplyr.html#cb228-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
+## 1 2015   2  37    3      0   11       1 125000  125000
+## 2 2015   1  18    1      0    6       3   2500      NA
+## 3 2015   1  91    1      0    6       3   8400      NA</code></pre>
+<p>Add more conditions by using <code>,</code> to separate them.</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="data-manipulation-with-dplyr.html#cb230-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb230-2"><a href="data-manipulation-with-dplyr.html#cb230-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2015</span>, AGE <span class="sc">==</span> <span class="dv">37</span>, SEX <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb230-3"><a href="data-manipulation-with-dplyr.html#cb230-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
+## 1 2015   1  37    1      0    7       1  55000   75000
+## 2 2015   1  37    1      0    6       1  40000   73600
+## 3 2015   1  37    1      0    7       1  80000   80000</code></pre>
+</div>
+<div id="arrange" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> arrange()</h2>
+<p>We could arrange the order of some columns by <code>arrange()</code> functions.</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="data-manipulation-with-dplyr.html#cb232-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb232-2"><a href="data-manipulation-with-dplyr.html#cb232-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(YEAR) <span class="sc">%&gt;%</span> <span class="co"># arrange mpg in ascending order</span></span>
+<span id="cb232-3"><a href="data-manipulation-with-dplyr.html#cb232-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##    YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
+## 1  2010   2  59    1      0   10       1  33100   49100
+## 2  2010   2  29    1      0   10       1  16000   49100
+## 3  2010   1  54    2      0    7       3   1100      NA
+## 4  2010   2  47    2      0    5       2   4800    4800
+## 5  2010   1  59    2      0   10       2      0    4800
+## 6  2010   2  10    2      0    1       0     NA    4800
+## 7  2010   1  24    1      0    5       1  15000   15000
+## 8  2010   1  26    2      3    6       1  18000   18000
+## 9  2010   1  51    1      0    6       1  35200   74400
+## 10 2010   2  47    1      0    6       1  39200   74400</code></pre>
+<p>Or maybe we want <code>YEAR</code> to be in a descending order. Just put a <code>desc()</code> outside the variable.</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="data-manipulation-with-dplyr.html#cb234-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb234-2"><a href="data-manipulation-with-dplyr.html#cb234-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(YEAR)) <span class="sc">%&gt;%</span></span>
+<span id="cb234-3"><a href="data-manipulation-with-dplyr.html#cb234-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##    YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
+## 1  2019   1  20    1      0    7       2   4600      NA
+## 2  2019   1  58    1      0    6       1   2500      NA
+## 3  2019   1  20    1      0    7       1   8000      NA
+## 4  2019   1  15    2      0    2       0   9300      NA
+## 5  2019   1   6    1      0    1       0     NA      NA
+## 6  2019   1  18    1      0    7       1   8200      NA
+## 7  2019   1  31    2      0    6       3  36000      NA
+## 8  2019   2  21    1      0    6       1   8500      NA
+## 9  2019   1  65    1      0    7       3  14400      NA
+## 10 2019   1  29    1      0    5       1  13900      NA</code></pre>
+<p>We could put them together by using pipe operators to connect them.</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="data-manipulation-with-dplyr.html#cb236-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb236-2"><a href="data-manipulation-with-dplyr.html#cb236-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2010</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb236-3"><a href="data-manipulation-with-dplyr.html#cb236-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(YEAR, SEX, AGE) <span class="sc">%&gt;%</span></span>
+<span id="cb236-4"><a href="data-manipulation-with-dplyr.html#cb236-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(SEX), AGE) <span class="sc">%&gt;%</span></span>
+<span id="cb236-5"><a href="data-manipulation-with-dplyr.html#cb236-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##   YEAR SEX AGE
+## 1 2010   2   0
+## 2 2010   2   0
+## 3 2010   2   0
+## 4 2010   2   0
+## 5 2010   2   0</code></pre>
+</div>
+<div id="mutate" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> mutate()</h2>
+<p>We use <code>mutate()</code> to do operation among the variables and create a new column to store them.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="data-manipulation-with-dplyr.html#cb238-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb238-2"><a href="data-manipulation-with-dplyr.html#cb238-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(INCTOT) <span class="sc">%&gt;%</span> </span>
+<span id="cb238-3"><a href="data-manipulation-with-dplyr.html#cb238-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INCTOTK =</span> INCTOT<span class="sc">/</span><span class="dv">1000</span>) <span class="sc">%&gt;%</span> <span class="do">## transfer the unit of personal income from dollar to k dollar</span></span>
+<span id="cb238-4"><a href="data-manipulation-with-dplyr.html#cb238-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##   INCTOT INCTOTK
+## 1  33100    33.1
+## 2  16000    16.0
+## 3   1100     1.1
+## 4   4800     4.8
+## 5      0     0.0</code></pre>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="data-manipulation-with-dplyr.html#cb240-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb240-2"><a href="data-manipulation-with-dplyr.html#cb240-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(INCTOT, FTOTINC) <span class="sc">%&gt;%</span> </span>
+<span id="cb240-3"><a href="data-manipulation-with-dplyr.html#cb240-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INCTOTK =</span> INCTOT<span class="sc">/</span><span class="dv">1000</span>, <span class="at">FTOTINCK =</span> FTOTINC<span class="sc">/</span><span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb240-4"><a href="data-manipulation-with-dplyr.html#cb240-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##    INCTOT FTOTINC INCTOTK FTOTINCK
+## 1   33100   49100    33.1     49.1
+## 2   16000   49100    16.0     49.1
+## 3    1100      NA     1.1       NA
+## 4    4800    4800     4.8      4.8
+## 5       0    4800     0.0      4.8
+## 6      NA    4800      NA      4.8
+## 7   15000   15000    15.0     15.0
+## 8   18000   18000    18.0     18.0
+## 9   35200   74400    35.2     74.4
+## 10  39200   74400    39.2     74.4</code></pre>
+</div>
+<div id="group_by-and-summarise" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> group_by() and summarise()</h2>
+<p>We use <code>group_by()</code> to do aggregation (group the observations based the values of one or one more columns) work and <code>summarise()</code> to calculate some statistics related to each group.</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="data-manipulation-with-dplyr.html#cb242-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb242-2"><a href="data-manipulation-with-dplyr.html#cb242-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR) <span class="sc">%&gt;%</span></span>
+<span id="cb242-3"><a href="data-manipulation-with-dplyr.html#cb242-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb242-4"><a href="data-manipulation-with-dplyr.html#cb242-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">AvgInc =</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T))</span></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+##     YEAR count AvgInc
+##  * &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;
+##  1  2010  2131 37605.
+##  2  2011  2431 36715.
+##  3  2012  2517 33152.
+##  4  2013  2549 37392.
+##  5  2014  2545 37238.
+##  6  2015  2524 40902.
+##  7  2016  2744 42901.
+##  8  2017  2857 46994.
+##  9  2018  2673 45557.
+## 10  2019  2564 48519.</code></pre>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="data-manipulation-with-dplyr.html#cb244-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb244-2"><a href="data-manipulation-with-dplyr.html#cb244-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2010</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb244-3"><a href="data-manipulation-with-dplyr.html#cb244-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR, RACE) <span class="sc">%&gt;%</span></span>
+<span id="cb244-4"><a href="data-manipulation-with-dplyr.html#cb244-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">MaxInc =</span> <span class="fu">max</span>(INCTOT, <span class="at">na.rm =</span> T))</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+## # Groups:   YEAR [1]
+##    YEAR  RACE MaxInc
+##   &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;
+## 1  2010     1 637000
+## 2  2010     2 173200
+## 3  2010     3 362000</code></pre>
+</div>
+<div id="join" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> join()</h2>
+<p>We could use <code>join()</code> to do the same work of <code>merge()</code>.</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="data-manipulation-with-dplyr.html#cb246-1" aria-hidden="true" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></span>
+<span id="cb246-2"><a href="data-manipulation-with-dplyr.html#cb246-2" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></span>
+<span id="cb246-3"><a href="data-manipulation-with-dplyr.html#cb246-3" aria-hidden="true" tabindex="-1"></a>Score1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="dv">99</span>, <span class="dv">90</span>) <span class="co"># create variable Score1</span></span>
+<span id="cb246-4"><a href="data-manipulation-with-dplyr.html#cb246-4" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Name, Score1) <span class="co"># combine the varibles into one data frame called df1</span></span>
+<span id="cb246-5"><a href="data-manipulation-with-dplyr.html#cb246-5" aria-hidden="true" tabindex="-1"></a>df1</span></code></pre></div>
+<pre><code>##   ID Name Score1
+## 1  1    A   69.5
+## 2  2    B   77.5
+## 3  3    C   99.0
+## 4  4    D   90.0</code></pre>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="data-manipulation-with-dplyr.html#cb248-1" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;D&#39;</span>, <span class="st">&#39;C&#39;</span>) <span class="co"># create variable Name</span></span>
+<span id="cb248-2"><a href="data-manipulation-with-dplyr.html#cb248-2" aria-hidden="true" tabindex="-1"></a>Score2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">98</span>, <span class="dv">46</span>, <span class="dv">55</span>) <span class="co"># create variable Score2</span></span>
+<span id="cb248-3"><a href="data-manipulation-with-dplyr.html#cb248-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Name, Score2) <span class="co"># combine the varibles into one data frame called df2</span></span>
+<span id="cb248-4"><a href="data-manipulation-with-dplyr.html#cb248-4" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
+<pre><code>##   Name Score2
+## 1    A     98
+## 2    D     46
+## 3    C     55</code></pre>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="data-manipulation-with-dplyr.html#cb250-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">%&gt;%</span></span>
+<span id="cb250-2"><a href="data-manipulation-with-dplyr.html#cb250-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(df2, <span class="at">by =</span> <span class="st">&#39;Name&#39;</span>)</span></code></pre></div>
+<pre><code>##   ID Name Score1 Score2
+## 1  1    A   69.5     98
+## 2  2    B   77.5     NA
+## 3  3    C   99.0     55
+## 4  4    D   90.0     46</code></pre>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="data-manipulation-with-dplyr.html#cb252-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">%&gt;%</span></span>
+<span id="cb252-2"><a href="data-manipulation-with-dplyr.html#cb252-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(df2, <span class="at">by =</span> <span class="st">&#39;Name&#39;</span>)</span></code></pre></div>
+<pre><code>##   ID Name Score1 Score2
+## 1  1    A   69.5     98
+## 2  3    C   99.0     55
+## 3  4    D   90.0     46</code></pre>
+<p>Could you tell the difference between <code>left_join()</code> and <code>right_join()</code>?</p>
+<p>Besides <code>left_join()</code> and <code>right_join()</code>, we have <code>inner_join()</code> (keep only matched observations of two data frames) and <code>full_join()</code> (keep all observations of two data frames).</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-manipulation-with-base-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="final-project.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

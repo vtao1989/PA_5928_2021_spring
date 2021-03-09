@@ -42,6 +42,13 @@ deal-with-missing-values
 subset
 merge-two-datasets
 column-operation
+data-manipulation-with-dplyr
+select
+filter
+arrange
+mutate
+group_by-and-summarise
+join
 final-project
 description
 timeline

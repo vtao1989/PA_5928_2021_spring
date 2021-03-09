@@ -70,7 +70,7 @@ This is recommended. Since it will be easier for others to check your codes sinc
 
 ## View data
 
-You could view the variable names and simple description in the ``Environment`` pane on the right-top position of RStudio. If you want to view more information, click the variable name and view the variable in a new window. Here, we use the Minneapolis one-year ACS data as a example. 
+You could view the variable names and simple description in the ``Environment`` pane on the right-top position of RStudio. If you want to view more information, click the variable name and view the variable in a new window. Here, we use the Minneapolis one-year ACS data as a example. This dataset contains the demographic information of the respondents in the city of Minneapolis in the ACS survey from 2010 to 2019.
 
 ```{r}
 minneapolis <- read.csv('minneapolis.csv')
@@ -266,6 +266,8 @@ head(newdata, n = 5)
 
 ``merge()`` function does the same work as ``vlookup()`` in excel and 'Join' function in ArcGIS. It links two datasets based on their common variable (the variable they both have).
 
+
+
 ```{r}
 ID <- c(1:4) # create variable ID
 Name <- c('A', 'B', 'C', 'D') # create variable Name
@@ -291,7 +293,7 @@ merge(df1, df2,
       all.y = TRUE) # keep all observations in the first dataframe after merging
 ```
 
-You could keep all the observations in both two data frames by set ``all = TRUE`` in the function.
+You could keep all the observations in both two data frames by set ``all = TRUE`` in the function. We will cover more about this in our lecture about ``dplyr``.
 
 ## Column operation
 
@@ -305,13 +307,13 @@ df <- data.frame(ID, Name, Score1, Score2) # combine the varibles into one data 
 df
 ```
 
-Create a new column in the dataframe to calculate the sum of score 1 and score 2
+Create a new column in the data frame to calculate the sum of score 1 and score 2
 ```{r}
 df$totalsocre <- df$Score1 + df$Score2
 df
 ```
 
-Create a new column in the dataframe to calculate the mean of score 1 and score 2
+Create a new column in the data frame to calculate the mean of score 1 and score 2
 ```{r}
 df$meansocre <- (df$Score1 + df$Score2)/2
 df

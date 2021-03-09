@@ -1,0 +1,195 @@
+# Data Manipulation with dplyr
+
+In this chapter, we will learn a very popular package ``dplyr`` to deal with data manipulation. We will mainly go through its main functions [@biomed1;@rpro1].
+
+## select()
+
+Before the lecture, install the package in your computer.
+
+```{r eval=FALSE}
+install.packages('dplyr') ## you only need to install this package once
+```
+
+
+Let's first import this package. Also, we import the Minneapolis ACS dataset.
+
+```{r message = FALSE}
+library(dplyr)
+minneapolis <- read.csv('minneapolis.csv')
+```
+
+If we want to select one or more columns (i.e., variables) from the dataset. We could use the ``select()`` function in ``dplyr``. It is similar to the ``subset()`` function, but here, you do not need to use ``select = c('mpg', 'disp')``. You use the names of the columns directly in the function.
+
+```{r}
+df <- select(minneapolis, # name of the data frame
+       YEAR, SEX, AGE) # column/variable names you want to select
+head(df, 3)
+```
+
+You could also use the index of the columns.
+
+```{r}
+df <- select(minneapolis, # name of the data frame
+       c(1:3)) # index of the columns/variables you want to select
+head(df, 3)
+```
+
+The codes above is kind of a *traditional* way to do the work. We start with a function and put parameters in the function. However, this is not the typical way to use ``dplyr``.
+
+The codes below is a more ``dplyr`` way people use the package. We start with the name of the data frame. Then, we put a special sign ``%>%`` called ``pipe`` after it. We continue from a new line and write the function we want to use. Besides that, we could add more functions with the pipe operator. For example, only show first three observations with ``head()`` functions.
+
+```{r}
+minneapolis %>% # name of the data frame
+  select(YEAR, SEX, AGE) %>% # select the columns by their names
+  head(3)
+```
+
+The original codes include more (see below). When comparing the codes above and below, you will find that original codes use ``.`` as the input of the data frame in the function. However, for easy coding, this ``.`` could be omitted.
+
+```{r}
+minneapolis %>% 
+  select(., YEAR, SEX, AGE) %>% 
+  head(., 3)
+```
+
+You can also write the codes in only one line, just like the codes below. However, it is recommended to write codes with one function in one line to improve the readiness of the codes.
+
+```{r}
+minneapolis %>% select(YEAR, SEX, AGE) %>% head(3)
+```
+
+We will keep using the fashion of pipe in the following lectures. In addition, you can use ``Ctrl + Shift + M`` in RStudio to quickly input the pipe.
+
+Besides choosing some columns you want, you could also exclude the column you do not want by putting a negative sign ``-`` before the variable.
+
+```{r}
+minneapolis %>%
+  select(-HISPAN, - FTOTINC) %>%
+  head(3)
+```
+
+You could use ``:`` to select a range of variables.
+
+```{r}
+minneapolis %>%
+  select(YEAR:RACE) %>% # select from mpg to hp in the data frame
+  head(3)
+```
+
+## filter()
+
+In ``dplyr``, we could use ``filter()`` function to select the rows satisfying some conditions.
+
+```{r}
+minneapolis %>%
+  filter(YEAR == 2015) %>% 
+  head(3)
+```
+
+Add more conditions by using ``,`` to separate them.
+
+```{r}
+minneapolis %>%
+  filter(YEAR == 2015, AGE == 37, SEX == 1) %>% 
+  head(3)
+```
+
+## arrange()
+
+We could arrange the order of some columns by ``arrange()`` functions.
+
+```{r}
+minneapolis %>%
+  arrange(YEAR) %>% # arrange mpg in ascending order
+  head(10)
+```
+
+Or maybe we want ``YEAR`` to be in a descending order. Just put a ``desc()`` outside the variable.
+
+```{r}
+minneapolis %>%
+  arrange(desc(YEAR)) %>%
+  head(10)
+```
+
+We could put them together by using pipe operators to connect them.
+
+```{r}
+minneapolis %>%
+  filter(YEAR == 2010) %>% 
+  select(YEAR, SEX, AGE) %>%
+  arrange(desc(SEX), AGE) %>%
+  head(5)
+```
+
+## mutate()
+
+We use ``mutate()`` to do operation among the variables and create a new column to store them.
+
+```{r}
+minneapolis %>%
+  select(INCTOT) %>% 
+  mutate(INCTOTK = INCTOT/1000) %>% ## transfer the unit of personal income from dollar to k dollar
+  head(5)
+```
+
+
+```{r}
+minneapolis %>%
+  select(INCTOT, FTOTINC) %>% 
+  mutate(INCTOTK = INCTOT/1000, FTOTINCK = FTOTINC/1000) %>%
+  head(10)
+```
+
+## group_by() and summarise()
+
+We use ``group_by()`` to do aggregation (group the observations based the values of one or one more columns) work and ``summarise()`` to calculate some statistics related to each group.
+
+```{r}
+minneapolis %>%
+  group_by(YEAR) %>%
+  summarise(count = n(),
+            AvgInc = mean(INCTOT, na.rm = T))
+```
+
+```{r, message=FALSE}
+minneapolis %>%
+  filter(YEAR == 2010) %>% 
+  group_by(YEAR, RACE) %>%
+  summarise(MaxInc = max(INCTOT, na.rm = T))
+```
+
+## join()
+
+We could use ``join()`` to do the same work of ``merge()``.
+
+```{r}
+ID <- c(1:4) # create variable ID
+Name <- c('A', 'B', 'C', 'D') # create variable Name
+Score1 <- c(69.5, 77.5, 99, 90) # create variable Score1
+df1 <- data.frame(ID, Name, Score1) # combine the varibles into one data frame called df1
+df1
+
+Name <- c('A', 'D', 'C') # create variable Name
+Score2 <- c(98, 46, 55) # create variable Score2
+df2 <- data.frame(Name, Score2) # combine the varibles into one data frame called df2
+df2
+```
+
+```{r warning = F}
+df1 %>%
+  left_join(df2, by = 'Name')
+```
+
+```{r warning = F}
+df1 %>%
+  right_join(df2, by = 'Name')
+```
+
+Could you tell the difference between ``left_join()`` and ``right_join()``?
+
+Besides ``left_join()`` and ``right_join()``, we have ``inner_join()`` (keep only matched observations of two data frames) and ``full_join()`` (keep all observations of two data frames).
+
+
+
+

@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="introduction-to-r.html"/>
-<link rel="next" href="final-project.html"/>
+<link rel="next" href="data-manipulation-with-dplyr.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -188,14 +188,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.7" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#merge-two-datasets"><i class="fa fa-check"></i><b>4.7</b> Merge two datasets</a></li>
 <li class="chapter" data-level="4.8" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#column-operation"><i class="fa fa-check"></i><b>4.8</b> Column operation</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i><b>5</b> Final Project</a>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="final-project.html"><a href="final-project.html#description"><i class="fa fa-check"></i><b>5.1</b> Description</a></li>
-<li class="chapter" data-level="5.2" data-path="final-project.html"><a href="final-project.html#timeline"><i class="fa fa-check"></i><b>5.2</b> Timeline</a></li>
-<li class="chapter" data-level="5.3" data-path="final-project.html"><a href="final-project.html#proposal"><i class="fa fa-check"></i><b>5.3</b> Proposal</a></li>
-<li class="chapter" data-level="5.4" data-path="final-project.html"><a href="final-project.html#final-submission"><i class="fa fa-check"></i><b>5.4</b> Final submission</a></li>
+<li class="chapter" data-level="5.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select"><i class="fa fa-check"></i><b>5.1</b> select()</a></li>
+<li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filter"><i class="fa fa-check"></i><b>5.2</b> filter()</a></li>
+<li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#arrange"><i class="fa fa-check"></i><b>5.3</b> arrange()</a></li>
+<li class="chapter" data-level="5.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#mutate"><i class="fa fa-check"></i><b>5.4</b> mutate()</a></li>
+<li class="chapter" data-level="5.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#group_by-and-summarise"><i class="fa fa-check"></i><b>5.5</b> group_by() and summarise()</a></li>
+<li class="chapter" data-level="5.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#join"><i class="fa fa-check"></i><b>5.6</b> join()</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>6</b> References</a></li>
+<li class="chapter" data-level="6" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i><b>6</b> Final Project</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="final-project.html"><a href="final-project.html#description"><i class="fa fa-check"></i><b>6.1</b> Description</a></li>
+<li class="chapter" data-level="6.2" data-path="final-project.html"><a href="final-project.html#timeline"><i class="fa fa-check"></i><b>6.2</b> Timeline</a></li>
+<li class="chapter" data-level="6.3" data-path="final-project.html"><a href="final-project.html#proposal"><i class="fa fa-check"></i><b>6.3</b> Proposal</a></li>
+<li class="chapter" data-level="6.4" data-path="final-project.html"><a href="final-project.html#final-submission"><i class="fa fa-check"></i><b>6.4</b> Final submission</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -263,7 +272,7 @@ Besides importing data by codes, you could also import data with the system tool
 </div>
 <div id="view-data" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> View data</h2>
-<p>You could view the variable names and simple description in the <code>Environment</code> pane on the right-top position of RStudio. If you want to view more information, click the variable name and view the variable in a new window. Here, we use the Minneapolis one-year ACS data as a example.</p>
+<p>You could view the variable names and simple description in the <code>Environment</code> pane on the right-top position of RStudio. If you want to view more information, click the variable name and view the variable in a new window. Here, we use the Minneapolis one-year ACS data as a example. This dataset contains the demographic information of the respondents in the city of Minneapolis in the ACS survey from 2010 to 2019.</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="data-manipulation-with-base-functions.html#cb144-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;minneapolis.csv&#39;</span>)</span></code></pre></div>
 <p>You could also view the data in the new window by <code>View()</code> function. Please pay attention that it is initial-capitalized.</p>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="data-manipulation-with-base-functions.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(minneapolis)</span></code></pre></div>
@@ -566,7 +575,7 @@ Besides importing data by codes, you could also import data with the system tool
 ## 1    A  1   69.5     98
 ## 2    C  3   99.0     55
 ## 3    D  4   90.0     46</code></pre>
-<p>You could keep all the observations in both two data frames by set <code>all = TRUE</code> in the function.</p>
+<p>You could keep all the observations in both two data frames by set <code>all = TRUE</code> in the function. We will cover more about this in our lecture about <code>dplyr</code>.</p>
 </div>
 <div id="column-operation" class="section level2" number="4.8">
 <h2><span class="header-section-number">4.8</span> Column operation</h2>
@@ -582,7 +591,7 @@ Besides importing data by codes, you could also import data with the system tool
 ## 2  2    B   77.5     46
 ## 3  3    C   99.0     55
 ## 4  4    D   90.0     70</code></pre>
-<p>Create a new column in the dataframe to calculate the sum of score 1 and score 2</p>
+<p>Create a new column in the data frame to calculate the sum of score 1 and score 2</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="data-manipulation-with-base-functions.html#cb208-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>totalsocre <span class="ot">&lt;-</span> df<span class="sc">$</span>Score1 <span class="sc">+</span> df<span class="sc">$</span>Score2</span>
 <span id="cb208-2"><a href="data-manipulation-with-base-functions.html#cb208-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##   ID Name Score1 Score2 totalsocre
@@ -590,7 +599,7 @@ Besides importing data by codes, you could also import data with the system tool
 ## 2  2    B   77.5     46      123.5
 ## 3  3    C   99.0     55      154.0
 ## 4  4    D   90.0     70      160.0</code></pre>
-<p>Create a new column in the dataframe to calculate the mean of score 1 and score 2</p>
+<p>Create a new column in the data frame to calculate the mean of score 1 and score 2</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="data-manipulation-with-base-functions.html#cb210-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>meansocre <span class="ot">&lt;-</span> (df<span class="sc">$</span>Score1 <span class="sc">+</span> df<span class="sc">$</span>Score2)<span class="sc">/</span><span class="dv">2</span></span>
 <span id="cb210-2"><a href="data-manipulation-with-base-functions.html#cb210-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##   ID Name Score1 Score2 totalsocre meansocre
@@ -607,7 +616,7 @@ Besides importing data by codes, you could also import data with the system tool
         </div>
       </div>
 <a href="introduction-to-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="final-project.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-manipulation-with-dplyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
