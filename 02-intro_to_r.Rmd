@@ -406,3 +406,7 @@ mean(data, na.rm = T)
 ``na.rm`` tells the function whether missing values should be removed during the calculation. Its default value is ``FALSE``, which means that the missing values should not be removed. Calculating the average of a list of numbers containing missing value will return a missing value. That's why we get ``NA`` from our first try. In our second try, we set the value of ``na.rm`` to ``TRUE``. The function removes the missing values and we have the correct result in our second try.
 
 It is important to use the right function to do the right task. To do this, you have to be familiar with the functions you are using. It needs more practice.
+
+<center>
+![](Pics/AI.jpg){ width=50% }
+</center>
