@@ -62,7 +62,9 @@ minneapolis %>% select(YEAR, SEX, AGE) %>% head(3)
 
 The pipe operation is named after the art work, *This is not a pipe*, from René Magritte.
 
+<center>
 ![](Pics/MagrittePipe.jpg)
+</center>
 
 We will keep using the fashion of pipe in the following lectures. In addition, you can use ``Ctrl + Shift + M`` in RStudio to quickly input the pipe operator.
 

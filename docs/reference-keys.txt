@@ -52,6 +52,6 @@ join
 final-project
 description
 timeline
-proposal
+proposal-of-problem-statement
 final-submission
 references
