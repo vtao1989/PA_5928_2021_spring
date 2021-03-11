@@ -18,7 +18,7 @@ library(dplyr)
 minneapolis <- read.csv('minneapolis.csv')
 ```
 
-If we want to select one or more columns (i.e., variables) from the dataset. We could use the ``select()`` function in ``dplyr``. It is similar to the ``subset()`` function, but here, you do not need to use ``select = c('mpg', 'disp')``. You use the names of the columns directly in the function.
+If we want to select one or more columns (i.e., variables) from the dataset. We could use ``select()`` in ``dplyr``. It is similar to ``subset()`` , but here, you do not need to use ``select = c('mpg', 'disp')``. You use the names of the columns directly in the function.
 
 ```{r}
 df <- select(minneapolis, # name of the data frame
@@ -34,9 +34,11 @@ df <- select(minneapolis, # name of the data frame
 head(df, 3)
 ```
 
+**pipe**  
+
 The codes above is kind of a *traditional* way to do the work. We start with a function and put parameters in the function. However, this is not the typical way to use ``dplyr``.
 
-The codes below is a more ``dplyr`` way people use the package. We start with the name of the data frame. Then, we put a special sign ``%>%`` called ``pipe`` after it. We continue from a new line and write the function we want to use. Besides that, we could add more functions with the pipe operator. For example, only show first three observations with ``head()`` functions.
+The codes below is a more ``dplyr`` way people use the package. We start with the name of the data frame. Then, we put a special sign ``%>%`` called ``pipe`` after it. We continue from a new line and write the function we want to use. Besides that, we could add more functions with the pipe operator. For example, only show first three observations with ``head()``.
 
 ```{r}
 minneapolis %>% # name of the data frame
@@ -44,7 +46,7 @@ minneapolis %>% # name of the data frame
   head(3)
 ```
 
-The original codes include more (see below). When comparing the codes above and below, you will find that original codes use ``.`` as the input of the data frame in the function. However, for easy coding, this ``.`` could be omitted.
+The original codes include more (see below). When comparing the codes above and below, you will find that original codes use ``.`` as the input of the data frame in the function. However, for easy coding, this ``.`` could be omitted if it is in the starting position among the input parameters in the functions. In other words, if this ``.`` is not in the starting position, it cannot be omitted.
 
 ```{r}
 minneapolis %>% 
@@ -52,19 +54,23 @@ minneapolis %>%
   head(., 3)
 ```
 
-You can also write the codes in only one line, just like the codes below. However, it is recommended to write codes with one function in one line to improve the readiness of the codes.
+You can also write the codes in only one line, just like the codes below. However, **it is recommended to write codes with one function in one line to improve the readiness of the codes**.
 
 ```{r}
 minneapolis %>% select(YEAR, SEX, AGE) %>% head(3)
 ```
 
-We will keep using the fashion of pipe in the following lectures. In addition, you can use ``Ctrl + Shift + M`` in RStudio to quickly input the pipe.
+The pipe operation is named after the art work, *This is not a pipe*, from René Magritte.
 
-Besides choosing some columns you want, you could also exclude the column you do not want by putting a negative sign ``-`` before the variable.
+![](Pics/MagrittePipe.jpg)
+
+We will keep using the fashion of pipe in the following lectures. In addition, you can use ``Ctrl + Shift + M`` in RStudio to quickly input the pipe operator.
+
+Besides selecting some columns you want, you could also exclude the columns you do not want by putting a negative sign ``-`` before the variable.
 
 ```{r}
 minneapolis %>%
-  select(-HISPAN, - FTOTINC) %>%
+  select(-HISPAN, - FTOTINC) %>% ## exclude HISPAN and FTOTINC from the data frame
   head(3)
 ```
 
@@ -72,13 +78,50 @@ You could use ``:`` to select a range of variables.
 
 ```{r}
 minneapolis %>%
-  select(YEAR:RACE) %>% # select from mpg to hp in the data frame
+  select(YEAR:RACE) %>% # select from YEAR to RACE in the data frame
   head(3)
 ```
 
+Or exclude a range of variables.
+
+```{r}
+minneapolis %>%
+  select(-(YEAR:RACE)) %>% # exclude the variables from YEAR to RACE in the data frame
+  head(3)
+```
+
+Below are some advanced techniques to select columns.
+
+You can select the column with their names starting with the string(s) you specify in ``starts_with()``. For example, the codes below select the columns with names starting with ``E``.
+
+```{r}
+minneapolis %>% 
+  select(starts_with('E')) %>% 
+  head(3)
+```
+It may not make sense to you at first. I apologize that the example above is not a good one. In my experience, I have dealt with a traffic dataset that contains variables such as ``AADT_2010``, ``AADT_2011``, ``AADT_2012``, ``AADT_2013``, ``AADT_2014``, ``AADT_2015``. In this case, you can use codes like ``select(starts_with('AADT'))`` to select all similar columns.
+
+Since we have ``starts_with()``, you may be wondering it there is ``ends_with()``. The answer is yes.
+
+```{r}
+minneapolis %>% 
+  select(ends_with('E')) %>% 
+  head(3)
+```
+
+You can use ``contains()`` to select the columns containing the string(s) you specify.
+
+```{r}
+minneapolis %>% 
+  select(contains('INC')) %>% 
+  head(3)
+```
+
+Other similar functions include ``num_range()``, ``matches()``, ``one_of()``, etc. Feel free to check how they can be used with ``help()``.
+
 ## filter()
 
-In ``dplyr``, we could use ``filter()`` function to select the rows satisfying some conditions.
+In ``dplyr``, we use ``filter()`` to select the rows satisfying some conditions.
 
 ```{r}
 minneapolis %>%
@@ -90,9 +133,33 @@ Add more conditions by using ``,`` to separate them.
 
 ```{r}
 minneapolis %>%
-  filter(YEAR == 2015, AGE == 37, SEX == 1) %>% 
+  filter(YEAR == 2015,
+         AGE == 37,
+         SEX == 1) %>% 
   head(3)
 ```
+
+```{r}
+minneapolis %>%
+  filter(YEAR == 2015,
+         INCTOT > mean(INCTOT, na.rm = T)) %>% ## select those with an above-average personal income
+  head(3)
+```
+``,`` serves as an ``logical and`` here. Instead, you can use ``&``.
+
+```{r}
+minneapolis %>%
+  filter(YEAR == 2015 & INCTOT > mean(INCTOT, na.rm = T)) %>% 
+  head(3)
+```
+You may use ``|`` to stand for ``logical or``.
+
+```{r}
+minneapolis %>%
+  filter(YEAR == 2015 | YEAR == 2017) %>% ## select those in 2015 or 2017
+  head()
+```
+
 
 ## arrange()
 
@@ -100,8 +167,8 @@ We could arrange the order of some columns by ``arrange()`` functions.
 
 ```{r}
 minneapolis %>%
-  arrange(YEAR) %>% # arrange mpg in ascending order
-  head(10)
+  arrange(YEAR) %>% # arrange YEAR in ascending order
+  head(5)
 ```
 
 Or maybe we want ``YEAR`` to be in a descending order. Just put a ``desc()`` outside the variable.
@@ -109,17 +176,17 @@ Or maybe we want ``YEAR`` to be in a descending order. Just put a ``desc()`` out
 ```{r}
 minneapolis %>%
   arrange(desc(YEAR)) %>%
-  head(10)
+  head(5)
 ```
 
 We could put them together by using pipe operators to connect them.
 
 ```{r}
 minneapolis %>%
-  filter(YEAR == 2010) %>% 
-  select(YEAR, SEX, AGE) %>%
-  arrange(desc(SEX), AGE) %>%
-  head(5)
+  filter(YEAR == 2010) %>% ## filter rows
+  select(YEAR, SEX, AGE) %>% ## select columns
+  arrange(desc(SEX), AGE) %>% ## arrange order
+  head(5) ## show the first 5 observations
 ```
 
 ## mutate()
@@ -167,12 +234,12 @@ We could use ``join()`` to do the same work of ``merge()``.
 ID <- c(1:4) # create variable ID
 Name <- c('A', 'B', 'C', 'D') # create variable Name
 Score1 <- c(69.5, 77.5, 99, 90) # create variable Score1
-df1 <- data.frame(ID, Name, Score1) # combine the varibles into one data frame called df1
+df1 <- data.frame(ID, Name, Score1) # combine the variables into one data frame called df1
 df1
 
 Name <- c('A', 'D', 'C') # create variable Name
 Score2 <- c(98, 46, 55) # create variable Score2
-df2 <- data.frame(Name, Score2) # combine the varibles into one data frame called df2
+df2 <- data.frame(Name, Score2) # combine the variables into one data frame called df2
 df2
 ```
 

@@ -393,6 +393,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="introduction-to-r.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">4</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
+<p>Note that double equal sign <code>==</code> is relational operation and single equal sign <code>=</code> is assignment operation.</p>
 <p><strong>No less than</strong> (larger or equal to)</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="introduction-to-r.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">&gt;=</span> <span class="dv">4</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
@@ -568,12 +569,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="functions" class="section level2" number="3.8">
 <h2><span class="header-section-number">3.8</span> Functions</h2>
-<p>Functions are codes have been defined with specific usage. You only need to input some necessary variables and functions will do the tasks and return the result. For example, <code>sum()</code> function could help you add the all the numbers togethor in a vector or data frame and return the result.</p>
+<p>Functions are codes that have been defined with specific usage. You only need to input some necessary variables and functions will do the tasks and return the result. To use function, you start with the name of the function followed with a pair of parentheses. Then, you input some arguments (parameters) in the parentheses to give orders to the function. For example, <code>sum()</code> function could help you add the all the numbers together in a vector or data frame and return the result.</p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="introduction-to-r.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">5</span>))</span></code></pre></div>
 <pre><code>## [1] 20</code></pre>
 <p>Another example is <code>mean()</code> function, which could help you average the numbers in a vector or data frame and return the result.</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="introduction-to-r.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">5</span>))</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
+<p>In function, some arguments are necessary to be input. For example, you need to input the dataset in <code>mean()</code> function. However, some arguments are not necessary to be input because they have default values. If you do not specify these arguments, then, the function will use their default values. For example, after checking the help page of <code>mean()</code>, you will find that there is an other argument called <code>na.rm</code> which decides whether the missing values should be removed. Let’s see the example below.</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="introduction-to-r.html#cb137-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="cn">NA</span>)</span>
+<span id="cb137-2"><a href="introduction-to-r.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data)</span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p>To avoid this, we need to add an argument to reset the value of <code>na.rm</code> in the <code>mean()</code> function.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="introduction-to-r.html#cb139-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="cn">NA</span>)</span>
+<span id="cb139-2"><a href="introduction-to-r.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data, <span class="at">na.rm =</span> T)</span></code></pre></div>
+<pre><code>## [1] 3.333333</code></pre>
+<p><code>na.rm</code> tells the function whether missing values should be removed during the calculation. Its default value is <code>FALSE</code>, which means that the missing values should not be removed. Calculating the average of a list of numbers containing missing value will return a missing value. That’s why we get <code>NA</code> from our first try. In our second try, we set the value of <code>na.rm</code> to <code>TRUE</code>. The function removes the missing values and we have the correct result in our second try.</p>
 <p>It is important to use the right function to do the right task. To do this, you have to be familiar with the functions you are using. It needs more practice.</p>
 
 </div>

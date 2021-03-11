@@ -161,6 +161,8 @@ The relational operators compare the two elements and return a logical value (``
 5 == 4
 ```
 
+Note that double equal sign ``==`` is relational operation and single equal sign ``=`` is assignment operation.
+
 **No less than** (larger or equal to)
 ```{r}
 3 >= 4
@@ -376,7 +378,7 @@ for (i in 1:3){
 
 ## Functions
 
-Functions are codes have been defined with specific usage. You only need to input some necessary variables and functions will do the tasks and return the result. For example, ``sum()`` function could help you add the all the numbers togethor in a vector or data frame and return the result.
+Functions are codes that have been defined with specific usage. You only need to input some necessary variables and functions will do the tasks and return the result. To use function, you start with the name of the function followed with a pair of parentheses. Then, you input some arguments (parameters) in the parentheses to give orders to the function. For example, ``sum()`` function could help you add the all the numbers together in a vector or data frame and return the result.
 
 ```{r}
 sum(c(1, 4, 10, 5))
@@ -387,5 +389,20 @@ Another example is ``mean()`` function, which could help you average the numbers
 ```{r}
 mean(c(1, 4, 10, 5))
 ```
+
+In function, some arguments are necessary to be input. For example, you need to input the dataset in ``mean()`` function. However, some arguments are not necessary to be input because they have default values. If you do not specify these arguments, then, the function will use their default values. For example, after checking the help page of ``mean()``, you will find that there is an other argument called ``na.rm`` which decides whether the missing values should be removed. Let's see the example below.
+
+```{r}
+data <- c(1, 4, 5, NA)
+mean(data)
+```
+To avoid this, we need to add an argument to reset the value of ``na.rm`` in the ``mean()`` function.
+
+```{r}
+data <- c(1, 4, 5, NA)
+mean(data, na.rm = T)
+```
+
+``na.rm`` tells the function whether missing values should be removed during the calculation. Its default value is ``FALSE``, which means that the missing values should not be removed. Calculating the average of a list of numbers containing missing value will return a missing value. That's why we get ``NA`` from our first try. In our second try, we set the value of ``na.rm`` to ``TRUE``. The function removes the missing values and we have the correct result in our second try.
 
 It is important to use the right function to do the right task. To do this, you have to be familiar with the functions you are using. It needs more practice.
