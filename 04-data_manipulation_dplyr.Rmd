@@ -202,30 +202,87 @@ minneapolis %>%
   head(5)
 ```
 
+You can include more than one assignment operations in ``mutate()``.
 
 ```{r}
 minneapolis %>%
   select(INCTOT, FTOTINC) %>% 
-  mutate(INCTOTK = INCTOT/1000, FTOTINCK = FTOTINC/1000) %>%
+  mutate(INCTOTK = INCTOT/1000,
+         FTOTINCK = FTOTINC/1000) %>%
   head(10)
 ```
 
+You can use ``ifelse()`` to change the value satisfying the specified condition. ``if_else()`` works but is more strict in variable types. See its help page for more information.
+
+```{r}
+minneapolis %>% 
+  mutate(
+    SEX = ifelse(SEX == 1, 'Male', 'Female') ## change the value of SEX from 1 to Male, otherwise, Female
+  ) %>% 
+  head(5)
+```
+
+If you have more than one conditions, you can use ``case_when()``.
+
+```{r}
+minneapolis %>% 
+  mutate(
+    RACE = case_when( ## change RACE from numeric values to racial categories
+      RACE == 1 ~ 'White',
+      RACE == 2 ~ 'African American',
+      RACE == 3 ~ 'American Indian'
+    )
+  ) %>% 
+  head(5)
+```
+
+```{r}
+minneapolis %>% 
+  mutate(
+    IncLevl = case_when( ## categorize personal income into three levels
+      INCTOT < median(INCTOT, na.rm = T) ~ 'Low income',
+      INCTOT > median(INCTOT, na.rm = T) ~ 'High income',
+      TRUE ~ 'Median income'
+    )
+  ) %>% 
+  head(5)
+```
+
+
 ## group_by() and summarise()
 
-We use ``group_by()`` to do aggregation (group the observations based the values of one or one more columns) work and ``summarise()`` to calculate some statistics related to each group.
+We use ``group_by()`` to do aggregation (group the observations based the values of one or one more columns) work and ``summarise()`` to calculate some statistics related to each group. Below is a plot to show how it works.
+
+<center>
+![](Pics/group.jpg)
+</center>
+
+```{r, eval=FALSE}
+dataset %>% 
+  group_by(Name) %>% 
+  summarise(TotalSocre = sum(Score))
+```
+
+When it comes to our Minneapolis ACS dataset, we can use the combination of ``group_by()`` and ``summarise()`` to help use with many tasks.
 
 ```{r}
 minneapolis %>%
-  group_by(YEAR) %>%
-  summarise(count = n(),
-            AvgInc = mean(INCTOT, na.rm = T))
+  group_by(YEAR) %>%  ## aggregate the data based on YEAR
+  summarise(count = n(), ## number of respondents in each year
+            AvgInc = mean(INCTOT, na.rm = T)) ## average personal income in each year
 ```
 
 ```{r, message=FALSE}
 minneapolis %>%
-  filter(YEAR == 2010) %>% 
-  group_by(YEAR, RACE) %>%
-  summarise(MaxInc = max(INCTOT, na.rm = T))
+  group_by(YEAR, RACE) %>% ## aggregate the data based on YEAR and RACE
+  mutate(
+    RACE = case_when( ## change RACE from numeric values to racial categories
+      RACE == 1 ~ 'White',
+      RACE == 2 ~ 'African American',
+      RACE == 3 ~ 'American Indian'
+    )
+  ) %>% 
+  summarise(MaxInc = max(INCTOT, na.rm = T)) ## maximum personal income for different racial groups in each year
 ```
 
 ## join()
@@ -233,15 +290,14 @@ minneapolis %>%
 We could use ``join()`` to do the same work of ``merge()``.
 
 ```{r}
-ID <- c(1:4) # create variable ID
-Name <- c('A', 'B', 'C', 'D') # create variable Name
-Score1 <- c(69.5, 77.5, 99, 90) # create variable Score1
-df1 <- data.frame(ID, Name, Score1) # combine the variables into one data frame called df1
+Name <- c('A', 'B', 'C') # create variable Name
+MathScore <- c(87, 98, 95) # create variable Score1
+df1 <- data.frame(Name, MathScore) # combine the variables into one data frame
 df1
 
-Name <- c('A', 'D', 'C') # create variable Name
-Score2 <- c(98, 46, 55) # create variable Score2
-df2 <- data.frame(Name, Score2) # combine the variables into one data frame called df2
+Name <- c('B', 'D', 'C', 'A') # create variable Name
+PhysicsScore <- c(99, 66, 98, 77) # create variable Score2
+df2 <- data.frame(Name, PhysicsScore) # combine the variables into one data frame
 df2
 ```
 
@@ -257,8 +313,14 @@ df1 %>%
 
 Could you tell the difference between ``left_join()`` and ``right_join()``?
 
+<center>
+![](Pics/join1.jpg)
+</center>
+
 Besides ``left_join()`` and ``right_join()``, we have ``inner_join()`` (keep only matched observations of two data frames) and ``full_join()`` (keep all observations of two data frames).
 
-
+<center>
+![](Pics/join2.jpg)
+</center>
 
 

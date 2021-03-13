@@ -272,19 +272,19 @@ head(newdata, n = 5)
 ID <- c(1:4) # create variable ID
 Name <- c('A', 'B', 'C', 'D') # create variable Name
 Score1 <- c(69.5, 77.5, 99, 90) # create variable Score1
-df1 <- data.frame(ID, Name, Score1) # combine the varibles into one data frame called df1
+df1 <- data.frame(ID, Name, Score1) # combine the variables into one data frame called df1
 df1
 
 Name <- c('A', 'D', 'C') # create variable Name
 Score2 <- c(98, 46, 55) # create variable Score2
-df2 <- data.frame(Name, Score2) # combine the varibles into one data frame called df2
+df2 <- data.frame(Name, Score2) # combine the variables into one data frame called df2
 df2
 ```
 
 ```{r}
-merge(df1, df2,       # dataframes needs to be merged
+merge(df1, df2,       # data frames need to be merged
       by = 'Name',    # name of the column/variable used for merging
-      all.x = TRUE)   # keep all observations in the first dataframe after merging
+      all.x = TRUE)   # keep all observations in the first data frame after merging
 ```
 
 ```{r}

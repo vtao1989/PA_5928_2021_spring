@@ -545,7 +545,7 @@ Besides importing data by codes, you could also import data with the system tool
 <div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="data-manipulation-with-base-functions.html#cb202-1" aria-hidden="true" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></span>
 <span id="cb202-2"><a href="data-manipulation-with-base-functions.html#cb202-2" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></span>
 <span id="cb202-3"><a href="data-manipulation-with-base-functions.html#cb202-3" aria-hidden="true" tabindex="-1"></a>Score1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="dv">99</span>, <span class="dv">90</span>) <span class="co"># create variable Score1</span></span>
-<span id="cb202-4"><a href="data-manipulation-with-base-functions.html#cb202-4" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Name, Score1) <span class="co"># combine the varibles into one data frame called df1</span></span>
+<span id="cb202-4"><a href="data-manipulation-with-base-functions.html#cb202-4" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Name, Score1) <span class="co"># combine the variables into one data frame called df1</span></span>
 <span id="cb202-5"><a href="data-manipulation-with-base-functions.html#cb202-5" aria-hidden="true" tabindex="-1"></a>df1</span></code></pre></div>
 <pre><code>##   ID Name Score1
 ## 1  1    A   69.5
@@ -554,15 +554,15 @@ Besides importing data by codes, you could also import data with the system tool
 ## 4  4    D   90.0</code></pre>
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="data-manipulation-with-base-functions.html#cb204-1" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;D&#39;</span>, <span class="st">&#39;C&#39;</span>) <span class="co"># create variable Name</span></span>
 <span id="cb204-2"><a href="data-manipulation-with-base-functions.html#cb204-2" aria-hidden="true" tabindex="-1"></a>Score2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">98</span>, <span class="dv">46</span>, <span class="dv">55</span>) <span class="co"># create variable Score2</span></span>
-<span id="cb204-3"><a href="data-manipulation-with-base-functions.html#cb204-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Name, Score2) <span class="co"># combine the varibles into one data frame called df2</span></span>
+<span id="cb204-3"><a href="data-manipulation-with-base-functions.html#cb204-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Name, Score2) <span class="co"># combine the variables into one data frame called df2</span></span>
 <span id="cb204-4"><a href="data-manipulation-with-base-functions.html#cb204-4" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
 <pre><code>##   Name Score2
 ## 1    A     98
 ## 2    D     46
 ## 3    C     55</code></pre>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="data-manipulation-with-base-functions.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">merge</span>(df1, df2,       <span class="co"># dataframes needs to be merged</span></span>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="data-manipulation-with-base-functions.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">merge</span>(df1, df2,       <span class="co"># data frames need to be merged</span></span>
 <span id="cb206-2"><a href="data-manipulation-with-base-functions.html#cb206-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">by =</span> <span class="st">&#39;Name&#39;</span>,    <span class="co"># name of the column/variable used for merging</span></span>
-<span id="cb206-3"><a href="data-manipulation-with-base-functions.html#cb206-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">all.x =</span> <span class="cn">TRUE</span>)   <span class="co"># keep all observations in the first dataframe after merging</span></span></code></pre></div>
+<span id="cb206-3"><a href="data-manipulation-with-base-functions.html#cb206-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">all.x =</span> <span class="cn">TRUE</span>)   <span class="co"># keep all observations in the first data frame after merging</span></span></code></pre></div>
 <pre><code>##   Name ID Score1 Score2
 ## 1    A  1   69.5     98
 ## 2    B  2   77.5     NA
