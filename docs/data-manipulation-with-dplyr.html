@@ -213,7 +213,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="final-project.html"><a href="final-project.html#description"><i class="fa fa-check"></i><b>7.1</b> Description</a></li>
 <li class="chapter" data-level="7.2" data-path="final-project.html"><a href="final-project.html#timeline"><i class="fa fa-check"></i><b>7.2</b> Timeline</a></li>
 <li class="chapter" data-level="7.3" data-path="final-project.html"><a href="final-project.html#proposal-of-problem-statement"><i class="fa fa-check"></i><b>7.3</b> Proposal of problem statement</a></li>
-<li class="chapter" data-level="7.4" data-path="final-project.html"><a href="final-project.html#final-submission"><i class="fa fa-check"></i><b>7.4</b> Final submission</a></li>
+<li class="chapter" data-level="7.4" data-path="final-project.html"><a href="final-project.html#potential-data-sources"><i class="fa fa-check"></i><b>7.4</b> Potential data sources</a></li>
+<li class="chapter" data-level="7.5" data-path="final-project.html"><a href="final-project.html#final-submission"><i class="fa fa-check"></i><b>7.5</b> Final submission</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
 <li class="divider"></li>
@@ -241,22 +242,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="select" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> select()</h2>
 <p>Before the lecture, install the package in your computer.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="data-manipulation-with-dplyr.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;dplyr&#39;</span>) <span class="do">## you only need to install this package once</span></span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="data-manipulation-with-dplyr.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;dplyr&#39;</span>) <span class="do">## you only need to install this package once</span></span></code></pre></div>
 <p>Let’s first import this package. Also, we import the Minneapolis ACS dataset.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="data-manipulation-with-dplyr.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb217-2"><a href="data-manipulation-with-dplyr.html#cb217-2" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;minneapolis.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="data-manipulation-with-dplyr.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb219-2"><a href="data-manipulation-with-dplyr.html#cb219-2" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;minneapolis.csv&#39;</span>)</span></code></pre></div>
 <p>If we want to select one or more columns (i.e., variables) from the dataset. We could use <code>select()</code> in <code>dplyr</code>. It is similar to <code>subset()</code> , but here, you do not need to use <code>select = c('mpg', 'disp')</code>. You use the names of the columns directly in the function.</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="data-manipulation-with-dplyr.html#cb218-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">select</span>(minneapolis, <span class="co"># name of the data frame</span></span>
-<span id="cb218-2"><a href="data-manipulation-with-dplyr.html#cb218-2" aria-hidden="true" tabindex="-1"></a>       YEAR, SEX, AGE) <span class="co"># column/variable names you want to select</span></span>
-<span id="cb218-3"><a href="data-manipulation-with-dplyr.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="data-manipulation-with-dplyr.html#cb220-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">select</span>(minneapolis, <span class="co"># name of the data frame</span></span>
+<span id="cb220-2"><a href="data-manipulation-with-dplyr.html#cb220-2" aria-hidden="true" tabindex="-1"></a>       YEAR, SEX, AGE) <span class="co"># column/variable names you want to select</span></span>
+<span id="cb220-3"><a href="data-manipulation-with-dplyr.html#cb220-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE
 ## 1 2010   2  59
 ## 2 2010   2  29
 ## 3 2010   1  54</code></pre>
 <p>You could also use the index of the columns.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="data-manipulation-with-dplyr.html#cb220-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">select</span>(minneapolis, <span class="co"># name of the data frame</span></span>
-<span id="cb220-2"><a href="data-manipulation-with-dplyr.html#cb220-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)) <span class="co"># index of the columns/variables you want to select</span></span>
-<span id="cb220-3"><a href="data-manipulation-with-dplyr.html#cb220-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="data-manipulation-with-dplyr.html#cb222-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">select</span>(minneapolis, <span class="co"># name of the data frame</span></span>
+<span id="cb222-2"><a href="data-manipulation-with-dplyr.html#cb222-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)) <span class="co"># index of the columns/variables you want to select</span></span>
+<span id="cb222-3"><a href="data-manipulation-with-dplyr.html#cb222-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE
 ## 1 2010   2  59
 ## 2 2010   2  29
@@ -264,23 +265,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>pipe</strong></p>
 <p>The codes above is kind of a <em>traditional</em> way to do the work. We start with a function and put parameters in the function. However, this is not the typical way to use <code>dplyr</code>.</p>
 <p>The codes below is a more <code>dplyr</code> way people use the package. We start with the name of the data frame. Then, we put a special sign <code>%&gt;%</code> called <code>pipe</code> after it. We continue from a new line and write the function we want to use. Besides that, we could add more functions with the pipe operator. For example, only show first three observations with <code>head()</code>.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="data-manipulation-with-dplyr.html#cb222-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> <span class="co"># name of the data frame</span></span>
-<span id="cb222-2"><a href="data-manipulation-with-dplyr.html#cb222-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(YEAR, SEX, AGE) <span class="sc">%&gt;%</span> <span class="co"># select the columns by their names</span></span>
-<span id="cb222-3"><a href="data-manipulation-with-dplyr.html#cb222-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="data-manipulation-with-dplyr.html#cb224-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> <span class="co"># name of the data frame</span></span>
+<span id="cb224-2"><a href="data-manipulation-with-dplyr.html#cb224-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(YEAR, SEX, AGE) <span class="sc">%&gt;%</span> <span class="co"># select the columns by their names</span></span>
+<span id="cb224-3"><a href="data-manipulation-with-dplyr.html#cb224-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE
 ## 1 2010   2  59
 ## 2 2010   2  29
 ## 3 2010   1  54</code></pre>
 <p>The original codes include more (see below). When comparing the codes above and below, you will find that original codes use <code>.</code> as the input of the data frame in the function. However, for easy coding, this <code>.</code> could be omitted if it is in the starting position among the input parameters in the functions. In other words, if this <code>.</code> is not in the starting position, it cannot be omitted.</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="data-manipulation-with-dplyr.html#cb224-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
-<span id="cb224-2"><a href="data-manipulation-with-dplyr.html#cb224-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(., YEAR, SEX, AGE) <span class="sc">%&gt;%</span> </span>
-<span id="cb224-3"><a href="data-manipulation-with-dplyr.html#cb224-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(., <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="data-manipulation-with-dplyr.html#cb226-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb226-2"><a href="data-manipulation-with-dplyr.html#cb226-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(., YEAR, SEX, AGE) <span class="sc">%&gt;%</span> </span>
+<span id="cb226-3"><a href="data-manipulation-with-dplyr.html#cb226-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(., <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE
 ## 1 2010   2  59
 ## 2 2010   2  29
 ## 3 2010   1  54</code></pre>
 <p>You can also write the codes in only one line, just like the codes below. However, <strong>it is recommended to write codes with one function in one line to improve the readiness of the codes</strong>.</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="data-manipulation-with-dplyr.html#cb226-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> <span class="fu">select</span>(YEAR, SEX, AGE) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="data-manipulation-with-dplyr.html#cb228-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> <span class="fu">select</span>(YEAR, SEX, AGE) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE
 ## 1 2010   2  59
 ## 2 2010   2  29
@@ -291,51 +292,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 <p>We will keep using the fashion of pipe in the following lectures. In addition, you can use <code>Ctrl + Shift + M</code> in RStudio to quickly input the pipe operator.</p>
 <p>Besides selecting some columns you want, you could also exclude the columns you do not want by putting a negative sign <code>-</code> before the variable.</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="data-manipulation-with-dplyr.html#cb228-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb228-2"><a href="data-manipulation-with-dplyr.html#cb228-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>HISPAN, <span class="sc">-</span> FTOTINC) <span class="sc">%&gt;%</span> <span class="do">## exclude HISPAN and FTOTINC from the data frame</span></span>
-<span id="cb228-3"><a href="data-manipulation-with-dplyr.html#cb228-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="data-manipulation-with-dplyr.html#cb230-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb230-2"><a href="data-manipulation-with-dplyr.html#cb230-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>HISPAN, <span class="sc">-</span> FTOTINC) <span class="sc">%&gt;%</span> <span class="do">## exclude HISPAN and FTOTINC from the data frame</span></span>
+<span id="cb230-3"><a href="data-manipulation-with-dplyr.html#cb230-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE RACE EDUC EMPSTAT INCTOT
 ## 1 2010   2  59    1   10       1  33100
 ## 2 2010   2  29    1   10       1  16000
 ## 3 2010   1  54    2    7       3   1100</code></pre>
 <p>You could use <code>:</code> to select a range of variables.</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="data-manipulation-with-dplyr.html#cb230-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb230-2"><a href="data-manipulation-with-dplyr.html#cb230-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(YEAR<span class="sc">:</span>RACE) <span class="sc">%&gt;%</span> <span class="co"># select from YEAR to RACE in the data frame</span></span>
-<span id="cb230-3"><a href="data-manipulation-with-dplyr.html#cb230-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="data-manipulation-with-dplyr.html#cb232-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb232-2"><a href="data-manipulation-with-dplyr.html#cb232-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(YEAR<span class="sc">:</span>RACE) <span class="sc">%&gt;%</span> <span class="co"># select from YEAR to RACE in the data frame</span></span>
+<span id="cb232-3"><a href="data-manipulation-with-dplyr.html#cb232-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE RACE
 ## 1 2010   2  59    1
 ## 2 2010   2  29    1
 ## 3 2010   1  54    2</code></pre>
 <p>Or exclude a range of variables.</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="data-manipulation-with-dplyr.html#cb232-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb232-2"><a href="data-manipulation-with-dplyr.html#cb232-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>(YEAR<span class="sc">:</span>RACE)) <span class="sc">%&gt;%</span> <span class="co"># exclude the variables from YEAR to RACE in the data frame</span></span>
-<span id="cb232-3"><a href="data-manipulation-with-dplyr.html#cb232-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="data-manipulation-with-dplyr.html#cb234-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb234-2"><a href="data-manipulation-with-dplyr.html#cb234-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>(YEAR<span class="sc">:</span>RACE)) <span class="sc">%&gt;%</span> <span class="co"># exclude the variables from YEAR to RACE in the data frame</span></span>
+<span id="cb234-3"><a href="data-manipulation-with-dplyr.html#cb234-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   HISPAN EDUC EMPSTAT INCTOT FTOTINC
 ## 1      0   10       1  33100   49100
 ## 2      0   10       1  16000   49100
 ## 3      0    7       3   1100      NA</code></pre>
 <p>Below are some advanced techniques to select columns.</p>
 <p>You can select the column with their names starting with the string(s) you specify in <code>starts_with()</code>. For example, the codes below select the columns with names starting with <code>E</code>.</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="data-manipulation-with-dplyr.html#cb234-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
-<span id="cb234-2"><a href="data-manipulation-with-dplyr.html#cb234-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&#39;E&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb234-3"><a href="data-manipulation-with-dplyr.html#cb234-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="data-manipulation-with-dplyr.html#cb236-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb236-2"><a href="data-manipulation-with-dplyr.html#cb236-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&#39;E&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb236-3"><a href="data-manipulation-with-dplyr.html#cb236-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   EDUC EMPSTAT
 ## 1   10       1
 ## 2   10       1
 ## 3    7       3</code></pre>
 <p>It may not make sense to you at first. I apologize that the example above is not a good one. In my experience, I have dealt with a traffic dataset that contains variables such as <code>AADT_2010</code>, <code>AADT_2011</code>, <code>AADT_2012</code>, <code>AADT_2013</code>, <code>AADT_2014</code>, <code>AADT_2015</code>. In this case, you can use codes like <code>select(starts_with('AADT'))</code> to select all similar columns.</p>
 <p>Since we have <code>starts_with()</code>, you may be wondering it there is <code>ends_with()</code>. The answer is yes.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="data-manipulation-with-dplyr.html#cb236-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
-<span id="cb236-2"><a href="data-manipulation-with-dplyr.html#cb236-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">&#39;E&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb236-3"><a href="data-manipulation-with-dplyr.html#cb236-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="data-manipulation-with-dplyr.html#cb238-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb238-2"><a href="data-manipulation-with-dplyr.html#cb238-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">&#39;E&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb238-3"><a href="data-manipulation-with-dplyr.html#cb238-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   AGE RACE
 ## 1  59    1
 ## 2  29    1
 ## 3  54    2</code></pre>
 <p>You can use <code>contains()</code> to select the columns containing the string(s) you specify.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="data-manipulation-with-dplyr.html#cb238-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
-<span id="cb238-2"><a href="data-manipulation-with-dplyr.html#cb238-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">&#39;INC&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb238-3"><a href="data-manipulation-with-dplyr.html#cb238-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="data-manipulation-with-dplyr.html#cb240-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb240-2"><a href="data-manipulation-with-dplyr.html#cb240-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">&#39;INC&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb240-3"><a href="data-manipulation-with-dplyr.html#cb240-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   INCTOT FTOTINC
 ## 1  33100   49100
 ## 2  16000   49100
@@ -345,43 +346,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="filter" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> filter()</h2>
 <p>In <code>dplyr</code>, we use <code>filter()</code> to select the rows satisfying some conditions.</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="data-manipulation-with-dplyr.html#cb240-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb240-2"><a href="data-manipulation-with-dplyr.html#cb240-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2015</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb240-3"><a href="data-manipulation-with-dplyr.html#cb240-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="data-manipulation-with-dplyr.html#cb242-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb242-2"><a href="data-manipulation-with-dplyr.html#cb242-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2015</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb242-3"><a href="data-manipulation-with-dplyr.html#cb242-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
 ## 1 2015   2  37    3      0   11       1 125000  125000
 ## 2 2015   1  18    1      0    6       3   2500      NA
 ## 3 2015   1  91    1      0    6       3   8400      NA</code></pre>
 <p>Add more conditions by using <code>,</code> to separate them.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="data-manipulation-with-dplyr.html#cb242-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb242-2"><a href="data-manipulation-with-dplyr.html#cb242-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2015</span>,</span>
-<span id="cb242-3"><a href="data-manipulation-with-dplyr.html#cb242-3" aria-hidden="true" tabindex="-1"></a>         AGE <span class="sc">==</span> <span class="dv">37</span>,</span>
-<span id="cb242-4"><a href="data-manipulation-with-dplyr.html#cb242-4" aria-hidden="true" tabindex="-1"></a>         SEX <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb242-5"><a href="data-manipulation-with-dplyr.html#cb242-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="data-manipulation-with-dplyr.html#cb244-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb244-2"><a href="data-manipulation-with-dplyr.html#cb244-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2015</span>,</span>
+<span id="cb244-3"><a href="data-manipulation-with-dplyr.html#cb244-3" aria-hidden="true" tabindex="-1"></a>         AGE <span class="sc">==</span> <span class="dv">37</span>,</span>
+<span id="cb244-4"><a href="data-manipulation-with-dplyr.html#cb244-4" aria-hidden="true" tabindex="-1"></a>         SEX <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb244-5"><a href="data-manipulation-with-dplyr.html#cb244-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
 ## 1 2015   1  37    1      0    7       1  55000   75000
 ## 2 2015   1  37    1      0    6       1  40000   73600
 ## 3 2015   1  37    1      0    7       1  80000   80000</code></pre>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="data-manipulation-with-dplyr.html#cb244-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb244-2"><a href="data-manipulation-with-dplyr.html#cb244-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2015</span>,</span>
-<span id="cb244-3"><a href="data-manipulation-with-dplyr.html#cb244-3" aria-hidden="true" tabindex="-1"></a>         INCTOT <span class="sc">&gt;</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> <span class="do">## select those with an above-average personal income</span></span>
-<span id="cb244-4"><a href="data-manipulation-with-dplyr.html#cb244-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="data-manipulation-with-dplyr.html#cb246-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb246-2"><a href="data-manipulation-with-dplyr.html#cb246-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2015</span>,</span>
+<span id="cb246-3"><a href="data-manipulation-with-dplyr.html#cb246-3" aria-hidden="true" tabindex="-1"></a>         INCTOT <span class="sc">&gt;</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> <span class="do">## select those with an above-average personal income</span></span>
+<span id="cb246-4"><a href="data-manipulation-with-dplyr.html#cb246-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
 ## 1 2015   2  37    3      0   11       1 125000  125000
 ## 2 2015   2  42    1      0   11       1 160200  270400
 ## 3 2015   1  42    1      0   10       1 110200  270400</code></pre>
 <p><code>,</code> serves as an <code>logical and</code> here. Instead, you can use <code>&amp;</code>.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="data-manipulation-with-dplyr.html#cb246-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb246-2"><a href="data-manipulation-with-dplyr.html#cb246-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2015</span> <span class="sc">&amp;</span> INCTOT <span class="sc">&gt;</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
-<span id="cb246-3"><a href="data-manipulation-with-dplyr.html#cb246-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="data-manipulation-with-dplyr.html#cb248-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb248-2"><a href="data-manipulation-with-dplyr.html#cb248-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2015</span> <span class="sc">&amp;</span> INCTOT <span class="sc">&gt;</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb248-3"><a href="data-manipulation-with-dplyr.html#cb248-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
 ## 1 2015   2  37    3      0   11       1 125000  125000
 ## 2 2015   2  42    1      0   11       1 160200  270400
 ## 3 2015   1  42    1      0   10       1 110200  270400</code></pre>
 <p>You may use <code>|</code> to stand for <code>logical or</code>.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="data-manipulation-with-dplyr.html#cb248-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb248-2"><a href="data-manipulation-with-dplyr.html#cb248-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2015</span> <span class="sc">|</span> YEAR <span class="sc">==</span> <span class="dv">2017</span>) <span class="sc">%&gt;%</span> <span class="do">## select those in 2015 or 2017</span></span>
-<span id="cb248-3"><a href="data-manipulation-with-dplyr.html#cb248-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="data-manipulation-with-dplyr.html#cb250-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb250-2"><a href="data-manipulation-with-dplyr.html#cb250-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2015</span> <span class="sc">|</span> YEAR <span class="sc">==</span> <span class="dv">2017</span>) <span class="sc">%&gt;%</span> <span class="do">## select those in 2015 or 2017</span></span>
+<span id="cb250-3"><a href="data-manipulation-with-dplyr.html#cb250-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
 ## 1 2015   2  37    3      0   11       1 125000  125000
 ## 2 2015   1  18    1      0    6       3   2500      NA
@@ -393,9 +394,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="arrange" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> arrange()</h2>
 <p>We could arrange the order of some columns by <code>arrange()</code> functions.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="data-manipulation-with-dplyr.html#cb250-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb250-2"><a href="data-manipulation-with-dplyr.html#cb250-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(YEAR) <span class="sc">%&gt;%</span> <span class="co"># arrange YEAR in ascending order</span></span>
-<span id="cb250-3"><a href="data-manipulation-with-dplyr.html#cb250-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="data-manipulation-with-dplyr.html#cb252-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb252-2"><a href="data-manipulation-with-dplyr.html#cb252-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(YEAR) <span class="sc">%&gt;%</span> <span class="co"># arrange YEAR in ascending order</span></span>
+<span id="cb252-3"><a href="data-manipulation-with-dplyr.html#cb252-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
 ## 1 2010   2  59    1      0   10       1  33100   49100
 ## 2 2010   2  29    1      0   10       1  16000   49100
@@ -403,9 +404,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 2010   2  47    2      0    5       2   4800    4800
 ## 5 2010   1  59    2      0   10       2      0    4800</code></pre>
 <p>Or maybe we want <code>YEAR</code> to be in a descending order. Just put a <code>desc()</code> outside the variable.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="data-manipulation-with-dplyr.html#cb252-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb252-2"><a href="data-manipulation-with-dplyr.html#cb252-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(YEAR)) <span class="sc">%&gt;%</span></span>
-<span id="cb252-3"><a href="data-manipulation-with-dplyr.html#cb252-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="data-manipulation-with-dplyr.html#cb254-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb254-2"><a href="data-manipulation-with-dplyr.html#cb254-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(YEAR)) <span class="sc">%&gt;%</span></span>
+<span id="cb254-3"><a href="data-manipulation-with-dplyr.html#cb254-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
 ## 1 2019   1  20    1      0    7       2   4600      NA
 ## 2 2019   1  58    1      0    6       1   2500      NA
@@ -413,11 +414,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 2019   1  15    2      0    2       0   9300      NA
 ## 5 2019   1   6    1      0    1       0     NA      NA</code></pre>
 <p>We could put them together by using pipe operators to connect them.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="data-manipulation-with-dplyr.html#cb254-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb254-2"><a href="data-manipulation-with-dplyr.html#cb254-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2010</span>) <span class="sc">%&gt;%</span> <span class="do">## filter rows</span></span>
-<span id="cb254-3"><a href="data-manipulation-with-dplyr.html#cb254-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(YEAR, SEX, AGE) <span class="sc">%&gt;%</span> <span class="do">## select columns</span></span>
-<span id="cb254-4"><a href="data-manipulation-with-dplyr.html#cb254-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(SEX), AGE) <span class="sc">%&gt;%</span> <span class="do">## arrange order</span></span>
-<span id="cb254-5"><a href="data-manipulation-with-dplyr.html#cb254-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>) <span class="do">## show the first 5 observations</span></span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="data-manipulation-with-dplyr.html#cb256-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb256-2"><a href="data-manipulation-with-dplyr.html#cb256-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(YEAR <span class="sc">==</span> <span class="dv">2010</span>) <span class="sc">%&gt;%</span> <span class="do">## filter rows</span></span>
+<span id="cb256-3"><a href="data-manipulation-with-dplyr.html#cb256-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(YEAR, SEX, AGE) <span class="sc">%&gt;%</span> <span class="do">## select columns</span></span>
+<span id="cb256-4"><a href="data-manipulation-with-dplyr.html#cb256-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(SEX), AGE) <span class="sc">%&gt;%</span> <span class="do">## arrange order</span></span>
+<span id="cb256-5"><a href="data-manipulation-with-dplyr.html#cb256-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>) <span class="do">## show the first 5 observations</span></span></code></pre></div>
 <pre><code>##   YEAR SEX AGE
 ## 1 2010   2   0
 ## 2 2010   2   0
@@ -428,10 +429,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="mutate" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> mutate()</h2>
 <p>We use <code>mutate()</code> to do operation among the variables and create a new column to store them.</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="data-manipulation-with-dplyr.html#cb256-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb256-2"><a href="data-manipulation-with-dplyr.html#cb256-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(INCTOT) <span class="sc">%&gt;%</span> </span>
-<span id="cb256-3"><a href="data-manipulation-with-dplyr.html#cb256-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INCTOTK =</span> INCTOT<span class="sc">/</span><span class="dv">1000</span>) <span class="sc">%&gt;%</span> <span class="do">## transfer the unit of personal income from dollar to k dollar</span></span>
-<span id="cb256-4"><a href="data-manipulation-with-dplyr.html#cb256-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="data-manipulation-with-dplyr.html#cb258-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb258-2"><a href="data-manipulation-with-dplyr.html#cb258-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(INCTOT) <span class="sc">%&gt;%</span> </span>
+<span id="cb258-3"><a href="data-manipulation-with-dplyr.html#cb258-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INCTOTK =</span> INCTOT<span class="sc">/</span><span class="dv">1000</span>) <span class="sc">%&gt;%</span> <span class="do">## transfer the unit of personal income from dollar to k dollar</span></span>
+<span id="cb258-4"><a href="data-manipulation-with-dplyr.html#cb258-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##   INCTOT INCTOTK
 ## 1  33100    33.1
 ## 2  16000    16.0
@@ -439,11 +440,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4   4800     4.8
 ## 5      0     0.0</code></pre>
 <p>You can include more than one assignment operations in <code>mutate()</code>.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="data-manipulation-with-dplyr.html#cb258-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb258-2"><a href="data-manipulation-with-dplyr.html#cb258-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(INCTOT, FTOTINC) <span class="sc">%&gt;%</span> </span>
-<span id="cb258-3"><a href="data-manipulation-with-dplyr.html#cb258-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INCTOTK =</span> INCTOT<span class="sc">/</span><span class="dv">1000</span>,</span>
-<span id="cb258-4"><a href="data-manipulation-with-dplyr.html#cb258-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">FTOTINCK =</span> FTOTINC<span class="sc">/</span><span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb258-5"><a href="data-manipulation-with-dplyr.html#cb258-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="data-manipulation-with-dplyr.html#cb260-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb260-2"><a href="data-manipulation-with-dplyr.html#cb260-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(INCTOT, FTOTINC) <span class="sc">%&gt;%</span> </span>
+<span id="cb260-3"><a href="data-manipulation-with-dplyr.html#cb260-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INCTOTK =</span> INCTOT<span class="sc">/</span><span class="dv">1000</span>,</span>
+<span id="cb260-4"><a href="data-manipulation-with-dplyr.html#cb260-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">FTOTINCK =</span> FTOTINC<span class="sc">/</span><span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb260-5"><a href="data-manipulation-with-dplyr.html#cb260-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##    INCTOT FTOTINC INCTOTK FTOTINCK
 ## 1   33100   49100    33.1     49.1
 ## 2   16000   49100    16.0     49.1
@@ -456,11 +457,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 9   35200   74400    35.2     74.4
 ## 10  39200   74400    39.2     74.4</code></pre>
 <p>You can use <code>ifelse()</code> to change the value satisfying the specified condition. <code>if_else()</code> works but is more strict in variable types. See its help page for more information.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="data-manipulation-with-dplyr.html#cb260-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
-<span id="cb260-2"><a href="data-manipulation-with-dplyr.html#cb260-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb260-3"><a href="data-manipulation-with-dplyr.html#cb260-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">SEX =</span> <span class="fu">ifelse</span>(SEX <span class="sc">==</span> <span class="dv">1</span>, <span class="st">&#39;Male&#39;</span>, <span class="st">&#39;Female&#39;</span>) <span class="do">## change the value of SEX from 1 to Male, otherwise, Female</span></span>
-<span id="cb260-4"><a href="data-manipulation-with-dplyr.html#cb260-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb260-5"><a href="data-manipulation-with-dplyr.html#cb260-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="data-manipulation-with-dplyr.html#cb262-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb262-2"><a href="data-manipulation-with-dplyr.html#cb262-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb262-3"><a href="data-manipulation-with-dplyr.html#cb262-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">SEX =</span> <span class="fu">ifelse</span>(SEX <span class="sc">==</span> <span class="dv">1</span>, <span class="st">&#39;Male&#39;</span>, <span class="st">&#39;Female&#39;</span>) <span class="do">## change the value of SEX from 1 to Male, otherwise, Female</span></span>
+<span id="cb262-4"><a href="data-manipulation-with-dplyr.html#cb262-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb262-5"><a href="data-manipulation-with-dplyr.html#cb262-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##   YEAR    SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
 ## 1 2010 Female  59    1      0   10       1  33100   49100
 ## 2 2010 Female  29    1      0   10       1  16000   49100
@@ -468,30 +469,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 2010 Female  47    2      0    5       2   4800    4800
 ## 5 2010   Male  59    2      0   10       2      0    4800</code></pre>
 <p>If you have more than one conditions, you can use <code>case_when()</code>.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="data-manipulation-with-dplyr.html#cb262-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
-<span id="cb262-2"><a href="data-manipulation-with-dplyr.html#cb262-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb262-3"><a href="data-manipulation-with-dplyr.html#cb262-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">RACE =</span> <span class="fu">case_when</span>( <span class="do">## change RACE from numeric values to racial categories</span></span>
-<span id="cb262-4"><a href="data-manipulation-with-dplyr.html#cb262-4" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;White&#39;</span>,</span>
-<span id="cb262-5"><a href="data-manipulation-with-dplyr.html#cb262-5" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;African American&#39;</span>,</span>
-<span id="cb262-6"><a href="data-manipulation-with-dplyr.html#cb262-6" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;American Indian&#39;</span></span>
-<span id="cb262-7"><a href="data-manipulation-with-dplyr.html#cb262-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb262-8"><a href="data-manipulation-with-dplyr.html#cb262-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb262-9"><a href="data-manipulation-with-dplyr.html#cb262-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="data-manipulation-with-dplyr.html#cb264-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb264-2"><a href="data-manipulation-with-dplyr.html#cb264-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb264-3"><a href="data-manipulation-with-dplyr.html#cb264-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">RACE =</span> <span class="fu">case_when</span>( <span class="do">## change RACE from numeric values to racial categories</span></span>
+<span id="cb264-4"><a href="data-manipulation-with-dplyr.html#cb264-4" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;White&#39;</span>,</span>
+<span id="cb264-5"><a href="data-manipulation-with-dplyr.html#cb264-5" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;African American&#39;</span>,</span>
+<span id="cb264-6"><a href="data-manipulation-with-dplyr.html#cb264-6" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;American Indian&#39;</span></span>
+<span id="cb264-7"><a href="data-manipulation-with-dplyr.html#cb264-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb264-8"><a href="data-manipulation-with-dplyr.html#cb264-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb264-9"><a href="data-manipulation-with-dplyr.html#cb264-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE             RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC
 ## 1 2010   2  59            White      0   10       1  33100   49100
 ## 2 2010   2  29            White      0   10       1  16000   49100
 ## 3 2010   1  54 African American      0    7       3   1100      NA
 ## 4 2010   2  47 African American      0    5       2   4800    4800
 ## 5 2010   1  59 African American      0   10       2      0    4800</code></pre>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="data-manipulation-with-dplyr.html#cb264-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
-<span id="cb264-2"><a href="data-manipulation-with-dplyr.html#cb264-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb264-3"><a href="data-manipulation-with-dplyr.html#cb264-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">IncLevl =</span> <span class="fu">case_when</span>( <span class="do">## categorize personal income into three levels</span></span>
-<span id="cb264-4"><a href="data-manipulation-with-dplyr.html#cb264-4" aria-hidden="true" tabindex="-1"></a>      INCTOT <span class="sc">&lt;</span> <span class="fu">median</span>(INCTOT, <span class="at">na.rm =</span> T) <span class="sc">~</span> <span class="st">&#39;Low income&#39;</span>,</span>
-<span id="cb264-5"><a href="data-manipulation-with-dplyr.html#cb264-5" aria-hidden="true" tabindex="-1"></a>      INCTOT <span class="sc">&gt;</span> <span class="fu">median</span>(INCTOT, <span class="at">na.rm =</span> T) <span class="sc">~</span> <span class="st">&#39;High income&#39;</span>,</span>
-<span id="cb264-6"><a href="data-manipulation-with-dplyr.html#cb264-6" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&#39;Median income&#39;</span></span>
-<span id="cb264-7"><a href="data-manipulation-with-dplyr.html#cb264-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb264-8"><a href="data-manipulation-with-dplyr.html#cb264-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb264-9"><a href="data-manipulation-with-dplyr.html#cb264-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="data-manipulation-with-dplyr.html#cb266-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb266-2"><a href="data-manipulation-with-dplyr.html#cb266-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb266-3"><a href="data-manipulation-with-dplyr.html#cb266-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">IncLevl =</span> <span class="fu">case_when</span>( <span class="do">## categorize personal income into three levels</span></span>
+<span id="cb266-4"><a href="data-manipulation-with-dplyr.html#cb266-4" aria-hidden="true" tabindex="-1"></a>      INCTOT <span class="sc">&lt;</span> <span class="fu">median</span>(INCTOT, <span class="at">na.rm =</span> T) <span class="sc">~</span> <span class="st">&#39;Low income&#39;</span>,</span>
+<span id="cb266-5"><a href="data-manipulation-with-dplyr.html#cb266-5" aria-hidden="true" tabindex="-1"></a>      INCTOT <span class="sc">&gt;</span> <span class="fu">median</span>(INCTOT, <span class="at">na.rm =</span> T) <span class="sc">~</span> <span class="st">&#39;High income&#39;</span>,</span>
+<span id="cb266-6"><a href="data-manipulation-with-dplyr.html#cb266-6" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&#39;Median income&#39;</span></span>
+<span id="cb266-7"><a href="data-manipulation-with-dplyr.html#cb266-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb266-8"><a href="data-manipulation-with-dplyr.html#cb266-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb266-9"><a href="data-manipulation-with-dplyr.html#cb266-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##   YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC     IncLevl
 ## 1 2010   2  59    1      0   10       1  33100   49100 High income
 ## 2 2010   2  29    1      0   10       1  16000   49100  Low income
@@ -505,14 +506,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="Pics/group.jpg" />
 </center>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="data-manipulation-with-dplyr.html#cb266-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">%&gt;%</span> </span>
-<span id="cb266-2"><a href="data-manipulation-with-dplyr.html#cb266-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Name) <span class="sc">%&gt;%</span> </span>
-<span id="cb266-3"><a href="data-manipulation-with-dplyr.html#cb266-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">TotalSocre =</span> <span class="fu">sum</span>(Score))</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="data-manipulation-with-dplyr.html#cb268-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">%&gt;%</span> </span>
+<span id="cb268-2"><a href="data-manipulation-with-dplyr.html#cb268-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Name) <span class="sc">%&gt;%</span> </span>
+<span id="cb268-3"><a href="data-manipulation-with-dplyr.html#cb268-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">TotalSocre =</span> <span class="fu">sum</span>(Score))</span></code></pre></div>
 <p>When it comes to our Minneapolis ACS dataset, we can use the combination of <code>group_by()</code> and <code>summarise()</code> to help use with many tasks.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-manipulation-with-dplyr.html#cb267-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb267-2"><a href="data-manipulation-with-dplyr.html#cb267-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR) <span class="sc">%&gt;%</span>  <span class="do">## aggregate the data based on YEAR</span></span>
-<span id="cb267-3"><a href="data-manipulation-with-dplyr.html#cb267-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="do">## number of respondents in each year</span></span>
-<span id="cb267-4"><a href="data-manipulation-with-dplyr.html#cb267-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">AvgInc =</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T)) <span class="do">## average personal income in each year</span></span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="data-manipulation-with-dplyr.html#cb269-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb269-2"><a href="data-manipulation-with-dplyr.html#cb269-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR) <span class="sc">%&gt;%</span>  <span class="do">## aggregate the data based on YEAR</span></span>
+<span id="cb269-3"><a href="data-manipulation-with-dplyr.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="do">## number of respondents in each year</span></span>
+<span id="cb269-4"><a href="data-manipulation-with-dplyr.html#cb269-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">AvgInc =</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T)) <span class="do">## average personal income in each year</span></span></code></pre></div>
 <pre><code>## # A tibble: 10 x 3
 ##     YEAR count AvgInc
 ##  * &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;
@@ -526,16 +527,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8  2017  2857 46994.
 ##  9  2018  2673 45557.
 ## 10  2019  2564 48519.</code></pre>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="data-manipulation-with-dplyr.html#cb269-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb269-2"><a href="data-manipulation-with-dplyr.html#cb269-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb269-3"><a href="data-manipulation-with-dplyr.html#cb269-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">RACE =</span> <span class="fu">case_when</span>( <span class="do">## change RACE from numeric values to racial categories</span></span>
-<span id="cb269-4"><a href="data-manipulation-with-dplyr.html#cb269-4" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;White&#39;</span>,</span>
-<span id="cb269-5"><a href="data-manipulation-with-dplyr.html#cb269-5" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;African American&#39;</span>,</span>
-<span id="cb269-6"><a href="data-manipulation-with-dplyr.html#cb269-6" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;American Indian&#39;</span></span>
-<span id="cb269-7"><a href="data-manipulation-with-dplyr.html#cb269-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb269-8"><a href="data-manipulation-with-dplyr.html#cb269-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb269-9"><a href="data-manipulation-with-dplyr.html#cb269-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR, RACE) <span class="sc">%&gt;%</span> <span class="do">## aggregate the data based on YEAR and RACE</span></span>
-<span id="cb269-10"><a href="data-manipulation-with-dplyr.html#cb269-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">MaxInc =</span> <span class="fu">max</span>(INCTOT, <span class="at">na.rm =</span> T)) <span class="do">## maximum personal income for different racial groups in each year</span></span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="data-manipulation-with-dplyr.html#cb271-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb271-2"><a href="data-manipulation-with-dplyr.html#cb271-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb271-3"><a href="data-manipulation-with-dplyr.html#cb271-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">RACE =</span> <span class="fu">case_when</span>( <span class="do">## change RACE from numeric values to racial categories</span></span>
+<span id="cb271-4"><a href="data-manipulation-with-dplyr.html#cb271-4" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;White&#39;</span>,</span>
+<span id="cb271-5"><a href="data-manipulation-with-dplyr.html#cb271-5" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;African American&#39;</span>,</span>
+<span id="cb271-6"><a href="data-manipulation-with-dplyr.html#cb271-6" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;American Indian&#39;</span></span>
+<span id="cb271-7"><a href="data-manipulation-with-dplyr.html#cb271-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb271-8"><a href="data-manipulation-with-dplyr.html#cb271-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb271-9"><a href="data-manipulation-with-dplyr.html#cb271-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR, RACE) <span class="sc">%&gt;%</span> <span class="do">## aggregate the data based on YEAR and RACE</span></span>
+<span id="cb271-10"><a href="data-manipulation-with-dplyr.html#cb271-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">MaxInc =</span> <span class="fu">max</span>(INCTOT, <span class="at">na.rm =</span> T)) <span class="do">## maximum personal income for different racial groups in each year</span></span></code></pre></div>
 <pre><code>## # A tibble: 30 x 3
 ## # Groups:   YEAR [10]
 ##     YEAR RACE             MaxInc
@@ -555,31 +556,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="join" class="section level2" number="5.6">
 <h2><span class="header-section-number">5.6</span> join()</h2>
 <p>We could use <code>join()</code> to do the same work of <code>merge()</code>.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="data-manipulation-with-dplyr.html#cb271-1" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>) <span class="co"># create variable Name</span></span>
-<span id="cb271-2"><a href="data-manipulation-with-dplyr.html#cb271-2" aria-hidden="true" tabindex="-1"></a>MathScore <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">87</span>, <span class="dv">98</span>, <span class="dv">95</span>) <span class="co"># create variable Score1</span></span>
-<span id="cb271-3"><a href="data-manipulation-with-dplyr.html#cb271-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Name, MathScore) <span class="co"># combine the variables into one data frame</span></span>
-<span id="cb271-4"><a href="data-manipulation-with-dplyr.html#cb271-4" aria-hidden="true" tabindex="-1"></a>df1</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="data-manipulation-with-dplyr.html#cb273-1" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>) <span class="co"># create variable Name</span></span>
+<span id="cb273-2"><a href="data-manipulation-with-dplyr.html#cb273-2" aria-hidden="true" tabindex="-1"></a>MathScore <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">87</span>, <span class="dv">98</span>, <span class="dv">95</span>) <span class="co"># create variable Score1</span></span>
+<span id="cb273-3"><a href="data-manipulation-with-dplyr.html#cb273-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Name, MathScore) <span class="co"># combine the variables into one data frame</span></span>
+<span id="cb273-4"><a href="data-manipulation-with-dplyr.html#cb273-4" aria-hidden="true" tabindex="-1"></a>df1</span></code></pre></div>
 <pre><code>##   Name MathScore
 ## 1    A        87
 ## 2    B        98
 ## 3    C        95</code></pre>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="data-manipulation-with-dplyr.html#cb273-1" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;B&#39;</span>, <span class="st">&#39;D&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;A&#39;</span>) <span class="co"># create variable Name</span></span>
-<span id="cb273-2"><a href="data-manipulation-with-dplyr.html#cb273-2" aria-hidden="true" tabindex="-1"></a>PhysicsScore <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">99</span>, <span class="dv">66</span>, <span class="dv">98</span>, <span class="dv">77</span>) <span class="co"># create variable Score2</span></span>
-<span id="cb273-3"><a href="data-manipulation-with-dplyr.html#cb273-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Name, PhysicsScore) <span class="co"># combine the variables into one data frame</span></span>
-<span id="cb273-4"><a href="data-manipulation-with-dplyr.html#cb273-4" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="data-manipulation-with-dplyr.html#cb275-1" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;B&#39;</span>, <span class="st">&#39;D&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;A&#39;</span>) <span class="co"># create variable Name</span></span>
+<span id="cb275-2"><a href="data-manipulation-with-dplyr.html#cb275-2" aria-hidden="true" tabindex="-1"></a>PhysicsScore <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">99</span>, <span class="dv">66</span>, <span class="dv">98</span>, <span class="dv">77</span>) <span class="co"># create variable Score2</span></span>
+<span id="cb275-3"><a href="data-manipulation-with-dplyr.html#cb275-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Name, PhysicsScore) <span class="co"># combine the variables into one data frame</span></span>
+<span id="cb275-4"><a href="data-manipulation-with-dplyr.html#cb275-4" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
 <pre><code>##   Name PhysicsScore
 ## 1    B           99
 ## 2    D           66
 ## 3    C           98
 ## 4    A           77</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="data-manipulation-with-dplyr.html#cb275-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">%&gt;%</span></span>
-<span id="cb275-2"><a href="data-manipulation-with-dplyr.html#cb275-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(df2, <span class="at">by =</span> <span class="st">&#39;Name&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="data-manipulation-with-dplyr.html#cb277-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">%&gt;%</span></span>
+<span id="cb277-2"><a href="data-manipulation-with-dplyr.html#cb277-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(df2, <span class="at">by =</span> <span class="st">&#39;Name&#39;</span>)</span></code></pre></div>
 <pre><code>##   Name MathScore PhysicsScore
 ## 1    A        87           77
 ## 2    B        98           99
 ## 3    C        95           98</code></pre>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="data-manipulation-with-dplyr.html#cb277-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">%&gt;%</span></span>
-<span id="cb277-2"><a href="data-manipulation-with-dplyr.html#cb277-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(df2, <span class="at">by =</span> <span class="st">&#39;Name&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="data-manipulation-with-dplyr.html#cb279-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">%&gt;%</span></span>
+<span id="cb279-2"><a href="data-manipulation-with-dplyr.html#cb279-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(df2, <span class="at">by =</span> <span class="st">&#39;Name&#39;</span>)</span></code></pre></div>
 <pre><code>##   Name MathScore PhysicsScore
 ## 1    A        87           77
 ## 2    B        98           99
@@ -594,10 +595,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="Pics/join2.jpg" />
 </center>
 <p>The codes below joins the poverty threshold dataset to the Minneapolis ACS dataset.</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="data-manipulation-with-dplyr.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="do">## import poverty threshold dataset</span></span>
-<span id="cb279-2"><a href="data-manipulation-with-dplyr.html#cb279-2" aria-hidden="true" tabindex="-1"></a>poverty <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;poverty.csv&#39;</span>)</span>
-<span id="cb279-3"><a href="data-manipulation-with-dplyr.html#cb279-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb279-4"><a href="data-manipulation-with-dplyr.html#cb279-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(poverty, <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="data-manipulation-with-dplyr.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="do">## import poverty threshold dataset</span></span>
+<span id="cb281-2"><a href="data-manipulation-with-dplyr.html#cb281-2" aria-hidden="true" tabindex="-1"></a>poverty <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;poverty.csv&#39;</span>)</span>
+<span id="cb281-3"><a href="data-manipulation-with-dplyr.html#cb281-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-4"><a href="data-manipulation-with-dplyr.html#cb281-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(poverty, <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##    YEAR THRESHOLD
 ## 1  2010     11139
 ## 2  2011     11484
@@ -610,10 +611,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 9  2018     12784
 ## 10 2019     13011</code></pre>
 <p>The poverty threshold dataset lists the poverty threshold in terms of personal income in the US from 2010 to 2019. The data was retrieved from this <a href="https://www.census.gov/data/tables/time-series/demo/income-poverty/historical-poverty-thresholds.html">link</a></p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="data-manipulation-with-dplyr.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="do">## join the poverty threshold dataset to the Minneapolis ACS dataset based on YEAR</span></span>
-<span id="cb281-2"><a href="data-manipulation-with-dplyr.html#cb281-2" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
-<span id="cb281-3"><a href="data-manipulation-with-dplyr.html#cb281-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(poverty, <span class="at">by =</span> <span class="st">&#39;YEAR&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb281-4"><a href="data-manipulation-with-dplyr.html#cb281-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="data-manipulation-with-dplyr.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="do">## join the poverty threshold dataset to the Minneapolis ACS dataset based on YEAR</span></span>
+<span id="cb283-2"><a href="data-manipulation-with-dplyr.html#cb283-2" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb283-3"><a href="data-manipulation-with-dplyr.html#cb283-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(poverty, <span class="at">by =</span> <span class="st">&#39;YEAR&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb283-4"><a href="data-manipulation-with-dplyr.html#cb283-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##    YEAR SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC THRESHOLD
 ## 1  2010   2  59    1      0   10       1  33100   49100     11139
 ## 2  2010   2  29    1      0   10       1  16000   49100     11139
@@ -626,10 +627,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 9  2010   1  51    1      0    6       1  35200   74400     11139
 ## 10 2010   2  47    1      0    6       1  39200   74400     11139</code></pre>
 <p>Sometimes, people from different groups may give the same variables with different variable names. In this case, you may need to change the codes a little bit.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="data-manipulation-with-dplyr.html#cb283-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
-<span id="cb283-2"><a href="data-manipulation-with-dplyr.html#cb283-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">TIME =</span> YEAR) <span class="sc">%&gt;%</span> <span class="do">## rename the YEAR to TIME</span></span>
-<span id="cb283-3"><a href="data-manipulation-with-dplyr.html#cb283-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(poverty, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;TIME&#39;</span> <span class="ot">=</span> <span class="st">&#39;YEAR&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb283-4"><a href="data-manipulation-with-dplyr.html#cb283-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="data-manipulation-with-dplyr.html#cb285-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb285-2"><a href="data-manipulation-with-dplyr.html#cb285-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">TIME =</span> YEAR) <span class="sc">%&gt;%</span> <span class="do">## rename the YEAR to TIME</span></span>
+<span id="cb285-3"><a href="data-manipulation-with-dplyr.html#cb285-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(poverty, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;TIME&#39;</span> <span class="ot">=</span> <span class="st">&#39;YEAR&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb285-4"><a href="data-manipulation-with-dplyr.html#cb285-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##    TIME SEX AGE RACE HISPAN EDUC EMPSTAT INCTOT FTOTINC THRESHOLD
 ## 1  2010   2  59    1      0   10       1  33100   49100     11139
 ## 2  2010   2  29    1      0   10       1  16000   49100     11139
@@ -650,18 +651,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="Pics/long_wide.jpg" style="width:75.0%" />
 </center>
 <p>The long form and wide form data can be transformed to each other. We will use the example below as an illustration.</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="data-manipulation-with-dplyr.html#cb285-1" aria-hidden="true" tabindex="-1"></a>max_income <span class="ot">&lt;-</span> minneapolis <span class="sc">%&gt;%</span></span>
-<span id="cb285-2"><a href="data-manipulation-with-dplyr.html#cb285-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb285-3"><a href="data-manipulation-with-dplyr.html#cb285-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">RACE =</span> <span class="fu">case_when</span>( <span class="do">## change RACE from numeric values to racial categories</span></span>
-<span id="cb285-4"><a href="data-manipulation-with-dplyr.html#cb285-4" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;White&#39;</span>,</span>
-<span id="cb285-5"><a href="data-manipulation-with-dplyr.html#cb285-5" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;African American&#39;</span>,</span>
-<span id="cb285-6"><a href="data-manipulation-with-dplyr.html#cb285-6" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;American Indian&#39;</span></span>
-<span id="cb285-7"><a href="data-manipulation-with-dplyr.html#cb285-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb285-8"><a href="data-manipulation-with-dplyr.html#cb285-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb285-9"><a href="data-manipulation-with-dplyr.html#cb285-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR, RACE) <span class="sc">%&gt;%</span> <span class="do">## aggregate the data based on YEAR and RACE</span></span>
-<span id="cb285-10"><a href="data-manipulation-with-dplyr.html#cb285-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">MaxInc =</span> <span class="fu">max</span>(INCTOT, <span class="at">na.rm =</span> T)) <span class="do">## maximum personal income for different racial groups in each year</span></span>
-<span id="cb285-11"><a href="data-manipulation-with-dplyr.html#cb285-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb285-12"><a href="data-manipulation-with-dplyr.html#cb285-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(max_income, <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="data-manipulation-with-dplyr.html#cb287-1" aria-hidden="true" tabindex="-1"></a>max_income <span class="ot">&lt;-</span> minneapolis <span class="sc">%&gt;%</span></span>
+<span id="cb287-2"><a href="data-manipulation-with-dplyr.html#cb287-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb287-3"><a href="data-manipulation-with-dplyr.html#cb287-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">RACE =</span> <span class="fu">case_when</span>( <span class="do">## change RACE from numeric values to racial categories</span></span>
+<span id="cb287-4"><a href="data-manipulation-with-dplyr.html#cb287-4" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;White&#39;</span>,</span>
+<span id="cb287-5"><a href="data-manipulation-with-dplyr.html#cb287-5" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;African American&#39;</span>,</span>
+<span id="cb287-6"><a href="data-manipulation-with-dplyr.html#cb287-6" aria-hidden="true" tabindex="-1"></a>      RACE <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;American Indian&#39;</span></span>
+<span id="cb287-7"><a href="data-manipulation-with-dplyr.html#cb287-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb287-8"><a href="data-manipulation-with-dplyr.html#cb287-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb287-9"><a href="data-manipulation-with-dplyr.html#cb287-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR, RACE) <span class="sc">%&gt;%</span> <span class="do">## aggregate the data based on YEAR and RACE</span></span>
+<span id="cb287-10"><a href="data-manipulation-with-dplyr.html#cb287-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">MaxInc =</span> <span class="fu">max</span>(INCTOT, <span class="at">na.rm =</span> T)) <span class="do">## maximum personal income for different racial groups in each year</span></span>
+<span id="cb287-11"><a href="data-manipulation-with-dplyr.html#cb287-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-12"><a href="data-manipulation-with-dplyr.html#cb287-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(max_income, <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 3
 ## # Groups:   YEAR [4]
 ##     YEAR RACE             MaxInc
@@ -677,13 +678,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9  2012 White            461000
 ## 10  2013 African American 398000</code></pre>
 <p>We will use <code>pivot_wider()</code> and <code>pivot_longer()</code> in <code>tidyr</code> to do the task.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="data-manipulation-with-dplyr.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="do">## import the package</span></span>
-<span id="cb287-2"><a href="data-manipulation-with-dplyr.html#cb287-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span></code></pre></div>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="data-manipulation-with-dplyr.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="do">## from long to wide</span></span>
-<span id="cb288-2"><a href="data-manipulation-with-dplyr.html#cb288-2" aria-hidden="true" tabindex="-1"></a>wide_data <span class="ot">&lt;-</span> max_income <span class="sc">%&gt;%</span> </span>
-<span id="cb288-3"><a href="data-manipulation-with-dplyr.html#cb288-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> RACE, <span class="at">values_from =</span> MaxInc)</span>
-<span id="cb288-4"><a href="data-manipulation-with-dplyr.html#cb288-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb288-5"><a href="data-manipulation-with-dplyr.html#cb288-5" aria-hidden="true" tabindex="-1"></a>wide_data</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="data-manipulation-with-dplyr.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="do">## import the package</span></span>
+<span id="cb289-2"><a href="data-manipulation-with-dplyr.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="data-manipulation-with-dplyr.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="do">## from long to wide</span></span>
+<span id="cb290-2"><a href="data-manipulation-with-dplyr.html#cb290-2" aria-hidden="true" tabindex="-1"></a>wide_data <span class="ot">&lt;-</span> max_income <span class="sc">%&gt;%</span> </span>
+<span id="cb290-3"><a href="data-manipulation-with-dplyr.html#cb290-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> RACE, <span class="at">values_from =</span> MaxInc)</span>
+<span id="cb290-4"><a href="data-manipulation-with-dplyr.html#cb290-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb290-5"><a href="data-manipulation-with-dplyr.html#cb290-5" aria-hidden="true" tabindex="-1"></a>wide_data</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 4
 ## # Groups:   YEAR [10]
 ##     YEAR `African American` `American Indian`  White
@@ -698,9 +699,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8  2017             120000            503000 731000
 ##  9  2018             487000            337000 552000
 ## 10  2019             193000            495000 831000</code></pre>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="data-manipulation-with-dplyr.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="do">## from wide to long</span></span>
-<span id="cb290-2"><a href="data-manipulation-with-dplyr.html#cb290-2" aria-hidden="true" tabindex="-1"></a>wide_data <span class="sc">%&gt;%</span> </span>
-<span id="cb290-3"><a href="data-manipulation-with-dplyr.html#cb290-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">African American</span><span class="st">`</span><span class="sc">:</span>White, <span class="at">names_to =</span> <span class="st">&#39;RACE&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;MaxInc&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="data-manipulation-with-dplyr.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="do">## from wide to long</span></span>
+<span id="cb292-2"><a href="data-manipulation-with-dplyr.html#cb292-2" aria-hidden="true" tabindex="-1"></a>wide_data <span class="sc">%&gt;%</span> </span>
+<span id="cb292-3"><a href="data-manipulation-with-dplyr.html#cb292-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">African American</span><span class="st">`</span><span class="sc">:</span>White, <span class="at">names_to =</span> <span class="st">&#39;RACE&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;MaxInc&#39;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 30 x 3
 ## # Groups:   YEAR [10]
 ##     YEAR RACE             MaxInc

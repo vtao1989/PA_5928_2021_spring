@@ -213,7 +213,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="final-project.html"><a href="final-project.html#description"><i class="fa fa-check"></i><b>7.1</b> Description</a></li>
 <li class="chapter" data-level="7.2" data-path="final-project.html"><a href="final-project.html#timeline"><i class="fa fa-check"></i><b>7.2</b> Timeline</a></li>
 <li class="chapter" data-level="7.3" data-path="final-project.html"><a href="final-project.html#proposal-of-problem-statement"><i class="fa fa-check"></i><b>7.3</b> Proposal of problem statement</a></li>
-<li class="chapter" data-level="7.4" data-path="final-project.html"><a href="final-project.html#final-submission"><i class="fa fa-check"></i><b>7.4</b> Final submission</a></li>
+<li class="chapter" data-level="7.4" data-path="final-project.html"><a href="final-project.html#potential-data-sources"><i class="fa fa-check"></i><b>7.4</b> Potential data sources</a></li>
+<li class="chapter" data-level="7.5" data-path="final-project.html"><a href="final-project.html#final-submission"><i class="fa fa-check"></i><b>7.5</b> Final submission</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
 <li class="divider"></li>
@@ -238,92 +239,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-visualization-with-base-functions" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Data Visualization with Base Functions</h1>
 <p>We go through the base plotting functions in R in this chapter.</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="data-visualization-with-base-functions.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="do">## import the Minneapolis ACS dataset</span></span>
-<span id="cb292-2"><a href="data-visualization-with-base-functions.html#cb292-2" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;minneapolis.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="data-visualization-with-base-functions.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="do">## import the Minneapolis ACS dataset</span></span>
+<span id="cb294-2"><a href="data-visualization-with-base-functions.html#cb294-2" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;minneapolis.csv&#39;</span>)</span></code></pre></div>
 <div id="scatter-plot" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Scatter plot</h2>
 <p>Scatter plot is a good way to show the distribution of data points.</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="data-visualization-with-base-functions.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(minneapolis<span class="sc">$</span>AGE, minneapolis<span class="sc">$</span>INCTOT) <span class="co"># with first as x, and second as y</span></span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
-<p>Or, you could use the variable names directly and indicate the dataset as the codes below. You will get the same result.</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="data-visualization-with-base-functions.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(INCTOT <span class="sc">~</span> AGE, <span class="at">data =</span> minneapolis) <span class="co"># you have to specify the name of the data frame here</span></span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="data-visualization-with-base-functions.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(minneapolis<span class="sc">$</span>AGE, minneapolis<span class="sc">$</span>INCTOT) <span class="co"># with first as x, and second as y</span></span></code></pre></div>
 <p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<p>Or, you could use the variable names directly and indicate the dataset as the codes below. You will get the same result.</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="data-visualization-with-base-functions.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(INCTOT <span class="sc">~</span> AGE, <span class="at">data =</span> minneapolis) <span class="co"># you have to specify the name of the data frame here</span></span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 </div>
 <div id="line-plot" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Line plot</h2>
 <p>You could transfer the scatter plot above to a line plot by just adding a <code>type</code> variable to indicate that you are plotting a line. Line plot is good for presenting the trend of a variable changing by time.</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="data-visualization-with-base-functions.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb295-2"><a href="data-visualization-with-base-functions.html#cb295-2" aria-hidden="true" tabindex="-1"></a>mean_income <span class="ot">&lt;-</span> minneapolis <span class="sc">%&gt;%</span> </span>
-<span id="cb295-3"><a href="data-visualization-with-base-functions.html#cb295-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(YEAR) <span class="sc">%&gt;%</span> </span>
-<span id="cb295-4"><a href="data-visualization-with-base-functions.html#cb295-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">AvgInc =</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T))</span>
-<span id="cb295-5"><a href="data-visualization-with-base-functions.html#cb295-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb295-6"><a href="data-visualization-with-base-functions.html#cb295-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AvgInc <span class="sc">~</span> YEAR,</span>
-<span id="cb295-7"><a href="data-visualization-with-base-functions.html#cb295-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> mean_income,</span>
-<span id="cb295-8"><a href="data-visualization-with-base-functions.html#cb295-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&#39;l&#39;</span>) <span class="do">## type indicates the line type with l</span></span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
-<p>You could also choose another type by changing the value of <code>type</code>, as the one below.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="data-visualization-with-base-functions.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AvgInc <span class="sc">~</span> YEAR,</span>
-<span id="cb296-2"><a href="data-visualization-with-base-functions.html#cb296-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> mean_income,</span>
-<span id="cb296-3"><a href="data-visualization-with-base-functions.html#cb296-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&#39;b&#39;</span>) <span class="co"># b for both line and pint</span></span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="data-visualization-with-base-functions.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb297-2"><a href="data-visualization-with-base-functions.html#cb297-2" aria-hidden="true" tabindex="-1"></a>mean_income <span class="ot">&lt;-</span> minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb297-3"><a href="data-visualization-with-base-functions.html#cb297-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(YEAR) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-4"><a href="data-visualization-with-base-functions.html#cb297-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">AvgInc =</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T))</span>
+<span id="cb297-5"><a href="data-visualization-with-base-functions.html#cb297-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb297-6"><a href="data-visualization-with-base-functions.html#cb297-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AvgInc <span class="sc">~</span> YEAR,</span>
+<span id="cb297-7"><a href="data-visualization-with-base-functions.html#cb297-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> mean_income,</span>
+<span id="cb297-8"><a href="data-visualization-with-base-functions.html#cb297-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&#39;l&#39;</span>) <span class="do">## type indicates the line type with l</span></span></code></pre></div>
 <p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<p>You could also choose another type by changing the value of <code>type</code>, as the one below.</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="data-visualization-with-base-functions.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AvgInc <span class="sc">~</span> YEAR,</span>
+<span id="cb298-2"><a href="data-visualization-with-base-functions.html#cb298-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> mean_income,</span>
+<span id="cb298-3"><a href="data-visualization-with-base-functions.html#cb298-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&#39;b&#39;</span>) <span class="co"># b for both line and pint</span></span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
 <p>You could use <code>help(plot)</code> to check more styles of the plots.</p>
 </div>
 <div id="bar-plot" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Bar plot</h2>
 <p>Bar plot is a good way to compare the values in each year or for each item. You could use <code>barplot()</code> to draw it.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="data-visualization-with-base-functions.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(mean_income<span class="sc">$</span>AvgInc,</span>
-<span id="cb297-2"><a href="data-visualization-with-base-functions.html#cb297-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">names.arg =</span> mean_income<span class="sc">$</span>YEAR) <span class="co"># names.org indicates the vector of names to be plotted under each bar</span></span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="data-visualization-with-base-functions.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(mean_income<span class="sc">$</span>AvgInc,</span>
+<span id="cb299-2"><a href="data-visualization-with-base-functions.html#cb299-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">names.arg =</span> mean_income<span class="sc">$</span>YEAR) <span class="co"># names.org indicates the vector of names to be plotted under each bar</span></span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 </div>
 <div id="add-more-elements-in-the-plots" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Add more elements in the plots</h2>
 <p>For a reader-friendly plots, you have to add more information such as title, labels, and legend. For the plot above, we could use the codes below to make it more informative.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="data-visualization-with-base-functions.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(mean_income<span class="sc">$</span>AvgInc,</span>
-<span id="cb298-2"><a href="data-visualization-with-base-functions.html#cb298-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">names.arg =</span> mean_income<span class="sc">$</span>YEAR,</span>
-<span id="cb298-3"><a href="data-visualization-with-base-functions.html#cb298-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&#39;Bar plot of the average personal income in Minneapolis (2010-2019)&#39;</span>, <span class="co"># add title for the plot</span></span>
-<span id="cb298-4"><a href="data-visualization-with-base-functions.html#cb298-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&#39;Year&#39;</span>, <span class="co"># add label tag for the x-axis</span></span>
-<span id="cb298-5"><a href="data-visualization-with-base-functions.html#cb298-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&#39;Personal income (dollars)&#39;</span>,  <span class="co"># add label for the y-axis</span></span>
-<span id="cb298-6"><a href="data-visualization-with-base-functions.html#cb298-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">65000</span>), <span class="co"># set the range of y axis, you could set the range of x axis with xlim</span></span>
-<span id="cb298-7"><a href="data-visualization-with-base-functions.html#cb298-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend =</span> <span class="st">&#39;Personal income&#39;</span>) <span class="co"># add legend name</span></span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="data-visualization-with-base-functions.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(mean_income<span class="sc">$</span>AvgInc,</span>
+<span id="cb300-2"><a href="data-visualization-with-base-functions.html#cb300-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">names.arg =</span> mean_income<span class="sc">$</span>YEAR,</span>
+<span id="cb300-3"><a href="data-visualization-with-base-functions.html#cb300-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&#39;Bar plot of the average personal income in Minneapolis (2010-2019)&#39;</span>, <span class="co"># add title for the plot</span></span>
+<span id="cb300-4"><a href="data-visualization-with-base-functions.html#cb300-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&#39;Year&#39;</span>, <span class="co"># add label tag for the x-axis</span></span>
+<span id="cb300-5"><a href="data-visualization-with-base-functions.html#cb300-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&#39;Personal income (dollars)&#39;</span>,  <span class="co"># add label for the y-axis</span></span>
+<span id="cb300-6"><a href="data-visualization-with-base-functions.html#cb300-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">65000</span>), <span class="co"># set the range of y axis, you could set the range of x axis with xlim</span></span>
+<span id="cb300-7"><a href="data-visualization-with-base-functions.html#cb300-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend =</span> <span class="st">&#39;Personal income&#39;</span>) <span class="co"># add legend name</span></span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 </div>
 <div id="pie-chart" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Pie chart</h2>
 <p>Pie chart is a good way to show the share of each part. You could use <code>pie()</code> function to draw a pie chart in R.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="data-visualization-with-base-functions.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(mean_income<span class="sc">$</span>AvgInc, <span class="co"># value for each piece</span></span>
-<span id="cb299-2"><a href="data-visualization-with-base-functions.html#cb299-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> mean_income<span class="sc">$</span>YEAR, <span class="co"># label for each piece</span></span>
-<span id="cb299-3"><a href="data-visualization-with-base-functions.html#cb299-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&#39;Pie chart of average personal income in Minneaplis&#39;</span>)</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="data-visualization-with-base-functions.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(mean_income<span class="sc">$</span>AvgInc, <span class="co"># value for each piece</span></span>
+<span id="cb301-2"><a href="data-visualization-with-base-functions.html#cb301-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> mean_income<span class="sc">$</span>YEAR, <span class="co"># label for each piece</span></span>
+<span id="cb301-3"><a href="data-visualization-with-base-functions.html#cb301-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&#39;Pie chart of average personal income in Minneaplis&#39;</span>)</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
 </div>
 <div id="boxplot" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Boxplot</h2>
 <p>Box plot is also called box-whisker plot. It is to present the distribution of the dataset based on their quartiles. In R, you could use <code>boxplot()</code> to draw a box plot.</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="data-visualization-with-base-functions.html#cb300-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">19</span>)</span>
-<span id="cb300-2"><a href="data-visualization-with-base-functions.html#cb300-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(t, <span class="at">range =</span> <span class="dv">0</span>) <span class="co"># set range = 0 makes the whiskers reach the smallest and largest values in the dataset</span></span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="data-visualization-with-base-functions.html#cb301-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">19</span>)</span>
-<span id="cb301-2"><a href="data-visualization-with-base-functions.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(t, <span class="at">range =</span> <span class="dv">1</span>) <span class="co"># set range = 1 makes the the whiskers extend to the most extreme data point which is no more than range times the interquartile range from the box</span></span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="data-visualization-with-base-functions.html#cb302-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">19</span>)</span>
+<span id="cb302-2"><a href="data-visualization-with-base-functions.html#cb302-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(t, <span class="at">range =</span> <span class="dv">0</span>) <span class="co"># set range = 0 makes the whiskers reach the smallest and largest values in the dataset</span></span></code></pre></div>
 <p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="data-visualization-with-base-functions.html#cb303-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">19</span>)</span>
+<span id="cb303-2"><a href="data-visualization-with-base-functions.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(t, <span class="at">range =</span> <span class="dv">1</span>) <span class="co"># set range = 1 makes the the whiskers extend to the most extreme data point which is no more than range times the interquartile range from the box</span></span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 </div>
 <div id="color-in-r" class="section level2" number="6.7">
 <h2><span class="header-section-number">6.7</span> Color in R</h2>
 <p>You could change the color of the plots by adding <code>col =</code> in the functions. For example.</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="data-visualization-with-base-functions.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AvgInc <span class="sc">~</span> YEAR,</span>
-<span id="cb302-2"><a href="data-visualization-with-base-functions.html#cb302-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> mean_income,</span>
-<span id="cb302-3"><a href="data-visualization-with-base-functions.html#cb302-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&#39;b&#39;</span>,</span>
-<span id="cb302-4"><a href="data-visualization-with-base-functions.html#cb302-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&#39;YellowGreen&#39;</span>) <span class="co"># specify the name of the color</span></span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="data-visualization-with-base-functions.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AvgInc <span class="sc">~</span> YEAR,</span>
+<span id="cb304-2"><a href="data-visualization-with-base-functions.html#cb304-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> mean_income,</span>
+<span id="cb304-3"><a href="data-visualization-with-base-functions.html#cb304-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&#39;b&#39;</span>,</span>
+<span id="cb304-4"><a href="data-visualization-with-base-functions.html#cb304-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&#39;YellowGreen&#39;</span>) <span class="co"># specify the name of the color</span></span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
 <p>Here is a <a href="https://html-color-codes.info/color-names/">link</a> where you could find the name of the color.</p>
 <p>You could also use the hexadecimal color code to indicate the color. For example.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="data-visualization-with-base-functions.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(mean_income<span class="sc">$</span>AvgInc,</span>
-<span id="cb303-2"><a href="data-visualization-with-base-functions.html#cb303-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">names.arg =</span> mean_income<span class="sc">$</span>YEAR,</span>
-<span id="cb303-3"><a href="data-visualization-with-base-functions.html#cb303-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&#39;Bar plot of the average personal income in Minneapolis (2010-2019)&#39;</span>,</span>
-<span id="cb303-4"><a href="data-visualization-with-base-functions.html#cb303-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&#39;Year&#39;</span>, </span>
-<span id="cb303-5"><a href="data-visualization-with-base-functions.html#cb303-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&#39;Personal income (dollars)&#39;</span>,</span>
-<span id="cb303-6"><a href="data-visualization-with-base-functions.html#cb303-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">65000</span>),</span>
-<span id="cb303-7"><a href="data-visualization-with-base-functions.html#cb303-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend =</span> <span class="st">&#39;Personal income&#39;</span>,</span>
-<span id="cb303-8"><a href="data-visualization-with-base-functions.html#cb303-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&#39;#009999&#39;</span>) <span class="co"># use the hexadecimal color code, you need to start it with the hash tag</span></span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="data-visualization-with-base-functions.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(mean_income<span class="sc">$</span>AvgInc,</span>
+<span id="cb305-2"><a href="data-visualization-with-base-functions.html#cb305-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">names.arg =</span> mean_income<span class="sc">$</span>YEAR,</span>
+<span id="cb305-3"><a href="data-visualization-with-base-functions.html#cb305-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&#39;Bar plot of the average personal income in Minneapolis (2010-2019)&#39;</span>,</span>
+<span id="cb305-4"><a href="data-visualization-with-base-functions.html#cb305-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&#39;Year&#39;</span>, </span>
+<span id="cb305-5"><a href="data-visualization-with-base-functions.html#cb305-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&#39;Personal income (dollars)&#39;</span>,</span>
+<span id="cb305-6"><a href="data-visualization-with-base-functions.html#cb305-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">65000</span>),</span>
+<span id="cb305-7"><a href="data-visualization-with-base-functions.html#cb305-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend =</span> <span class="st">&#39;Personal income&#39;</span>,</span>
+<span id="cb305-8"><a href="data-visualization-with-base-functions.html#cb305-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&#39;#009999&#39;</span>) <span class="co"># use the hexadecimal color code, you need to start it with the hash tag</span></span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
 <p>By the same <a href="https://html-color-codes.info/color-names/">link</a>, you could also find the hexadcimal code for each color.</p>
 
 </div>

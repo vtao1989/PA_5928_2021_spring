@@ -2,7 +2,7 @@
 # Final Project
 
 ## Description
-R is the tool serving for analyzing data and visualizing results. In the final project, you will use the R programming skills you learn from this course and also the knowledge outside the course (other R techniques you are interested in and your professional knowledge in your study major) to solve a research question. The research question could be related your study field (e.g., public policy, urban and regional planning, public health, etc.), or what you are interested in, or your previous course or research project but you do it with R instead. You could use any packages in R to solve the problem. For example, you could use plots to do descriptive analysis. Or you could use regression to find correlation or causality. The final product is a poster.
+R is the tool serving for analyzing data and visualizing results. In the final project, you will use the R programming skills you learn from this course and also the knowledge outside the course (other R techniques you are interested in and your professional knowledge in your study major) to solve a research question. The research question could be related your study field (e.g., public policy, urban and regional planning, public health, etc.), or what you are interested in, or your previous course or research project but you do it with R instead. The originality of your research question is not necessary. You could use any packages in R to solve the problem. For example, you could use plots to do descriptive analysis. Or you could use regression to find correlation or causality. The final product is a poster.
 
 This assignment accounts for 30% of your final grades.
 
@@ -27,6 +27,13 @@ In this task, you will need to submit the proposal file (either word or pdf). Th
 | State the potential method you will use for data analysis (descriptive analysis, simple regression, etc.)                 |
 
 The proposal should be less than one page, 12 font size.
+
+## Potential data sources
+
+1. [IMPUS USA](https://usa.ipums.org/usa/)  
+2. [National Household Travel Survey](https://nhts.ornl.gov/)
+3. [Minnesota Geospatial Commons](https://gisdata.mn.gov/)
+4. [Open Minneapolis](https://opendata.minneapolismn.gov/)
 
 ## Final submission
 
