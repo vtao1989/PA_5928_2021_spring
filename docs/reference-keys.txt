@@ -49,6 +49,15 @@ arrange
 mutate
 group_by-and-summarise
 join
+pivot_wider-and-pivot_longer-in-tidyr
+data-visualization-with-base-functions
+scatter-plot
+line-plot
+bar-plot
+add-more-elements-in-the-plots
+pie-chart
+boxplot
+color-in-r
 final-project
 description
 timeline

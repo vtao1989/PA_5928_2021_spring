@@ -274,14 +274,14 @@ minneapolis %>%
 
 ```{r, message=FALSE}
 minneapolis %>%
-  group_by(YEAR, RACE) %>% ## aggregate the data based on YEAR and RACE
-  mutate(
+    mutate(
     RACE = case_when( ## change RACE from numeric values to racial categories
       RACE == 1 ~ 'White',
       RACE == 2 ~ 'African American',
       RACE == 3 ~ 'American Indian'
     )
   ) %>% 
+  group_by(YEAR, RACE) %>% ## aggregate the data based on YEAR and RACE
   summarise(MaxInc = max(INCTOT, na.rm = T)) ## maximum personal income for different racial groups in each year
 ```
 
@@ -353,8 +353,51 @@ minneapolis %>%
 
 ``rename()`` can help rename the column name in the data frame.
 
+## pivot_wider() and pivot_longer() in tidyr
 
+We can categorize the data frame into two types. One is long data, the other is wide data. In the long form, each row is a score of one discipline for one student. In the wide form, each row contains the scores of all three disciplines for one student.
 
+<center>
+![](Pics/long_wide.jpg){ width=75% }
+</center>
+
+The long form and wide form data can be transformed to each other. We will use the example below as an illustration.
+
+```{r, message=FALSE}
+max_income <- minneapolis %>%
+    mutate(
+    RACE = case_when( ## change RACE from numeric values to racial categories
+      RACE == 1 ~ 'White',
+      RACE == 2 ~ 'African American',
+      RACE == 3 ~ 'American Indian'
+    )
+  ) %>% 
+  group_by(YEAR, RACE) %>% ## aggregate the data based on YEAR and RACE
+  summarise(MaxInc = max(INCTOT, na.rm = T)) ## maximum personal income for different racial groups in each year
+
+head(max_income, 10)
+```
+
+We will use ``pivot_wider()`` and ``pivot_longer()`` in ``tidyr`` to do the task.
+
+```{r}
+## import the package
+library(tidyr)
+```
+
+```{r}
+## from long to wide
+wide_data <- max_income %>% 
+  pivot_wider(names_from = RACE, values_from = MaxInc)
+
+wide_data
+```
+
+```{r}
+## from wide to long
+wide_data %>% 
+  pivot_longer(cols = `African American`:White, names_to = 'RACE', values_to = 'MaxInc')
+```
 
 
 
