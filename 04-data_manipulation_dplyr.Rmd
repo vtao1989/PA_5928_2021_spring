@@ -323,4 +323,39 @@ Besides ``left_join()`` and ``right_join()``, we have ``inner_join()`` (keep onl
 ![](Pics/join2.jpg)
 </center>
 
+The codes below joins the poverty threshold dataset to the Minneapolis ACS dataset.
+
+```{r}
+## import poverty threshold dataset
+poverty <- read.csv('poverty.csv')
+
+head(poverty, 10)
+```
+
+The poverty threshold dataset lists the poverty threshold in terms of personal income in the US from 2010 to 2019. The data was retrieved from this  [link](https://www.census.gov/data/tables/time-series/demo/income-poverty/historical-poverty-thresholds.html)
+
+
+```{r}
+## join the poverty threshold dataset to the Minneapolis ACS dataset based on YEAR
+minneapolis %>% 
+  left_join(poverty, by = 'YEAR') %>% 
+  head(10)
+```
+
+Sometimes, people from different groups may give the same variables with different variable names. In this case, you may need to change the codes a little bit.
+
+```{r}
+minneapolis %>% 
+  rename(TIME = YEAR) %>% ## rename the YEAR to TIME
+  left_join(poverty, by = c('TIME' = 'YEAR')) %>% 
+  head(10)
+```
+
+``rename()`` can help rename the column name in the data frame.
+
+
+
+
+
+
 
