@@ -77,9 +77,20 @@ barplot(mean_income$AvgInc,
 Pie chart is a good way to show the share of each part. You could use ``pie()`` function to draw a pie chart in R.
 
 ```{r}
-pie(mean_income$AvgInc, # value for each piece
-    labels = mean_income$YEAR, # label for each piece
-    main = 'Pie chart of average personal income in Minneaplis')
+minneaplis_race <- minneapolis %>% 
+      mutate(
+    RACE = case_when( ## change RACE from numeric values to racial categories
+      RACE == 1 ~ 'White',
+      RACE == 2 ~ 'African American',
+      RACE == 3 ~ 'American Indian'
+    )
+  ) %>% 
+    group_by(RACE) %>% 
+    summarise(count = n())
+
+
+pie(minneaplis_race$count, # value for each piece
+    labels = minneaplis_race$RACE) # label for each piece
 ```
 
 ## Boxplot
