@@ -70,6 +70,55 @@ p <- ggplot(minneapolis_2017, aes(factor(SEX), INCTOT))
 p + geom_boxplot()
 ```
 
+## Anotation of statistics
+
+We can use ``geom_text()`` to annotate the statistics in the plot.
+
+### bar plot
+
+```{r}
+ggplot(minneapolis_2017, aes(x = RACE)) +
+  geom_bar() +
+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+```
+```{r}
+## count the number of respondents based on RACE
+minneaplis_race <- minneapolis_2017 %>% 
+  group_by(RACE) %>% 
+  summarise(count = n())
+
+ggplot(minneaplis_race, aes(RACE, count)) +
+  geom_col() +
+  geom_text(aes(label = count), vjust = -0.3)
+```
+
+### line plot
+
+```{r}
+## calculate the average personal income for each year
+minneapolis_year <- minneapolis %>% 
+  group_by(YEAR) %>% 
+  summarise(AvgInc = mean(INCTOT, na.rm = T))
+
+ggplot(minneapolis_year, aes(YEAR, AvgInc)) +
+  geom_line(col = 'Blue') +
+  geom_text(aes(label = round(AvgInc)), vjust = -0.4) +
+  scale_x_continuous(breaks = c(2010:2019))
+```
+
+```{r message=FALSE}
+## calculate the average personal income for each racial group in each year
+minneapolis_year_race <- minneapolis %>% 
+  group_by(YEAR, RACE) %>% 
+  summarise(AvgInc = mean(INCTOT, na.rm = T))
+
+## line plot of the trend of average personal income
+ggplot(minneapolis_year_race, aes(YEAR, AvgInc, col = factor(RACE))) +
+  geom_line() +
+  geom_text(aes(label = round(AvgInc)), vjust = -0.4, color = 'black') +
+  scale_x_continuous(breaks = c(2010:2019))
+```
+
 
 ## Simple statistics
 
