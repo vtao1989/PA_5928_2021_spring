@@ -47,14 +47,15 @@ The figure shows the scatter plots of age and personal income in the city of Min
 
 ## Data, Aesthetics, and Geometries
 
-Generally, if you want to draw figures with ``ggplot2``, you need at least three elements, which are data, aesthetics, and geometries. Data is the dataset we want to visualize. Aesthetic specifies the variables and related attributes. Geometry indicates the plot type and related attributes. Take the example above again. We want to visualize the variables of ``AGE`` and ``TOTINC`` (aesthetic) of the dataset ``minneapolis`` (data, the Minneapolis ACS dataset) with a scatter plot (geometry).
+Generally, if you want to draw figures with ``ggplot2``, you need at least three elements, which are data, aesthetics, and geometries. Data is the dataset we want to visualize. Aesthetic specifies how to map the variables to the scales in plots. Geometry indicates the plot type and related attributes. Take the example above again. We want to visualize the variables of ``AGE`` and ``TOTINC`` (aesthetic) of the dataset ``minneapolis`` (data, the Minneapolis ACS dataset) with a scatter plot (geometry). In summary,
 
-Similar to ``dplyr``, ``ggplot2`` also has its own fashion of coding. We start with the ``ggplot()`` function. **Please pay attention that there is no ``2`` in the name of the function**. In the function, we first indicate the name of the dataset (usually a data frame). Then we use ``aes()`` to indicate the scales (aesthetic) we want to map our data. Here, we map ``AGE`` to x axis, and ``TOTINC`` to y axis. Then we use a plus sign ``+`` to connect it to other functions. We are going to draw a scatter plot, so we use ``geom_point()``. We only use a 2017 subsample from the Minneapolis ACS dataset. Note that the observations with missing values have been removed during plotting (that's why we have a warning message).
+Similar to ``dplyr``, ``ggplot2`` also has its own fashion of coding. We start with the ``ggplot()`` function. **Please pay attention that there is no ``2`` in the name of the function**. In the function, we first indicate the name of the dataset (usually a data frame). Then we use ``aes()`` to indicate the scales we want to map our data. Here, we map ``AGE`` to x axis, and ``TOTINC`` to y axis. Then we use a plus sign ``+`` to connect it to other functions. We are going to draw a scatter plot, so we use ``geom_point()``. We only use a 2017 subsample from the Minneapolis ACS dataset. Note that the observations with missing values have been removed during plotting (that's why we have a warning message).
 
 ```{r}
 ## select a subsample of those in 2017
 minneapolis_2017 <- filter(minneapolis, YEAR == 2017)
 
+## this example give us a simple example of ggplot2
 ggplot(minneapolis_2017, # Data
        aes(x = AGE, y = INCTOT)) + # Aesthetics
   geom_point() # Geometries
@@ -62,17 +63,24 @@ ggplot(minneapolis_2017, # Data
 
 Based on this plot, we have a overall idea of the relationship between ``AGE`` and ``TOTINC``. When age increases, people's personal income increases. However, after a certain age, people's personal income decreases as their age increases. (This relationship is just a type of correlation, not causality.)
 
-We could add more attributes as aesthetic elements in the plot. For example, we could use color to indicate the value of ``EDUC`` by adding ``col = EDUC``. (``col``, ``color``, and ``colour`` all work here.)
+In most cases, we will map variables to x axis and y axis. Therefore, we can replace the ``aes(x = AGE, y = INCTOT)`` to ``aes(AGE, INCTOT)`` to save some input (such as the codes below). We will stick to this style in the following lectures. Also, I recommend to put each function on a new line.
+
+```{r, eval=FALSE}
+ggplot(minneapolis_2017, aes(AGE, INCTOT)) +
+  geom_point()
+```
+
+
+We could add more scales as aesthetic elements in the plot. For example, we could use color to indicate the value of ``EDUC`` by adding ``col = EDUC``. (``col``, ``color``, and ``colour`` all work here.)
 
 ```{r}
-ggplot(minneapolis_2017,
-       aes(x = AGE, y = INCTOT, col = EDUC)) +
+ggplot(minneapolis_2017, aes(AGE, INCTOT, col = EDUC)) +
   geom_point()
 ```
 
 Now we have more information in the result. While the respondent has a higher education level, s/he has a higher personal income.
 
-Here, ``EDUC`` is a continuous variable, so ``ggplot2`` uses the darkness of color to indicate the value. However, if we use a categorical variable or a factor (e.g., binomial variable), ``ggplot2`` will use different colors to show different levels.
+Here, ``EDUC`` is a continuous variable, so ``ggplot2`` uses the darkness of color to indicate the value. If we use a categorical variable or a factor (e.g., binomial variable), ``ggplot2`` will use different colors to show different levels.
 
 ```{r}
 ## remove observations with missing employment status from the dataset
@@ -87,16 +95,15 @@ minneapolis_emp <- minneapolis_2017 %>%
     )
   )
 
-ggplot(minneapolis_emp,
-       aes(x = AGE, y = INCTOT, col = EMPSTAT)) +
+ggplot(minneapolis_emp, aes(AGE, INCTOT, col = EMPSTAT)) +
   geom_point()
 ```
 
 ``EMPSTAT`` stands for the employment status (employed, not in labor force, unemployed). R usually treats variables with characteristic values as factor. ``ggplot2`` uses different colors to stand for different employment status. By reading the plot, we know that as age increases, more people are not in labor force. The personal income of employed people are higher than those not in labor force. (There are not many unemployed observations in this dataset, so it is hard to tell its pattern.)
 
-Besides ``color``, there are several other parameters to show various aesthetics of the plots. There are differences between continuous variable and categorical variable. Furthermore, if you want to map variables in those aesthetics, you have to do it in the ``aes()`` function.
+Besides ``color``, there are several other scales can be used in plots. Continuous variable and categorical variable will generate different results when being mapped to these scales. Usually, color and shape work well with categorical variables. Size works well for continuous variables. But it still depends on the dataset you are dealing with. The best practice is always try it for yourself.
 
-| Parameter | Description                             | Continuous variable | Categorical variable |
+| Scales | Description                             | Continuous variable | Categorical variable |
 |-----------|-----------------------------------------|---------------------|----------------------|
 | x         | x axis position                         | ✓                   |                      |
 | y         | y axis position                         | ✓                   |                      |
@@ -108,6 +115,20 @@ Besides ``color``, there are several other parameters to show various aesthetics
 | shape     | Shape of point                          |                     | ✓                    |
 | linetype  | Line dash pattern                       |                     | ✓                    |
 
+If you want to set a scale to a fixed value, not a variable, you can do it in the geometry outside of ``aes()``.
+
+```{r}
+ggplot(minneapolis_2017, aes(AGE, INCTOT)) +
+  geom_point(col = 'blue')
+```
+
+```{r}
+ggplot(minneapolis_2017, aes(AGE, INCTOT)) +
+  geom_point(alpha = 0.1)
+```
+
+Note that setting the value of alpha helps you recognize the density of the points in scatter plots. The plot above shows that the respondents are more distributed in the younger group.
+
 Geometry has many different types. For examples, ``geom_point()`` for scatter plot, ``geom_bar()`` for bar plot, ``geom_boxplot()`` for box plot, *etc*. Most functions of geometries are self-explained, so you could tell what their usages easily. We all talk about those commonly used geometries such as scatter plot, bar plot, line plot, *etc* in the following parts.
 
 ### Scatter plot
@@ -115,8 +136,7 @@ Geometry has many different types. For examples, ``geom_point()`` for scatter pl
 We use ``geom_point()`` to plot scatter plot. In the example below, we map ``AGE`` to x axis, and ``INCTOT`` to y axis. We indicate the color by set ``col = EDUC``. The darkness of each point is decided by its value of ``EDUC`` (when the value is larger, the color is lighter).
 
 ```{r}
-ggplot(minneapolis_2017,
-       aes(x = AGE, y = INCTOT, col = EDUC)) +
+ggplot(minneapolis_2017, aes(AGE, INCTOT, col = EDUC)) +
   geom_point()
 ```
 
@@ -125,8 +145,7 @@ ggplot(minneapolis_2017,
 In the example below, we draw a bar plot to show the number of respondents in different racial groups. In ``aes()``, we only indicate the variable ``RACE`` by setting ``x = RACE``. R then will count the number of respondents for each racial groups. We, then, use ``geom_bar()`` to plot it.
 
 ```{r}
-ggplot(minneapolis_2017,
-       aes(x = RACE)) +
+ggplot(minneapolis_2017, aes(x = RACE)) +
   geom_bar()
 ```
 
@@ -138,17 +157,21 @@ minneaplis_race <- minneapolis_2017 %>%
   group_by(RACE) %>% 
   summarise(count = n())
 
-ggplot(minneaplis_race, aes(x = RACE, y = count)) +
+ggplot(minneaplis_race, aes(RACE, count)) +
   geom_bar(stat = 'identity') # you need to specify stat = 'identity' to plot the value for each year
 ```
 
 Or you could use another geometry called ``geom_col()`` to do it.
 
 ```{r}
-ggplot(minneaplis_race, aes(x = RACE, y = count)) +
+ggplot(minneaplis_race, aes(RACE, count)) +
   geom_col()
 ```
 
+```{r}
+ggplot(minneapolis_2017, aes(x = RACE, fill = factor(SEX))) +
+  geom_bar()
+```
 
 ### Line plot
 
@@ -161,18 +184,50 @@ minneapolis_year <- minneapolis %>%
   summarise(AvgInc = mean(INCTOT, na.rm = T))
 
 ## line plot of the trend of average personal income
-ggplot(minneapolis_year,
-       aes(x = YEAR, y = AvgInc)) +
+ggplot(minneapolis_year, aes(YEAR, AvgInc)) +
   geom_line(col = 'Blue') # indicate the color of the line by setting col = 'Blue'
 ```
+
+If we map a variable to color in this plot, we will have several lines with different lines indicating different levels in the variable.
+
+```{r, message=FALSE}
+## calculate the average personal income for each racial group in each year
+minneapolis_year_race <- minneapolis %>% 
+  group_by(YEAR, RACE) %>% 
+  summarise(AvgInc = mean(INCTOT, na.rm = T))
+
+## line plot of the trend of average personal income
+ggplot(minneapolis_year_race, aes(YEAR, AvgInc, col = factor(RACE))) +
+  geom_line() 
+```
+
 
 ### Boxplot
 
 In the example below, we draw a box plot for the personal income in each racial group. To do this, we map ``RACE`` to the x axis, and ``INCTOT`` to the y axis. We use ``factor()`` to transfer ``RACE`` to a factor (categorical variable). 
 
 ```{r}
-ggplot(minneapolis_2017, aes(x = factor(RACE), y = INCTOT)) + 
+ggplot(minneapolis_2017, aes(factor(RACE), INCTOT)) + 
   geom_boxplot()
+```
+
+One problem of box plots is that they show the number of observations. For example, you do not have an idea how many points in each racial groups. We could use the geometry of jittering instead. Jittering randomly adds a little noise to the data points to avoid overlapping. The points in the plot below has been added some random noise in the direction of x axis.
+
+```{r}
+ggplot(minneapolis_2017, aes(factor(RACE), INCTOT)) + 
+  geom_jitter()
+```
+
+Another geometry is violin plot, which shows the density of the distribution.
+
+```{r}
+ggplot(minneapolis_2017, aes(factor(RACE), INCTOT)) + 
+  geom_violin()
+```
+
+```{r}
+ggplot(minneapolis_2017, aes(factor(RACE), INCTOT, col = factor(SEX))) + 
+  geom_violin()
 ```
 
 ### Pie chart
@@ -180,7 +235,7 @@ ggplot(minneapolis_2017, aes(x = factor(RACE), y = INCTOT)) +
 In ``ggplot2``, it is not as intuitive as the base function ``pie()`` to draw a pie chart.
 
 ```{r}
-ggplot(minneaplis_race, aes(x = '', y = count, fill = factor(RACE))) +
+ggplot(minneaplis_race, aes('', count, fill = factor(RACE))) +
   geom_bar(width = 1, stat = 'identity') +
   coord_polar('y') # transfer the coordinate system to the polar one
 ```
@@ -188,14 +243,14 @@ ggplot(minneaplis_race, aes(x = '', y = count, fill = factor(RACE))) +
 What``ggplot2`` does here to draw a pie plot is to create a bar plot first.
 
 ```{r}
-ggplot(minneaplis_race, aes(x = '', y = count, fill = factor(RACE))) +
+ggplot(minneaplis_race, aes('', count, fill = factor(RACE))) +
   geom_bar(width = 1, stat = 'identity')
 ```
 
 And then transfer the coordinate system to the polar one.
 
 ```{r}
-ggplot(minneaplis_race, aes(x = '', y = count, fill = factor(RACE))) +
+ggplot(minneaplis_race, aes('', count, fill = factor(RACE))) +
   geom_bar(width = 1, stat = 'identity') +
   coord_polar('y')
 ```
@@ -207,8 +262,7 @@ If you want to split up your data by one or more variables and plot each subset 
 In the following example, we draw a scatter plot for each racial group. In each plot, we map ``AGE`` to the x axis and ``INCTOT`` to y axis. The three plots are aligned in a row.
 
 ```{r message=FALSE}
-p <- ggplot(minneapolis_2017, # store the plot result in variable p
-       aes(x = AGE, y = INCTOT)) +
+p <- ggplot(minneapolis_2017, aes(AGE, INCTOT)) +# store the plot result in variable p
   geom_point()
 
 p + facet_grid(. ~ RACE) # Facets, for each racial group
@@ -238,49 +292,15 @@ We could use ``labeller = label_both`` to add more information in the label.
 p + facet_grid(SEX ~ RACE, labeller = label_both) # add more info in the label
 ```
 
-
-## Statistics
-
-You could fit a line to see the general trend of the scatter plot by adding ``stat_smooth()``.
+With ``facet_wrap()``, we can spread the subplots evenly in the screen space.
 
 ```{r}
-p <- ggplot(minneapolis_2017,
-       aes(x = AGE, y = INCTOT)) +
-  geom_point() 
-
-p + stat_smooth(method = "lm") # linear line
+ggplot(minneapolis_2017, aes(AGE, INCTOT)) +
+  geom_point() +
+  facet_wrap(~EDUC)
 ```
 
-```{r}
-p + stat_smooth(method = 'loess') # non-linear line
-```
-
-You could draw a histogram for the dataset with ``geom_histogram()``.
-
-```{r}
-p <- ggplot(minneapolis_2017, aes(AGE))
-
-p + geom_histogram(binwidth = 5) # the width of each category is 5
-```
-
-```{r}
-p +  geom_histogram(bins = 30) # the number of bins is 30
-```
-
-You could fit a density line for the histogram.
-
-```{r}
-p + geom_histogram(aes( y = ..density..), binwidth = 5, col = 'Black', fill = 'White') + # use density instead of count
-  geom_density(alpha = .2, fill = 'Grey') 
-```
-
-Another way to show more statistics about your data is box plot, which we have been introduced before.
-
-```{r}
-p <- ggplot(minneapolis_2017, aes(x = factor(SEX), y = INCTOT))
-p + geom_boxplot()
-```
-
+Based on the plot, we have three observations. The first is the relationship between age and personal income. The second is that personal income grows as education level increases. The final one is that there are more respondents with higher education level in the survey than those with lower education level.
 
 ## Coordinates
 
@@ -291,7 +311,7 @@ While there are many coordinate systems supported by ``ggplot2``, the most commo
 In the following example, we zoom in our plot to a specific area.
 
 ```{r}
-p <- ggplot(minneapolis_2017, aes(x = AGE, y = INCTOT)) +
+p <- ggplot(minneapolis_2017, aes(AGE, INCTOT)) +
       geom_point()
 p + coord_cartesian(xlim = c(16, 100), ylim = c(0,20000))
 ```
@@ -301,8 +321,7 @@ p + coord_cartesian(xlim = c(16, 100), ylim = c(0,20000))
 We could change the ratio of the length of a y unit relative to the length of a x unit ($\frac{\text{y unit}}{\text{x unit}}$).
 
 ```{r}
-p <- ggplot(minneapolis_2017, # Data
-       aes(x = AGE, y = EDUC)) + # Aesthetics
+p <- ggplot(minneapolis_2017, aes(AGE, EDUC)) +
   geom_point()
 p +  coord_fixed(ratio = 1) ## 1 mean the units are same in x and y axis
 ```
@@ -318,15 +337,14 @@ p + coord_flip()
 ```
 
 ```{r}
-ggplot(minneapolis_2017, aes(x = factor(SEX), y = INCTOT)) + 
+ggplot(minneapolis_2017, aes(factor(SEX), INCTOT)) + 
   geom_boxplot() +
   coord_flip()
 ```
 
 
 ```{r}
-ggplot(minneapolis_2017,
-       aes(x = RACE)) + # Aesthetics
+ggplot(minneapolis_2017, aes(x = RACE)) +
   geom_bar() +
   scale_y_reverse()
 ```
@@ -344,7 +362,7 @@ ggplot(minneapolis_2017, aes(x = '', fill = factor(EDUC))) +
 We could do this in a different way.
 
 ```{r}
-ggplot(minneapolis_2017, aes(factor(EDUC))) +
+ggplot(minneapolis_2017, aes(x = factor(EDUC))) +
   geom_bar(width = 1, col = 'Black', fill = 'Grey') +
   coord_polar()
 ```
@@ -358,7 +376,7 @@ ggplot(minneapolis_2017, aes(factor(EDUC))) +
 Add labels with ``labs()`` function.
 
 ```{r message = F}
-p <- ggplot(minneapolis_2017, aes(x = AGE, y = INCTOT)) +
+p <- ggplot(minneapolis_2017, aes(AGE, INCTOT)) +
   geom_point() +
   geom_smooth(method = 'loess')
 p + labs(title = 'Age and personal income in Minneapolis (2017)', # title of the plot
@@ -375,15 +393,30 @@ p + ggtitle('Age and personal income in Minneapolis (2017)') + # title
   ylab('Personal income (dollars)') # y label
 ```
 
+With value of ``NULL`` to remove labels.
+
+```{r message = F}
+p + 
+  xlab(NULL) + # x label
+  ylab(NULL) # y label
+```
+
 ### Change ticks
 
 Here is an example of changing the ticks for a discrete variable.
 
 ```{r}
-p <- ggplot(minneapolis_2017, aes(x = factor(SEX), y = INCTOT))
+p <- ggplot(minneapolis_2017, aes(factor(SEX), INCTOT))
 p + geom_boxplot() +
     scale_x_discrete(name = "Gender", # name of the x axis
                     labels = c('Male', 'Female')) # change 1 and 2 to Male and Female
+```
+
+```{r}
+ggplot(minneapolis_year, aes(YEAR, AvgInc)) +
+  geom_line(col = 'Blue') +
+  scale_x_continuous(breaks = c(2010:2019))  +
+  scale_y_continuous(breaks = seq(30000, 50000, 2500))## set the ticks
 ```
 
 ### theme() function
@@ -391,7 +424,7 @@ p + geom_boxplot() +
 ``theme()`` function could change the styles of all components of plots. Here are a few examples about it [@ggplot1].
 
 ```{r}
-p <- ggplot(minneapolis_2017, aes(x = AGE, y = INCTOT)) +
+p <- ggplot(minneapolis_2017, aes(AGE, INCTOT)) +
   geom_point() +
   labs(title = 'Age and personal income in Minneapolis (2017)',
          subtitle = 'Data source: American Community Survey',
@@ -490,7 +523,7 @@ p + theme(
 Now, let's see what we could do for the legend.
 
 ```{r}
-p <- ggplot(minneapolis_emp, aes(x = AGE, y = INCTOT, color = factor(EMPSTAT))) +
+p <- ggplot(minneapolis_emp, aes(AGE, INCTOT, color = factor(EMPSTAT))) +
   geom_point() +
   labs(
     x = 'Age',
@@ -498,7 +531,7 @@ p <- ggplot(minneapolis_emp, aes(x = AGE, y = INCTOT, color = factor(EMPSTAT))) 
     color = 'Employment status'
   )
 
-p ## orginal plot
+p ## original plot
 ```
 
 Remove the legend by setting its position as ``legend.position = 'none'``.
@@ -569,3 +602,12 @@ p + theme_dark()
 ```
 
 Please check [here](https://ggplot2.tidyverse.org/reference/ggtheme.html) for more complete theme.
+
+## Save plot
+
+You can use ``ggsave()`` to save the current plot. You need to specify the name (including file extension such as ``jpg``, ``png``) of the plot in the function.
+
+```{r, eval=FALSE}
+ggsave('plot.jpg', width = 5, height = 5)
+```
+

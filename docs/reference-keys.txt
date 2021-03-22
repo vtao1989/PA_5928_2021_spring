@@ -67,7 +67,6 @@ line-plot-1
 boxplot-1
 pie-chart-1
 facets
-statistics
 coordinates
 zooming-in-and-out
 ratio
@@ -77,6 +76,19 @@ themes
 add-labels
 change-ticks
 theme-function
+save-plot
+statistics-in-r
+plotting-statistics
+fitting-the-general-trend-of-points
+plotting-distribution
+density-plot-of-distribution
+box-plot-of-distribution
+simple-statistics
+mean-and-median
+minimum-and-maximum-value
+quartile
+linear-regression
+logistic-regression
 final-project
 description
 timeline

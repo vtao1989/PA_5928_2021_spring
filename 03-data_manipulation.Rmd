@@ -31,12 +31,13 @@ mydata <- read.dta('c:/mydata.dta') # file location and name
 Below is an easy way to load datasets in RStudio.
 
 **System tool**
+
 Besides importing data by codes, you could also import data with the system tool. If this is your first time to use this tool, there may be a process to install the packages depending your options. But don't worry, RStudio can do it by itself. You just need to click the button to approve the installation.
 
 ```
 File -> Import dataset -> choose the type of dataset you want to import
 ```
-There are some other options or parameters you could set in the import functions listed above (e.g., specify a variable type or try to skip some of the rows). Sometimes it is sort of complex to do it. So for me, I just do those things after I import the dataset.
+There are some other options you could set in the import functions listed above (e.g., specify a variable type or try to skip some of the rows). 
 
 ### Save file
 **CSV file**
@@ -58,52 +59,19 @@ library(foreign)
 write.dta(mydata, "c:/mydata.dta")
 ```
 
-Usually, it takes less time to save file in CSV and CSV file has a smaller size in storage.
+Usually, it takes less time to save file in CSV and CSV file has a smaller size in storage. Note that if you do not specify file location when saving it, R will save it to the working folder.
 
 ### File location
 
-As you can see in the examples, you need to specify the location (or path) of the file to make sure that R could find your file in the right position. Usually you could find it by checking the system property of the file.
+As you can see in the examples, you need to specify the location (or path) of the file to make sure that R could find your file in the right position. Usually you could find the location by checking the system property of the file. In window system, you need to use forward slash ``/`` to separate the locations. However, in Mac system, you use back slash ``\``.
 
-You could avoid this. First, put your R file and dataset in the same folder. Then start the R file by double clicking it. R will use the folder where the R file locates as the working folder. Then you could only specify the name of the file.
+Inputting file location could be tedious, but you could avoid this. Here is how. First, put your R file and dataset in the same folder. Then start the R file by double clicking it. R will use the folder where the R file locates as the working folder. In this way, you can only specify the name of the dataset when importing it.
 
-This is recommended. Since it will be easier for others to check your codes since they do not need to change the path of the file.
+This is highly recommended. It would be easier for others to check your codes as they do not need to change the path of the file.
 
 ## View data
 
 You could view the variable names and simple description in the ``Environment`` pane on the right-top position of RStudio. If you want to view more information, click the variable name and view the variable in a new window. Here, we use the Minneapolis one-year ACS data as a example. This dataset contains the demographic information of the respondents in the city of Minneapolis in the ACS survey from 2010 to 2019.
-
-```{r}
-minneapolis <- read.csv('minneapolis.csv')
-```
-
-You could also view the data in the new window by ``View()`` function. Please pay attention that it is initial-capitalized.
-
-```{r, eval=FALSE}
-View(minneapolis)
-```
-
-View the first ten observations (rows) in the dataset. <dbl> stands for double class, which is a sub-type of numerical variable type.
-```{r}
-head(minneapolis, n = 10)
-```
-
-view the last five observations in the dataset.
-
-```{r}
-tail(minneapolis, n = 5)
-```
-
-
-List the variables in the dataset [@quickr3].
-```{r}
-names(minneapolis)
-colnames(minneapolis)
-```
-
-List the structure of the dataset.
-```{r}
-str(minneapolis)
-```
 
 The table below lists the variable names and their descriptions.
 
@@ -154,6 +122,39 @@ The table below lists the variable names and their descriptions.
 +----------+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
 | FTOTINC  | Total family income    | The total pre-tax money income earned by one's family from all sources for the previous year.                       |
 +----------+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+
+```{r}
+minneapolis <- read.csv('minneapolis.csv')
+```
+
+You could also view the data in the new window by ``View()`` function. Please pay attention that it is initial-capitalized.
+
+```{r, eval=FALSE}
+View(minneapolis)
+```
+
+View the first ten observations (rows) in the dataset. <dbl> stands for double class, which is a sub-type of numerical variable type.
+```{r}
+head(minneapolis, n = 10)
+```
+
+view the last five observations in the dataset.
+
+```{r}
+tail(minneapolis, n = 5)
+```
+
+
+List the names of variables in the dataset [@quickr3].
+```{r}
+names(minneapolis)
+colnames(minneapolis)
+```
+
+List the structure of the dataset.
+```{r}
+str(minneapolis)
+```
 
 List the dimensions of the dataset
 ```{r}

@@ -382,6 +382,17 @@ for (i in 1:3){
 }
 ```
 
+You can nest conditional statement and loop together like the codes below (print the numbers (from 5 to 10) that are smaller than 7). Use the whole loop part to replace the statement in conditional statement.
+
+```{r}
+for (i in 5:10) {
+  if(i < 7) {
+    print(i)
+  }
+}
+```
+
+
 ## Functions
 
 Functions are codes that have been defined with specific usage. You only need to input some necessary variables and functions will do the tasks. To use function, you start with the name of the function followed with a pair of parentheses. Then, you input some arguments in the parentheses to give instructions to the function. For example, ``sum()`` function could help you add the all the numbers together in a vector or data frame and return the result.
