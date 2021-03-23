@@ -230,7 +230,7 @@ minneapolis %>%
     RACE = case_when( ## change RACE from numeric values to racial categories
       RACE == 1 ~ 'White',
       RACE == 2 ~ 'African American',
-      RACE == 3 ~ 'American Indian'
+      RACE == 3 ~ 'Other'
     )
   ) %>% 
   head(5)
@@ -278,7 +278,7 @@ minneapolis %>%
     RACE = case_when( ## change RACE from numeric values to racial categories
       RACE == 1 ~ 'White',
       RACE == 2 ~ 'African American',
-      RACE == 3 ~ 'American Indian'
+      RACE == 3 ~ 'Other'
     )
   ) %>% 
   group_by(YEAR, RACE) %>% ## aggregate the data based on YEAR and RACE
@@ -369,7 +369,7 @@ max_income <- minneapolis %>%
     RACE = case_when( ## change RACE from numeric values to racial categories
       RACE == 1 ~ 'White',
       RACE == 2 ~ 'African American',
-      RACE == 3 ~ 'American Indian'
+      RACE == 3 ~ 'Other'
     )
   ) %>% 
   group_by(YEAR, RACE) %>% ## aggregate the data based on YEAR and RACE

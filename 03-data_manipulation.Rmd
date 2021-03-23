@@ -89,7 +89,7 @@ The table below lists the variable names and their descriptions.
 | RACE     | Race                   | Race of the respondent.\                                                                                                                    |
 |          |                        | 1 = White\                                                                                                                                  |
 |          |                        | 2 = Black/African American/Negro\                                                                                                           |
-|          |                        | 3 = American Indian or Alaska Native\                                                                                                       |
+|          |                        | 3 = Other\                                                                                                                                  |
 +----------+------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
 | HISPAN   | Hispanic origin        | Hispanic origin of the respondent.\                                                                                                         |
 |          |                        | 0 = Not Hispanic\                                                                                                                           |

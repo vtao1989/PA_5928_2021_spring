@@ -1,0 +1,270 @@
+# Exploratory Data Analysis
+
+We are going to use what we have learned so far to do exploratory data analysis. It is also a practice for data manipulation and visualization.
+
+Instead of importing ``dplyr`` and ``ggplot2``, we import ``tidyverse`` this time. ``tidyverse`` includes both ``dplyr`` and ``ggplot2``. Besides, it also has some other useful packages, such as ``tidyr`` (data manipulation) and ``stringr`` (deal with characteristics and string data).
+
+```{r}
+library(tidyverse)
+```
+
+## Case 1: Race and personal income in the city of Minneapolis (2010-2019)
+
+The data we have is the Minneapolis ACS dataset. You need to download the DDI file (xml file) and the dataset (DAT file) before dealing with the data.  
+
+<center>
+![](Pics/ipums.JPG)
+</center>
+
+Then you can use the code below to import the dataset.
+
+```{r eval=FALSE}
+## import the ipumsr package
+library(ipumsr)
+
+## import dataset
+ddi <- read_ipums_ddi('usa_00003.xml') ## you may need to change the file name
+data <- read_ipums_micro(ddi)
+```
+
+
+After importing the dataset, usually you have to do some pre-processing before exploring the data. Below are some examples:  
+1. Remove the labels. The IPUMS dataset has labels. In this lecture, you may want to remove them.  
+2. Select some observations for further analysis.  
+3. Reduce the levels of some categorical variables. ``RACE`` originally has 9 levels. Here, we only keep the codes for ``White`` and ``African American`` and aggregate other races to one level.  
+4. Change the missing value to NA. Some survey data use codes such as ``9999``, ``999998`` to stand for missing values. We may need to change those to ``NA``.  
+5. Select the variables for further analysis.
+
+```{r eval=FALSE}
+minneapolis <- data %>% 
+  zap_labels() %>%  ## remove labels from the data
+  filter(CITY == 4150) %>% ## select the city of Minneapolis (city code is 4150)
+  mutate(RACE = ifelse(RACE >= 3, 3, RACE), ## select three racial groups
+         INCTOT = ifelse(INCTOT == 9999999, NA, INCTOT), ## change missing value to NA
+         FTOTINC = ifelse(FTOTINC %in% c(9999999, 999998), NA, FTOTINC)) %>%
+  select(YEAR, SEX, AGE, RACE, HISPAN, EDUC, EMPSTAT, INCTOT, FTOTINC) ## select variables
+```
+
+I skip the variable introduction as we have been very familiar with them. You may find the variable introduction by this [link](data-manipulation-with-base-functions.html#view-data).
+
+The codes below calculate the personal income for each racial group from 2010 to 2019.
+
+```{r echo=FALSE}
+minneapolis <- read.csv('minneapolis.csv')
+```
+
+```{r message=FALSE}
+minneapolis_race <- minneapolis %>% 
+  group_by(YEAR, RACE) %>%  ## calculate average personal income for races and years
+  summarise(AvgInc = mean(INCTOT, na.rm = T)) %>% 
+  mutate(RACE = case_when(  ## change race from numbers to their corresponding labels
+    RACE == 1 ~ 'White',
+    RACE == 2 ~ 'African American',
+    RACE == 3 ~ 'Other'
+  ))
+
+head(minneapolis_race, 10)
+```
+
+The codes below draw a line plot to show the results.
+
+```{r}
+ggplot(minneapolis_race, aes(YEAR, AvgInc, color = RACE)) +  ## line plot
+  geom_line() +
+  geom_point()
+```
+We may need to make it more readable to the audience by adding more elements and change the font size of some texts.
+
+```{r}
+ggplot(minneapolis_race, aes(YEAR, AvgInc, color = RACE)) +  ## line plot
+  geom_line() +
+  geom_point() +
+  labs(x = 'Year',
+       y = 'Average personal income (Dollars)',
+       color = 'RACE',
+       title = 'Race and personal income in Minneaplis (2010-2019)') +
+  scale_x_continuous(breaks = c(2010:2019)) +  ## adjust x axis tick labels
+  theme_bw() + 
+  theme(legend.position = 'bottom', ## adjust legend position
+        axis.text = element_text(size = 10),  ## adjust font sizes for different components
+        axis.title = element_text(size = 12),
+        plot.title = element_text(size = 14),
+        legend.text = element_text(size = 10),
+        legend.title = element_text(size = 10))
+```
+
+Finally, we can combine the data manipulation and visualization codes together.
+
+```{r message=FALSE}
+## line plot of the relationships between race and income
+minneapolis %>% 
+  group_by(YEAR, RACE) %>%  ## calculate average personal income for races and years
+  summarise(AvgInc = mean(INCTOT, na.rm = T)) %>% 
+  mutate(RACE = case_when(  ## change race from numbers to their corresponding labels
+    RACE == 1 ~ 'White',
+    RACE == 2 ~ 'African American',
+    RACE == 3 ~ 'Other'
+  )) %>% 
+  ggplot(aes(YEAR, AvgInc, color = RACE)) +  ## line plot
+  geom_line() +
+  geom_point() +
+  labs(x = 'Year',
+       y = 'Average personal income (Dollars)',
+       color = 'RACE',
+       title = 'Race and personal income in Minneaplis (2010-2019)') +
+  scale_x_continuous(breaks = c(2010:2019)) +  ## adjust x axis tick labels
+  theme_bw() + 
+  theme(legend.position = 'bottom', ## adjust legend position
+        axis.text = element_text(size = 10),  ## adjust font sizes for different components
+        axis.title = element_text(size = 12),
+        plot.title = element_text(size = 14),
+        legend.text = element_text(size = 10),
+        legend.title = element_text(size = 10))
+```
+
+From this plot, we see that the personal income of minority groups are much lower than that of the White. In addition, the personal income of the African Americans are relatively stable during the study time period and has increased very little.
+
+You may want to save the plot.
+
+```{r eval=FALSE}
+ggsave('race_income.jpg', width = 8, height = 6, dpi = 600)  ## save the plot
+```
+
+## Case 2: Race and employment rate in the city of Minneapolis (2010-2019)
+
+In the second case, we see how programming in R help increase work efficiency. The problem in case 2 is quite similar to that in the first case. Therefore, we only need to change the codes in case 1 a little bit and then we can have the result.
+
+```{r message=FALSE}
+## line plot of the relationship between race and employment status
+minneapolis %>% 
+  group_by(YEAR, RACE, EMPSTAT)  %>% ## calculate average employment rate for races and years
+  summarise(count = n()) %>% 
+  filter(EMPSTAT != 0, EMPSTAT != 3) %>% 
+  group_by(YEAR, RACE) %>% 
+  mutate(per = count/sum(count)*100) %>% 
+  filter(EMPSTAT == 1) %>% 
+  mutate(RACE = case_when(  ## change race from numbers to their corresponding labels
+    RACE == 1 ~ 'White',
+    RACE == 2 ~ 'African American',
+    RACE == 3 ~ 'Other'
+  )) %>% 
+  ggplot(aes(YEAR, per, color = factor(RACE))) +  ## line plot
+  geom_line() +
+  geom_point() +
+  labs(x = 'Year',
+       y = 'Average employment rate (%)',
+       color = 'RACE',
+       title = 'Race and employment rate in Minneaplis (2010-2019)') +
+  scale_x_continuous(breaks = c(2010:2019)) +
+  scale_y_continuous(limits = c(70, 100),
+                     breaks = c(75, 80, 85, 90, 95, 100)) +
+  theme_bw() +
+  theme(legend.position = 'bottom', ## adjust legend position
+        axis.text = element_text(size = 10),  ## adjust font sizes for different components
+        axis.title = element_text(size = 12),
+        plot.title = element_text(size = 14),
+        legend.text = element_text(size = 10),
+        legend.title = element_text(size = 10))
+```
+
+We see that the employment rate of the minority groups have been improved a lot during the study period, especially for African Americans. However, the minority groups have relatively lower employment rate than the White.
+
+## Case 3: Population density and election result in the US (2020)
+
+We first import the dataset we need. Population density at the county level is retrieved from the US Census Bureau ([link](https://covid19.census.gov/datasets/average-household-size-and-population-density-county/data?geometry=154.651%2C-0.672%2C-154.020%2C76.524)). Election results at the county level is retrieved from a GitHub repo ([link](https://github.com/tonmcg/US_County_Level_Election_Results_08-20)).
+
+```{r message=FALSE}
+pop_density <- read_csv('pop_density.csv')
+election <- read_csv('2020_election.csv')
+```
+
+We, then, 
+
+1. Join the population density dataset to the election result dataset. The variable used to join two datasets is the ID of each county. In the population density dataset, it is ``GEOID``. In the election result dataset, it is ``county_fips``.  
+2. Select two variables from the dataset. ``per_point_diff`` is the difference between the vote share for Trump and that for Biden.  
+3. Select observations without missing values.  
+4. Rename the two variables.
+
+```{r}
+election %>% 
+  left_join(pop_density, by = c('county_fips'='GEOID')) %>% ## join two datasets
+  select(per_point_diff, B01001_calc_PopDensity) %>% ## select two variables
+  filter(complete.cases(.)) %>% ## select observations without missing values
+  rename(diff = per_point_diff, ## rename the variables
+         popden = B01001_calc_PopDensity) %>% 
+  head()
+```
+
+We draw a simple scatter plot to see the distribution of the two variables. It seems that the x axis need some transformation based on the distribution. Note that we map ``-diff`` to the x axis instead of mapping ``diff`` directly.
+
+```{r}
+election %>% 
+  left_join(pop_density, by = c('county_fips'='GEOID')) %>% 
+  select(per_point_diff, B01001_calc_PopDensity) %>% 
+  filter(complete.cases(.)) %>% 
+  rename(diff = per_point_diff,
+         popden = B01001_calc_PopDensity) %>% 
+  ggplot(aes(popden, -diff)) + ## simple scatter plot
+  geom_point()
+```
+
+We transform the x axis with logarithm through ``scale_x_log10()``. The plot looks much better.
+
+```{r}
+election %>% 
+  left_join(pop_density, by = c('county_fips'='GEOID')) %>% 
+  select(per_point_diff, B01001_calc_PopDensity) %>% 
+  filter(complete.cases(.)) %>% 
+  rename(diff = per_point_diff,
+         popden = B01001_calc_PopDensity) %>% 
+  ggplot(aes(popden, -diff)) +
+  geom_point() +
+  scale_x_log10() ## transform the x axis with logarithm
+```
+
+Below are some steps to further improve the plot.
+
+1. Map ``popden`` to the size of the points.  
+2. Create a variable ``party``. When its value is 0, it means Trump won that county. When its value is 1, it means Biden won that county. Map this variable to the color of the points. Use ``scale_fill_manual()`` to set the color for each value of ``party``: red for 0 and blue for 1.  
+3. Set the shape of the point to 21 and set the border color as white.  
+4. Set the ticks of the x axis and y axis to specific values.  
+5. Set the range of y axis.  
+6. Add a horizontal line at 0 with ``geom_hline()``.  
+7. Change the labels of x axis, y axis, and title.  
+8. Add the complete theme ``theme_bw()``.
+9. Remove the legend.  
+10. Set the font size for axis labels and title.
+
+```{r}
+election %>% 
+  left_join(pop_density, by = c('county_fips'='GEOID')) %>% 
+  select(per_point_diff, B01001_calc_PopDensity) %>% 
+  filter(complete.cases(.)) %>% 
+  rename(diff = per_point_diff,
+         popden = B01001_calc_PopDensity) %>%
+  mutate(party = ifelse(diff > 0, 0, 1)) %>% ## create a variable
+  ggplot(aes(popden, -diff, size = popden, fill = factor(party))) + ## map population density to size and party to fill of the points
+  geom_point(shape = 21, color = 'white') + ## change the shape of the point and set the border color to white
+  scale_fill_manual(values = c('red', 'blue')) + ## set the color for party
+  scale_x_log10(breaks = c(0.1, 1, 10, 100, 1000, 10000), ## set the ticks for x axis
+                labels = c('0.1', '1', '10', '100', '1000', '10000')) +
+  scale_y_continuous(limits = c(-1, 1), ## set the color for y axis
+                     breaks = c(-1, -0.5, 0, 0.5, 1),
+                     labels= c('-100', '-50', '0', '50', '100')) +
+  geom_hline(yintercept = 0) + ## add a horizontal line at 0
+  labs(title = 'Election result and population density in US (2020)', ## change labels
+       x = 'Population density (people/sq km)',
+       y = 'Vote margin (%)') +
+  theme_bw() +
+  theme(legend.position = 'none', ## remove legend
+        axis.text = element_text(size = 10),  ## adjust font size for different components
+        axis.title = element_text(size = 12),
+        plot.title = element_text(size = 14))
+```
+
+What can you learn from this plot about the relationship between election result and population density?
+
+
+
+
+

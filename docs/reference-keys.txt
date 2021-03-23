@@ -92,6 +92,10 @@ minimum-and-maximum-value
 quartile
 linear-regression
 logistic-regression
+exploratory-data-analysis
+case-1-race-and-personal-income-in-the-city-of-minneapolis-2010-2019
+case-2-race-and-employment-rate-in-the-city-of-minneapolis-2010-2019
+case-3-population-density-and-election-result-in-the-us-2020
 final-project
 description
 timeline

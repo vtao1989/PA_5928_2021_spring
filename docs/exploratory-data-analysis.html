@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Exploratory Data Analysis | PA 5928 Data Management &amp; Visualization with R (Spring 2021)</title>
+  <meta name="description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Exploratory Data Analysis | PA 5928 Data Management &amp; Visualization with R (Spring 2021)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Exploratory Data Analysis | PA 5928 Data Management &amp; Visualization with R (Spring 2021)" />
+  
+  <meta name="twitter:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  
+
+<meta name="author" content="Tao Tao (University of Minnesota)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="statistics-in-r.html"/>
+<link rel="next" href="final-project.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PA 5928 R course</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Course Syllabus</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course description</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-prerequisites"><i class="fa fa-check"></i><b>1.2</b> Course prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#logistics"><i class="fa fa-check"></i><b>1.3</b> Logistics</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-learning-outcomes"><i class="fa fa-check"></i><b>1.4</b> Course learning outcomes</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#readings"><i class="fa fa-check"></i><b>1.5</b> Readings</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#weekly-assignment-and-final-project"><i class="fa fa-check"></i><b>1.6</b> Weekly assignment and final project</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#course-schedule-tentative"><i class="fa fa-check"></i><b>1.7</b> Course schedule (Tentative)</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#homework-and-projects-collaboration-and-submission-policy"><i class="fa fa-check"></i><b>1.8</b> Homework and projects collaboration and submission policy</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction to RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-r"><i class="fa fa-check"></i><b>2.1</b> What is R</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2</b> What is RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-r-rstudio"><i class="fa fa-check"></i><b>2.3</b> Install R + RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#familiar-with-the-user-interface-of-rstudio"><i class="fa fa-check"></i><b>2.4</b> Familiar with the user interface of RStudio</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#create-and-save-r-file"><i class="fa fa-check"></i><b>2.5</b> Create and save R file</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#print-hello-world"><i class="fa fa-check"></i><b>2.6</b> Print Hello, world</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-and-use-r-packages"><i class="fa fa-check"></i><b>2.7</b> Install and use R Packages</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#make-notes"><i class="fa fa-check"></i><b>2.8</b> Make notes</a></li>
+<li class="chapter" data-level="2.9" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#tips"><i class="fa fa-check"></i><b>2.9</b> Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#why-r-and-why-not-r"><i class="fa fa-check"></i><b>3.1</b> Why R and why not R?</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variable-name"><i class="fa fa-check"></i><b>3.2</b> Variable name</a></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variable-types"><i class="fa fa-check"></i><b>3.3</b> Variable types</a></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operations"><i class="fa fa-check"></i><b>3.4</b> Operations</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assignment-operations"><i class="fa fa-check"></i><b>3.4.1</b> Assignment operations</a></li>
+<li class="chapter" data-level="3.4.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#arithmetic-operations"><i class="fa fa-check"></i><b>3.4.2</b> Arithmetic operations</a></li>
+<li class="chapter" data-level="3.4.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#relational-operations"><i class="fa fa-check"></i><b>3.4.3</b> Relational operations</a></li>
+<li class="chapter" data-level="3.4.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#logical-operations"><i class="fa fa-check"></i><b>3.4.4</b> Logical operations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-structures"><i class="fa fa-check"></i><b>3.5</b> Data structures</a></li>
+<li class="chapter" data-level="3.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#conditional-statement-if"><i class="fa fa-check"></i><b>3.6</b> Conditional statement (if)</a></li>
+<li class="chapter" data-level="3.7" data-path="introduction-to-r.html"><a href="introduction-to-r.html#loops"><i class="fa fa-check"></i><b>3.7</b> Loops</a></li>
+<li class="chapter" data-level="3.8" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions"><i class="fa fa-check"></i><b>3.8</b> Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation with Base Functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-and-save-datasets"><i class="fa fa-check"></i><b>4.1</b> Import and save datasets</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-data-from-commonly-used-file-types"><i class="fa fa-check"></i><b>4.1.1</b> Import data from commonly-used file types</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#save-file"><i class="fa fa-check"></i><b>4.1.2</b> Save file</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#file-location"><i class="fa fa-check"></i><b>4.1.3</b> File location</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#view-data"><i class="fa fa-check"></i><b>4.2</b> View data</a></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#data-selection"><i class="fa fa-check"></i><b>4.3</b> Data selection</a></li>
+<li class="chapter" data-level="4.4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#conditional-selection"><i class="fa fa-check"></i><b>4.4</b> Conditional selection</a></li>
+<li class="chapter" data-level="4.5" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#deal-with-missing-values"><i class="fa fa-check"></i><b>4.5</b> Deal with missing values</a></li>
+<li class="chapter" data-level="4.6" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#subset"><i class="fa fa-check"></i><b>4.6</b> Subset</a></li>
+<li class="chapter" data-level="4.7" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#merge-two-datasets"><i class="fa fa-check"></i><b>4.7</b> Merge two datasets</a></li>
+<li class="chapter" data-level="4.8" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#column-operation"><i class="fa fa-check"></i><b>4.8</b> Column operation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select"><i class="fa fa-check"></i><b>5.1</b> select()</a></li>
+<li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filter"><i class="fa fa-check"></i><b>5.2</b> filter()</a></li>
+<li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#arrange"><i class="fa fa-check"></i><b>5.3</b> arrange()</a></li>
+<li class="chapter" data-level="5.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#mutate"><i class="fa fa-check"></i><b>5.4</b> mutate()</a></li>
+<li class="chapter" data-level="5.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#group_by-and-summarise"><i class="fa fa-check"></i><b>5.5</b> group_by() and summarise()</a></li>
+<li class="chapter" data-level="5.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#join"><i class="fa fa-check"></i><b>5.6</b> join()</a></li>
+<li class="chapter" data-level="5.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#pivot_wider-and-pivot_longer-in-tidyr"><i class="fa fa-check"></i><b>5.7</b> pivot_wider() and pivot_longer() in tidyr</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html"><i class="fa fa-check"></i><b>6</b> Data Visualization with Base Functions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#scatter-plot"><i class="fa fa-check"></i><b>6.1</b> Scatter plot</a></li>
+<li class="chapter" data-level="6.2" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#line-plot"><i class="fa fa-check"></i><b>6.2</b> Line plot</a></li>
+<li class="chapter" data-level="6.3" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#bar-plot"><i class="fa fa-check"></i><b>6.3</b> Bar plot</a></li>
+<li class="chapter" data-level="6.4" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#add-more-elements-in-the-plots"><i class="fa fa-check"></i><b>6.4</b> Add more elements in the plots</a></li>
+<li class="chapter" data-level="6.5" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#pie-chart"><i class="fa fa-check"></i><b>6.5</b> Pie chart</a></li>
+<li class="chapter" data-level="6.6" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#boxplot"><i class="fa fa-check"></i><b>6.6</b> Boxplot</a></li>
+<li class="chapter" data-level="6.7" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#color-in-r"><i class="fa fa-check"></i><b>6.7</b> Color in R</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html"><i class="fa fa-check"></i><b>7</b> Data Visualization with ggplot2</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#grammer-of-graphics-gg"><i class="fa fa-check"></i><b>7.1</b> Grammer of Graphics (gg)</a></li>
+<li class="chapter" data-level="7.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#data-aesthetics-and-geometries"><i class="fa fa-check"></i><b>7.2</b> Data, Aesthetics, and Geometries</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#scatter-plot-1"><i class="fa fa-check"></i><b>7.2.1</b> Scatter plot</a></li>
+<li class="chapter" data-level="7.2.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#bar-plot-1"><i class="fa fa-check"></i><b>7.2.2</b> Bar plot</a></li>
+<li class="chapter" data-level="7.2.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#line-plot-1"><i class="fa fa-check"></i><b>7.2.3</b> Line plot</a></li>
+<li class="chapter" data-level="7.2.4" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#boxplot-1"><i class="fa fa-check"></i><b>7.2.4</b> Boxplot</a></li>
+<li class="chapter" data-level="7.2.5" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#pie-chart-1"><i class="fa fa-check"></i><b>7.2.5</b> Pie chart</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#facets"><i class="fa fa-check"></i><b>7.3</b> Facets</a></li>
+<li class="chapter" data-level="7.4" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#coordinates"><i class="fa fa-check"></i><b>7.4</b> Coordinates</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#zooming-in-and-out"><i class="fa fa-check"></i><b>7.4.1</b> Zooming in and out</a></li>
+<li class="chapter" data-level="7.4.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#ratio"><i class="fa fa-check"></i><b>7.4.2</b> Ratio</a></li>
+<li class="chapter" data-level="7.4.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#swaping-the-axes"><i class="fa fa-check"></i><b>7.4.3</b> Swaping the axes</a></li>
+<li class="chapter" data-level="7.4.4" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#polar-coordinate-system"><i class="fa fa-check"></i><b>7.4.4</b> Polar coordinate system</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#themes"><i class="fa fa-check"></i><b>7.5</b> Themes</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#add-labels"><i class="fa fa-check"></i><b>7.5.1</b> Add labels</a></li>
+<li class="chapter" data-level="7.5.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#change-ticks"><i class="fa fa-check"></i><b>7.5.2</b> Change ticks</a></li>
+<li class="chapter" data-level="7.5.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#theme-function"><i class="fa fa-check"></i><b>7.5.3</b> theme() function</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#save-plot"><i class="fa fa-check"></i><b>7.6</b> Save plot</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="statistics-in-r.html"><a href="statistics-in-r.html"><i class="fa fa-check"></i><b>8</b> Statistics in R</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#plotting-statistics"><i class="fa fa-check"></i><b>8.1</b> Plotting statistics</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#fitting-the-general-trend-of-points"><i class="fa fa-check"></i><b>8.1.1</b> Fitting the general trend of points</a></li>
+<li class="chapter" data-level="8.1.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#plotting-distribution"><i class="fa fa-check"></i><b>8.1.2</b> Plotting distribution</a></li>
+<li class="chapter" data-level="8.1.3" data-path="statistics-in-r.html"><a href="statistics-in-r.html#density-plot-of-distribution"><i class="fa fa-check"></i><b>8.1.3</b> Density plot of distribution</a></li>
+<li class="chapter" data-level="8.1.4" data-path="statistics-in-r.html"><a href="statistics-in-r.html#box-plot-of-distribution"><i class="fa fa-check"></i><b>8.1.4</b> Box plot of distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#anotation-of-statistics"><i class="fa fa-check"></i><b>8.2</b> Anotation of statistics</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#bar-plot-2"><i class="fa fa-check"></i><b>8.2.1</b> bar plot</a></li>
+<li class="chapter" data-level="8.2.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#line-plot-2"><i class="fa fa-check"></i><b>8.2.2</b> line plot</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="statistics-in-r.html"><a href="statistics-in-r.html#simple-statistics"><i class="fa fa-check"></i><b>8.3</b> Simple statistics</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#mean-and-median"><i class="fa fa-check"></i><b>8.3.1</b> Mean and median</a></li>
+<li class="chapter" data-level="8.3.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#minimum-and-maximum-value"><i class="fa fa-check"></i><b>8.3.2</b> Minimum and maximum value</a></li>
+<li class="chapter" data-level="8.3.3" data-path="statistics-in-r.html"><a href="statistics-in-r.html#quartile"><i class="fa fa-check"></i><b>8.3.3</b> Quartile</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="statistics-in-r.html"><a href="statistics-in-r.html#linear-regression"><i class="fa fa-check"></i><b>8.4</b> Linear regression</a></li>
+<li class="chapter" data-level="8.5" data-path="statistics-in-r.html"><a href="statistics-in-r.html#logistic-regression"><i class="fa fa-check"></i><b>8.5</b> Logistic regression</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>9</b> Exploratory Data Analysis</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#case-1-race-and-personal-income-in-the-city-of-minneapolis-2010-2019"><i class="fa fa-check"></i><b>9.1</b> Case 1: Race and personal income in the city of Minneapolis (2010-2019)</a></li>
+<li class="chapter" data-level="9.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#case-2-race-and-employment-rate-in-the-city-of-minneapolis-2010-2019"><i class="fa fa-check"></i><b>9.2</b> Case 2: Race and employment rate in the city of Minneapolis (2010-2019)</a></li>
+<li class="chapter" data-level="9.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#case-3-population-density-and-election-result-in-the-us-2020"><i class="fa fa-check"></i><b>9.3</b> Case 3: Population density and election result in the US (2020)</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i><b>10</b> Final Project</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="final-project.html"><a href="final-project.html#description"><i class="fa fa-check"></i><b>10.1</b> Description</a></li>
+<li class="chapter" data-level="10.2" data-path="final-project.html"><a href="final-project.html#timeline"><i class="fa fa-check"></i><b>10.2</b> Timeline</a></li>
+<li class="chapter" data-level="10.3" data-path="final-project.html"><a href="final-project.html#proposal-of-problem-statement"><i class="fa fa-check"></i><b>10.3</b> Proposal of problem statement</a></li>
+<li class="chapter" data-level="10.4" data-path="final-project.html"><a href="final-project.html#potential-data-sources"><i class="fa fa-check"></i><b>10.4</b> Potential data sources</a></li>
+<li class="chapter" data-level="10.5" data-path="final-project.html"><a href="final-project.html#final-submission"><i class="fa fa-check"></i><b>10.5</b> Final submission</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PA 5928 Data Management &amp; Visualization with R (Spring 2021)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exploratory-data-analysis" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Exploratory Data Analysis</h1>
+<p>We are going to use what we have learned so far to do exploratory data analysis. It is also a practice for data manipulation and visualization.</p>
+<p>Instead of importing <code>dplyr</code> and <code>ggplot2</code>, we import <code>tidyverse</code> this time. <code>tidyverse</code> includes both <code>dplyr</code> and <code>ggplot2</code>. Besides, it also has some other useful packages, such as <code>tidyr</code> (data manipulation) and <code>stringr</code> (deal with characteristics and string data).</p>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="exploratory-data-analysis.html#cb467-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre><code>## v tibble  3.0.5     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.0
+## v purrr   0.3.4</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<div id="case-1-race-and-personal-income-in-the-city-of-minneapolis-2010-2019" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Case 1: Race and personal income in the city of Minneapolis (2010-2019)</h2>
+<p>The data we have is the Minneapolis ACS dataset. You need to download the DDI file (xml file) and the dataset (DAT file) before dealing with the data.</p>
+<center>
+<img src="Pics/ipums.JPG" />
+</center>
+<p>Then you can use the code below to import the dataset.</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="exploratory-data-analysis.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="do">## import the ipumsr package</span></span>
+<span id="cb471-2"><a href="exploratory-data-analysis.html#cb471-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ipumsr)</span>
+<span id="cb471-3"><a href="exploratory-data-analysis.html#cb471-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb471-4"><a href="exploratory-data-analysis.html#cb471-4" aria-hidden="true" tabindex="-1"></a><span class="do">## import dataset</span></span>
+<span id="cb471-5"><a href="exploratory-data-analysis.html#cb471-5" aria-hidden="true" tabindex="-1"></a>ddi <span class="ot">&lt;-</span> <span class="fu">read_ipums_ddi</span>(<span class="st">&#39;usa_00003.xml&#39;</span>) <span class="do">## you may need to change the file name</span></span>
+<span id="cb471-6"><a href="exploratory-data-analysis.html#cb471-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_ipums_micro</span>(ddi)</span></code></pre></div>
+<p>After importing the dataset, usually you have to do some pre-processing before exploring the data. Below are some examples:<br />
+1. Remove the labels. The IPUMS dataset has labels. In this lecture, you may want to remove them.<br />
+2. Select some observations for further analysis.<br />
+3. Reduce the levels of some categorical variables. <code>RACE</code> originally has 9 levels. Here, we only keep the codes for <code>White</code> and <code>African American</code> and aggregate other races to one level.<br />
+4. Change the missing value to NA. Some survey data use codes such as <code>9999</code>, <code>999998</code> to stand for missing values. We may need to change those to <code>NA</code>.<br />
+5. Select the variables for further analysis.</p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="exploratory-data-analysis.html#cb472-1" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb472-2"><a href="exploratory-data-analysis.html#cb472-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">zap_labels</span>() <span class="sc">%&gt;%</span>  <span class="do">## remove labels from the data</span></span>
+<span id="cb472-3"><a href="exploratory-data-analysis.html#cb472-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CITY <span class="sc">==</span> <span class="dv">4150</span>) <span class="sc">%&gt;%</span> <span class="do">## select the city of Minneapolis (city code is 4150)</span></span>
+<span id="cb472-4"><a href="exploratory-data-analysis.html#cb472-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">RACE =</span> <span class="fu">ifelse</span>(RACE <span class="sc">&gt;=</span> <span class="dv">3</span>, <span class="dv">3</span>, RACE), <span class="do">## select three racial groups</span></span>
+<span id="cb472-5"><a href="exploratory-data-analysis.html#cb472-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">INCTOT =</span> <span class="fu">ifelse</span>(INCTOT <span class="sc">==</span> <span class="dv">9999999</span>, <span class="cn">NA</span>, INCTOT), <span class="do">## change missing value to NA</span></span>
+<span id="cb472-6"><a href="exploratory-data-analysis.html#cb472-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">FTOTINC =</span> <span class="fu">ifelse</span>(FTOTINC <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">9999999</span>, <span class="dv">999998</span>), <span class="cn">NA</span>, FTOTINC)) <span class="sc">%&gt;%</span></span>
+<span id="cb472-7"><a href="exploratory-data-analysis.html#cb472-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(YEAR, SEX, AGE, RACE, HISPAN, EDUC, EMPSTAT, INCTOT, FTOTINC) <span class="do">## select variables</span></span></code></pre></div>
+<p>I skip the variable introduction as we have been very familiar with them. You may find the variable introduction by this <a href="data-manipulation-with-base-functions.html#view-data">link</a>.</p>
+<p>The codes below calculate the personal income for each racial group from 2010 to 2019.</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="exploratory-data-analysis.html#cb473-1" aria-hidden="true" tabindex="-1"></a>minneapolis_race <span class="ot">&lt;-</span> minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb473-2"><a href="exploratory-data-analysis.html#cb473-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR, RACE) <span class="sc">%&gt;%</span>  <span class="do">## calculate average personal income for races and years</span></span>
+<span id="cb473-3"><a href="exploratory-data-analysis.html#cb473-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">AvgInc =</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb473-4"><a href="exploratory-data-analysis.html#cb473-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">RACE =</span> <span class="fu">case_when</span>(  <span class="do">## change race from numbers to their corresponding labels</span></span>
+<span id="cb473-5"><a href="exploratory-data-analysis.html#cb473-5" aria-hidden="true" tabindex="-1"></a>    RACE <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;White&#39;</span>,</span>
+<span id="cb473-6"><a href="exploratory-data-analysis.html#cb473-6" aria-hidden="true" tabindex="-1"></a>    RACE <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;African American&#39;</span>,</span>
+<span id="cb473-7"><a href="exploratory-data-analysis.html#cb473-7" aria-hidden="true" tabindex="-1"></a>    RACE <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;Other&#39;</span></span>
+<span id="cb473-8"><a href="exploratory-data-analysis.html#cb473-8" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb473-9"><a href="exploratory-data-analysis.html#cb473-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb473-10"><a href="exploratory-data-analysis.html#cb473-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(minneapolis_race, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+## # Groups:   YEAR [4]
+##     YEAR RACE             AvgInc
+##    &lt;int&gt; &lt;chr&gt;             &lt;dbl&gt;
+##  1  2010 White            42938.
+##  2  2010 African American 18596.
+##  3  2010 Other            21891.
+##  4  2011 White            42889.
+##  5  2011 African American 19054.
+##  6  2011 Other            19940.
+##  7  2012 White            38157.
+##  8  2012 African American 17045.
+##  9  2012 Other            22724.
+## 10  2013 White            43206.</code></pre>
+<p>The codes below draw a line plot to show the results.</p>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="exploratory-data-analysis.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_race, <span class="fu">aes</span>(YEAR, AvgInc, <span class="at">color =</span> RACE)) <span class="sc">+</span>  <span class="do">## line plot</span></span>
+<span id="cb475-2"><a href="exploratory-data-analysis.html#cb475-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb475-3"><a href="exploratory-data-analysis.html#cb475-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-238-1.png" width="672" />
+We may need to make it more readable to the audience by adding more elements and change the font size of some texts.</p>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="exploratory-data-analysis.html#cb476-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_race, <span class="fu">aes</span>(YEAR, AvgInc, <span class="at">color =</span> RACE)) <span class="sc">+</span>  <span class="do">## line plot</span></span>
+<span id="cb476-2"><a href="exploratory-data-analysis.html#cb476-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb476-3"><a href="exploratory-data-analysis.html#cb476-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb476-4"><a href="exploratory-data-analysis.html#cb476-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Year&#39;</span>,</span>
+<span id="cb476-5"><a href="exploratory-data-analysis.html#cb476-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&#39;Average personal income (Dollars)&#39;</span>,</span>
+<span id="cb476-6"><a href="exploratory-data-analysis.html#cb476-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&#39;RACE&#39;</span>,</span>
+<span id="cb476-7"><a href="exploratory-data-analysis.html#cb476-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&#39;Race and personal income in Minneaplis (2010-2019)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb476-8"><a href="exploratory-data-analysis.html#cb476-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2010</span><span class="sc">:</span><span class="dv">2019</span>)) <span class="sc">+</span>  <span class="do">## adjust x axis tick labels</span></span>
+<span id="cb476-9"><a href="exploratory-data-analysis.html#cb476-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb476-10"><a href="exploratory-data-analysis.html#cb476-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>, <span class="do">## adjust legend position</span></span>
+<span id="cb476-11"><a href="exploratory-data-analysis.html#cb476-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),  <span class="do">## adjust font sizes for different components</span></span>
+<span id="cb476-12"><a href="exploratory-data-analysis.html#cb476-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb476-13"><a href="exploratory-data-analysis.html#cb476-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb476-14"><a href="exploratory-data-analysis.html#cb476-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb476-15"><a href="exploratory-data-analysis.html#cb476-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
+<p>Finally, we can combine the data manipulation and visualization codes together.</p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="exploratory-data-analysis.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="do">## line plot of the relationships between race and income</span></span>
+<span id="cb477-2"><a href="exploratory-data-analysis.html#cb477-2" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb477-3"><a href="exploratory-data-analysis.html#cb477-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR, RACE) <span class="sc">%&gt;%</span>  <span class="do">## calculate average personal income for races and years</span></span>
+<span id="cb477-4"><a href="exploratory-data-analysis.html#cb477-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">AvgInc =</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb477-5"><a href="exploratory-data-analysis.html#cb477-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">RACE =</span> <span class="fu">case_when</span>(  <span class="do">## change race from numbers to their corresponding labels</span></span>
+<span id="cb477-6"><a href="exploratory-data-analysis.html#cb477-6" aria-hidden="true" tabindex="-1"></a>    RACE <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;White&#39;</span>,</span>
+<span id="cb477-7"><a href="exploratory-data-analysis.html#cb477-7" aria-hidden="true" tabindex="-1"></a>    RACE <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;African American&#39;</span>,</span>
+<span id="cb477-8"><a href="exploratory-data-analysis.html#cb477-8" aria-hidden="true" tabindex="-1"></a>    RACE <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;Other&#39;</span></span>
+<span id="cb477-9"><a href="exploratory-data-analysis.html#cb477-9" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb477-10"><a href="exploratory-data-analysis.html#cb477-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(YEAR, AvgInc, <span class="at">color =</span> RACE)) <span class="sc">+</span>  <span class="do">## line plot</span></span>
+<span id="cb477-11"><a href="exploratory-data-analysis.html#cb477-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb477-12"><a href="exploratory-data-analysis.html#cb477-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb477-13"><a href="exploratory-data-analysis.html#cb477-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Year&#39;</span>,</span>
+<span id="cb477-14"><a href="exploratory-data-analysis.html#cb477-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&#39;Average personal income (Dollars)&#39;</span>,</span>
+<span id="cb477-15"><a href="exploratory-data-analysis.html#cb477-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&#39;RACE&#39;</span>,</span>
+<span id="cb477-16"><a href="exploratory-data-analysis.html#cb477-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&#39;Race and personal income in Minneaplis (2010-2019)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb477-17"><a href="exploratory-data-analysis.html#cb477-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2010</span><span class="sc">:</span><span class="dv">2019</span>)) <span class="sc">+</span>  <span class="do">## adjust x axis tick labels</span></span>
+<span id="cb477-18"><a href="exploratory-data-analysis.html#cb477-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb477-19"><a href="exploratory-data-analysis.html#cb477-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>, <span class="do">## adjust legend position</span></span>
+<span id="cb477-20"><a href="exploratory-data-analysis.html#cb477-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),  <span class="do">## adjust font sizes for different components</span></span>
+<span id="cb477-21"><a href="exploratory-data-analysis.html#cb477-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb477-22"><a href="exploratory-data-analysis.html#cb477-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb477-23"><a href="exploratory-data-analysis.html#cb477-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb477-24"><a href="exploratory-data-analysis.html#cb477-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-240-1.png" width="672" /></p>
+<p>From this plot, we see that the personal income of minority groups are much lower than that of the White. In addition, the personal income of the African Americans are relatively stable during the study time period and has increased very little.</p>
+<p>You may want to save the plot.</p>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="exploratory-data-analysis.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&#39;race_income.jpg&#39;</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">600</span>)  <span class="do">## save the plot</span></span></code></pre></div>
+</div>
+<div id="case-2-race-and-employment-rate-in-the-city-of-minneapolis-2010-2019" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Case 2: Race and employment rate in the city of Minneapolis (2010-2019)</h2>
+<p>In the second case, we see how programming in R help increase work efficiency. The problem in case 2 is quite similar to that in the first case. Therefore, we only need to change the codes in case 1 a little bit and then we can have the result.</p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="exploratory-data-analysis.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="do">## line plot of the relationship between race and employment status</span></span>
+<span id="cb479-2"><a href="exploratory-data-analysis.html#cb479-2" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb479-3"><a href="exploratory-data-analysis.html#cb479-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR, RACE, EMPSTAT)  <span class="sc">%&gt;%</span> <span class="do">## calculate average employment rate for races and years</span></span>
+<span id="cb479-4"><a href="exploratory-data-analysis.html#cb479-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb479-5"><a href="exploratory-data-analysis.html#cb479-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(EMPSTAT <span class="sc">!=</span> <span class="dv">0</span>, EMPSTAT <span class="sc">!=</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb479-6"><a href="exploratory-data-analysis.html#cb479-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR, RACE) <span class="sc">%&gt;%</span> </span>
+<span id="cb479-7"><a href="exploratory-data-analysis.html#cb479-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">per =</span> count<span class="sc">/</span><span class="fu">sum</span>(count)<span class="sc">*</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb479-8"><a href="exploratory-data-analysis.html#cb479-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(EMPSTAT <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb479-9"><a href="exploratory-data-analysis.html#cb479-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">RACE =</span> <span class="fu">case_when</span>(  <span class="do">## change race from numbers to their corresponding labels</span></span>
+<span id="cb479-10"><a href="exploratory-data-analysis.html#cb479-10" aria-hidden="true" tabindex="-1"></a>    RACE <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;White&#39;</span>,</span>
+<span id="cb479-11"><a href="exploratory-data-analysis.html#cb479-11" aria-hidden="true" tabindex="-1"></a>    RACE <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;African American&#39;</span>,</span>
+<span id="cb479-12"><a href="exploratory-data-analysis.html#cb479-12" aria-hidden="true" tabindex="-1"></a>    RACE <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;Other&#39;</span></span>
+<span id="cb479-13"><a href="exploratory-data-analysis.html#cb479-13" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb479-14"><a href="exploratory-data-analysis.html#cb479-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(YEAR, per, <span class="at">color =</span> <span class="fu">factor</span>(RACE))) <span class="sc">+</span>  <span class="do">## line plot</span></span>
+<span id="cb479-15"><a href="exploratory-data-analysis.html#cb479-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb479-16"><a href="exploratory-data-analysis.html#cb479-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb479-17"><a href="exploratory-data-analysis.html#cb479-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Year&#39;</span>,</span>
+<span id="cb479-18"><a href="exploratory-data-analysis.html#cb479-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&#39;Average employment rate (%)&#39;</span>,</span>
+<span id="cb479-19"><a href="exploratory-data-analysis.html#cb479-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&#39;RACE&#39;</span>,</span>
+<span id="cb479-20"><a href="exploratory-data-analysis.html#cb479-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&#39;Race and employment rate in Minneaplis (2010-2019)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb479-21"><a href="exploratory-data-analysis.html#cb479-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2010</span><span class="sc">:</span><span class="dv">2019</span>)) <span class="sc">+</span></span>
+<span id="cb479-22"><a href="exploratory-data-analysis.html#cb479-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">70</span>, <span class="dv">100</span>),</span>
+<span id="cb479-23"><a href="exploratory-data-analysis.html#cb479-23" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb479-24"><a href="exploratory-data-analysis.html#cb479-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb479-25"><a href="exploratory-data-analysis.html#cb479-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>, <span class="do">## adjust legend position</span></span>
+<span id="cb479-26"><a href="exploratory-data-analysis.html#cb479-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),  <span class="do">## adjust font sizes for different components</span></span>
+<span id="cb479-27"><a href="exploratory-data-analysis.html#cb479-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb479-28"><a href="exploratory-data-analysis.html#cb479-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb479-29"><a href="exploratory-data-analysis.html#cb479-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb479-30"><a href="exploratory-data-analysis.html#cb479-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
+<p>We see that the employment rate of the minority groups have been improved a lot during the study period, especially for African Americans. However, the minority groups have relatively lower employment rate than the White.</p>
+</div>
+<div id="case-3-population-density-and-election-result-in-the-us-2020" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Case 3: Population density and election result in the US (2020)</h2>
+<p>We first import the dataset we need. Population density at the county level is retrieved from the US Census Bureau (<a href="https://covid19.census.gov/datasets/average-household-size-and-population-density-county/data?geometry=154.651%2C-0.672%2C-154.020%2C76.524">link</a>). Election results at the county level is retrieved from a GitHub repo (<a href="https://github.com/tonmcg/US_County_Level_Election_Results_08-20">link</a>).</p>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="exploratory-data-analysis.html#cb480-1" aria-hidden="true" tabindex="-1"></a>pop_density <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;pop_density.csv&#39;</span>)</span>
+<span id="cb480-2"><a href="exploratory-data-analysis.html#cb480-2" aria-hidden="true" tabindex="-1"></a>election <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;2020_election.csv&#39;</span>)</span></code></pre></div>
+<p>We, then,</p>
+<ol style="list-style-type: decimal">
+<li>Join the population density dataset to the election result dataset. The variable used to join two datasets is the ID of each county. In the population density dataset, it is <code>GEOID</code>. In the election result dataset, it is <code>county_fips</code>.<br />
+</li>
+<li>Select two variables from the dataset. <code>per_point_diff</code> is the difference between the vote share for Trump and that for Biden.<br />
+</li>
+<li>Select observations without missing values.<br />
+</li>
+<li>Rename the two variables.</li>
+</ol>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="exploratory-data-analysis.html#cb481-1" aria-hidden="true" tabindex="-1"></a>election <span class="sc">%&gt;%</span> </span>
+<span id="cb481-2"><a href="exploratory-data-analysis.html#cb481-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pop_density, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;county_fips&#39;</span><span class="ot">=</span><span class="st">&#39;GEOID&#39;</span>)) <span class="sc">%&gt;%</span> <span class="do">## join two datasets</span></span>
+<span id="cb481-3"><a href="exploratory-data-analysis.html#cb481-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(per_point_diff, B01001_calc_PopDensity) <span class="sc">%&gt;%</span> <span class="do">## select two variables</span></span>
+<span id="cb481-4"><a href="exploratory-data-analysis.html#cb481-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">complete.cases</span>(.)) <span class="sc">%&gt;%</span> <span class="do">## select observations without missing values</span></span>
+<span id="cb481-5"><a href="exploratory-data-analysis.html#cb481-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">diff =</span> per_point_diff, <span class="do">## rename the variables</span></span>
+<span id="cb481-6"><a href="exploratory-data-analysis.html#cb481-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">popden =</span> B01001_calc_PopDensity) <span class="sc">%&gt;%</span> </span>
+<span id="cb481-7"><a href="exploratory-data-analysis.html#cb481-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##      diff popden
+##     &lt;dbl&gt;  &lt;dbl&gt;
+## 1  0.444   35.9 
+## 2  0.538   50.5 
+## 3  0.0766  11.2 
+## 4  0.577   14.0 
+## 5  0.800   34.5 
+## 6 -0.499    6.42</code></pre>
+<p>We draw a simple scatter plot to see the distribution of the two variables. It seems that the x axis need some transformation based on the distribution. Note that we map <code>-diff</code> to the x axis instead of mapping <code>diff</code> directly.</p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="exploratory-data-analysis.html#cb483-1" aria-hidden="true" tabindex="-1"></a>election <span class="sc">%&gt;%</span> </span>
+<span id="cb483-2"><a href="exploratory-data-analysis.html#cb483-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pop_density, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;county_fips&#39;</span><span class="ot">=</span><span class="st">&#39;GEOID&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb483-3"><a href="exploratory-data-analysis.html#cb483-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(per_point_diff, B01001_calc_PopDensity) <span class="sc">%&gt;%</span> </span>
+<span id="cb483-4"><a href="exploratory-data-analysis.html#cb483-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">complete.cases</span>(.)) <span class="sc">%&gt;%</span> </span>
+<span id="cb483-5"><a href="exploratory-data-analysis.html#cb483-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">diff =</span> per_point_diff,</span>
+<span id="cb483-6"><a href="exploratory-data-analysis.html#cb483-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">popden =</span> B01001_calc_PopDensity) <span class="sc">%&gt;%</span> </span>
+<span id="cb483-7"><a href="exploratory-data-analysis.html#cb483-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(popden, <span class="sc">-</span>diff)) <span class="sc">+</span> <span class="do">## simple scatter plot</span></span>
+<span id="cb483-8"><a href="exploratory-data-analysis.html#cb483-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-245-1.png" width="672" /></p>
+<p>We transform the x axis with logarithm through <code>scale_x_log10()</code>. The plot looks much better.</p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="exploratory-data-analysis.html#cb484-1" aria-hidden="true" tabindex="-1"></a>election <span class="sc">%&gt;%</span> </span>
+<span id="cb484-2"><a href="exploratory-data-analysis.html#cb484-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pop_density, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;county_fips&#39;</span><span class="ot">=</span><span class="st">&#39;GEOID&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb484-3"><a href="exploratory-data-analysis.html#cb484-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(per_point_diff, B01001_calc_PopDensity) <span class="sc">%&gt;%</span> </span>
+<span id="cb484-4"><a href="exploratory-data-analysis.html#cb484-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">complete.cases</span>(.)) <span class="sc">%&gt;%</span> </span>
+<span id="cb484-5"><a href="exploratory-data-analysis.html#cb484-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">diff =</span> per_point_diff,</span>
+<span id="cb484-6"><a href="exploratory-data-analysis.html#cb484-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">popden =</span> B01001_calc_PopDensity) <span class="sc">%&gt;%</span> </span>
+<span id="cb484-7"><a href="exploratory-data-analysis.html#cb484-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(popden, <span class="sc">-</span>diff)) <span class="sc">+</span></span>
+<span id="cb484-8"><a href="exploratory-data-analysis.html#cb484-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb484-9"><a href="exploratory-data-analysis.html#cb484-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="do">## transform the x axis with logarithm</span></span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-246-1.png" width="672" /></p>
+<p>Below are some steps to further improve the plot.</p>
+<ol style="list-style-type: decimal">
+<li>Map <code>popden</code> to the size of the points.<br />
+</li>
+<li>Create a variable <code>party</code>. When its value is 0, it means Trump won that county. When its value is 1, it means Biden won that county. Map this variable to the color of the points. Use <code>scale_fill_manual()</code> to set the color for each value of <code>party</code>: red for 0 and blue for 1.<br />
+</li>
+<li>Set the shape of the point to 21 and set the border color as white.<br />
+</li>
+<li>Set the ticks of the x axis and y axis to specific values.<br />
+</li>
+<li>Set the range of y axis.<br />
+</li>
+<li>Add a horizontal line at 0 with <code>geom_hline()</code>.<br />
+</li>
+<li>Change the labels of x axis, y axis, and title.<br />
+</li>
+<li>Add the complete theme <code>theme_bw()</code>.</li>
+<li>Remove the legend.<br />
+</li>
+<li>Set the font size for axis labels and title.</li>
+</ol>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="exploratory-data-analysis.html#cb485-1" aria-hidden="true" tabindex="-1"></a>election <span class="sc">%&gt;%</span> </span>
+<span id="cb485-2"><a href="exploratory-data-analysis.html#cb485-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pop_density, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;county_fips&#39;</span><span class="ot">=</span><span class="st">&#39;GEOID&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb485-3"><a href="exploratory-data-analysis.html#cb485-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(per_point_diff, B01001_calc_PopDensity) <span class="sc">%&gt;%</span> </span>
+<span id="cb485-4"><a href="exploratory-data-analysis.html#cb485-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">complete.cases</span>(.)) <span class="sc">%&gt;%</span> </span>
+<span id="cb485-5"><a href="exploratory-data-analysis.html#cb485-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">diff =</span> per_point_diff,</span>
+<span id="cb485-6"><a href="exploratory-data-analysis.html#cb485-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">popden =</span> B01001_calc_PopDensity) <span class="sc">%&gt;%</span></span>
+<span id="cb485-7"><a href="exploratory-data-analysis.html#cb485-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">party =</span> <span class="fu">ifelse</span>(diff <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> <span class="do">## create a variable</span></span>
+<span id="cb485-8"><a href="exploratory-data-analysis.html#cb485-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(popden, <span class="sc">-</span>diff, <span class="at">size =</span> popden, <span class="at">fill =</span> <span class="fu">factor</span>(party))) <span class="sc">+</span> <span class="do">## map population density to size and party to fill of the points</span></span>
+<span id="cb485-9"><a href="exploratory-data-analysis.html#cb485-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span> <span class="do">## change the shape of the point and set the border color to white</span></span>
+<span id="cb485-10"><a href="exploratory-data-analysis.html#cb485-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;blue&#39;</span>)) <span class="sc">+</span> <span class="do">## set the color for party</span></span>
+<span id="cb485-11"><a href="exploratory-data-analysis.html#cb485-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">10000</span>), <span class="do">## set the ticks for x axis</span></span>
+<span id="cb485-12"><a href="exploratory-data-analysis.html#cb485-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;0.1&#39;</span>, <span class="st">&#39;1&#39;</span>, <span class="st">&#39;10&#39;</span>, <span class="st">&#39;100&#39;</span>, <span class="st">&#39;1000&#39;</span>, <span class="st">&#39;10000&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb485-13"><a href="exploratory-data-analysis.html#cb485-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="do">## set the color for y axis</span></span>
+<span id="cb485-14"><a href="exploratory-data-analysis.html#cb485-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>),</span>
+<span id="cb485-15"><a href="exploratory-data-analysis.html#cb485-15" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels=</span> <span class="fu">c</span>(<span class="st">&#39;-100&#39;</span>, <span class="st">&#39;-50&#39;</span>, <span class="st">&#39;0&#39;</span>, <span class="st">&#39;50&#39;</span>, <span class="st">&#39;100&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb485-16"><a href="exploratory-data-analysis.html#cb485-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="do">## add a horizontal line at 0</span></span>
+<span id="cb485-17"><a href="exploratory-data-analysis.html#cb485-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Election result and population density in US (2020)&#39;</span>, <span class="do">## change labels</span></span>
+<span id="cb485-18"><a href="exploratory-data-analysis.html#cb485-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&#39;Population density (people/sq km)&#39;</span>,</span>
+<span id="cb485-19"><a href="exploratory-data-analysis.html#cb485-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&#39;Vote margin (%)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb485-20"><a href="exploratory-data-analysis.html#cb485-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb485-21"><a href="exploratory-data-analysis.html#cb485-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>, <span class="do">## remove legend</span></span>
+<span id="cb485-22"><a href="exploratory-data-analysis.html#cb485-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),  <span class="do">## adjust font size for different components</span></span>
+<span id="cb485-23"><a href="exploratory-data-analysis.html#cb485-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb485-24"><a href="exploratory-data-analysis.html#cb485-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-247-1.png" width="672" /></p>
+<p>What can you learn from this plot about the relationship between election result and population density?</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="statistics-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="final-project.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
