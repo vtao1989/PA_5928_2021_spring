@@ -263,6 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#case-1-race-and-personal-income-in-the-city-of-minneapolis-2010-2019"><i class="fa fa-check"></i><b>9.1</b> Case 1: Race and personal income in the city of Minneapolis (2010-2019)</a></li>
 <li class="chapter" data-level="9.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#case-2-race-and-employment-rate-in-the-city-of-minneapolis-2010-2019"><i class="fa fa-check"></i><b>9.2</b> Case 2: Race and employment rate in the city of Minneapolis (2010-2019)</a></li>
 <li class="chapter" data-level="9.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#case-3-population-density-and-election-result-in-the-us-2020"><i class="fa fa-check"></i><b>9.3</b> Case 3: Population density and election result in the US (2020)</a></li>
+<li class="chapter" data-level="9.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#case-4-factors-that-influence-students-performance"><i class="fa fa-check"></i><b>9.4</b> Case 4: Factors that influence students’ performance</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i><b>10</b> Final Project</a>
 <ul>
@@ -543,6 +544,112 @@ We may need to make it more readable to the audience by adding more elements and
 <span id="cb485-24"><a href="exploratory-data-analysis.html#cb485-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span></code></pre></div>
 <p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-247-1.png" width="672" /></p>
 <p>What can you learn from this plot about the relationship between election result and population density?</p>
+</div>
+<div id="case-4-factors-that-influence-students-performance" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> Case 4: Factors that influence students’ performance</h2>
+<p>The dataset is from this <a href="http://roycekimmons.com/tools/generated_data/exams">link</a>. This dataset includes scores from three exams and several demographic variables. We want to check the factors that could influence students’ performance with a simple regression model.</p>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="exploratory-data-analysis.html#cb486-1" aria-hidden="true" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;StudentsPerformance.csv&#39;</span>)</span></code></pre></div>
+<p>An overall view of the dataset.</p>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="exploratory-data-analysis.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(performance)</span></code></pre></div>
+<pre><code>## tibble [1,000 x 8] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ gender                     : chr [1:1000] &quot;female&quot; &quot;female&quot; &quot;female&quot; &quot;male&quot; ...
+##  $ race/ethnicity             : chr [1:1000] &quot;group B&quot; &quot;group C&quot; &quot;group B&quot; &quot;group A&quot; ...
+##  $ parental level of education: chr [1:1000] &quot;bachelor&#39;s degree&quot; &quot;some college&quot; &quot;master&#39;s degree&quot; &quot;associate&#39;s degree&quot; ...
+##  $ lunch                      : chr [1:1000] &quot;standard&quot; &quot;standard&quot; &quot;standard&quot; &quot;free/reduced&quot; ...
+##  $ test preparation course    : chr [1:1000] &quot;none&quot; &quot;completed&quot; &quot;none&quot; &quot;none&quot; ...
+##  $ math score                 : num [1:1000] 72 69 90 47 76 71 88 40 64 38 ...
+##  $ reading score              : num [1:1000] 72 90 95 57 78 83 95 43 64 60 ...
+##  $ writing score              : num [1:1000] 74 88 93 44 75 78 92 39 67 50 ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   gender = col_character(),
+##   ..   `race/ethnicity` = col_character(),
+##   ..   `parental level of education` = col_character(),
+##   ..   lunch = col_character(),
+##   ..   `test preparation course` = col_character(),
+##   ..   `math score` = col_double(),
+##   ..   `reading score` = col_double(),
+##   ..   `writing score` = col_double()
+##   .. )</code></pre>
+<p>The names of some variables are very long. So we firstly rename these variables.</p>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="exploratory-data-analysis.html#cb489-1" aria-hidden="true" tabindex="-1"></a>performance <span class="ot">&lt;-</span> performance <span class="sc">%&gt;%</span> </span>
+<span id="cb489-2"><a href="exploratory-data-analysis.html#cb489-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">race =</span> <span class="st">`</span><span class="at">race/ethnicity</span><span class="st">`</span>,</span>
+<span id="cb489-3"><a href="exploratory-data-analysis.html#cb489-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">pedu =</span> <span class="st">`</span><span class="at">parental level of education</span><span class="st">`</span>,</span>
+<span id="cb489-4"><a href="exploratory-data-analysis.html#cb489-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">pre =</span> <span class="st">`</span><span class="at">test preparation course</span><span class="st">`</span>,</span>
+<span id="cb489-5"><a href="exploratory-data-analysis.html#cb489-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">math =</span> <span class="st">`</span><span class="at">math score</span><span class="st">`</span>)</span></code></pre></div>
+<p>Gender and math score.</p>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="exploratory-data-analysis.html#cb490-1" aria-hidden="true" tabindex="-1"></a>performance <span class="sc">%&gt;%</span> </span>
+<span id="cb490-2"><a href="exploratory-data-analysis.html#cb490-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(gender, math)) <span class="sc">+</span></span>
+<span id="cb490-3"><a href="exploratory-data-analysis.html#cb490-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
+<p>Race and math score.</p>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="exploratory-data-analysis.html#cb491-1" aria-hidden="true" tabindex="-1"></a>performance <span class="sc">%&gt;%</span> </span>
+<span id="cb491-2"><a href="exploratory-data-analysis.html#cb491-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(race, math)) <span class="sc">+</span></span>
+<span id="cb491-3"><a href="exploratory-data-analysis.html#cb491-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
+<p>Parental level of education and math score.</p>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="exploratory-data-analysis.html#cb492-1" aria-hidden="true" tabindex="-1"></a>performance <span class="sc">%&gt;%</span> </span>
+<span id="cb492-2"><a href="exploratory-data-analysis.html#cb492-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(pedu, math)) <span class="sc">+</span></span>
+<span id="cb492-3"><a href="exploratory-data-analysis.html#cb492-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb492-4"><a href="exploratory-data-analysis.html#cb492-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="st">&#39;some high school&#39;</span>, <span class="st">&#39;high school&#39;</span>, <span class="st">&#39;some college&#39;</span>, <span class="st">&#39;associate</span><span class="sc">\&#39;</span><span class="st">s degree&#39;</span>, <span class="st">&#39;bachelor</span><span class="sc">\&#39;</span><span class="st">s degree&#39;</span>, <span class="st">&#39;master</span><span class="sc">\&#39;</span><span class="st">s degree&#39;</span>)) <span class="do">## from low to high levels</span></span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
+<p>Lunch quality and math score.</p>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="exploratory-data-analysis.html#cb493-1" aria-hidden="true" tabindex="-1"></a>performance <span class="sc">%&gt;%</span> </span>
+<span id="cb493-2"><a href="exploratory-data-analysis.html#cb493-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(lunch, math)) <span class="sc">+</span></span>
+<span id="cb493-3"><a href="exploratory-data-analysis.html#cb493-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
+<p>Test preparation course and math score.</p>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="exploratory-data-analysis.html#cb494-1" aria-hidden="true" tabindex="-1"></a>performance <span class="sc">%&gt;%</span> </span>
+<span id="cb494-2"><a href="exploratory-data-analysis.html#cb494-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(pre, math)) <span class="sc">+</span></span>
+<span id="cb494-3"><a href="exploratory-data-analysis.html#cb494-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
+<p>Histogram of math score.</p>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="exploratory-data-analysis.html#cb495-1" aria-hidden="true" tabindex="-1"></a>performance <span class="sc">%&gt;%</span> </span>
+<span id="cb495-2"><a href="exploratory-data-analysis.html#cb495-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(math)) <span class="sc">+</span></span>
+<span id="cb495-3"><a href="exploratory-data-analysis.html#cb495-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
+<p>Linear regression model.</p>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="exploratory-data-analysis.html#cb496-1" aria-hidden="true" tabindex="-1"></a>performance <span class="sc">%&gt;%</span> </span>
+<span id="cb496-2"><a href="exploratory-data-analysis.html#cb496-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gender =</span> <span class="fu">ifelse</span>(gender <span class="sc">==</span> <span class="st">&#39;male&#39;</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb496-3"><a href="exploratory-data-analysis.html#cb496-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">pre =</span> <span class="fu">ifelse</span>(pre <span class="sc">==</span> <span class="st">&#39;completed&#39;</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb496-4"><a href="exploratory-data-analysis.html#cb496-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">lunch =</span> <span class="fu">ifelse</span>(lunch <span class="sc">==</span> <span class="st">&#39;standard&#39;</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb496-5"><a href="exploratory-data-analysis.html#cb496-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">pedu =</span> <span class="fu">case_when</span>(</span>
+<span id="cb496-6"><a href="exploratory-data-analysis.html#cb496-6" aria-hidden="true" tabindex="-1"></a>           pedu <span class="sc">==</span> <span class="st">&#39;some high school&#39;</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb496-7"><a href="exploratory-data-analysis.html#cb496-7" aria-hidden="true" tabindex="-1"></a>           pedu <span class="sc">==</span> <span class="st">&#39;high school&#39;</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb496-8"><a href="exploratory-data-analysis.html#cb496-8" aria-hidden="true" tabindex="-1"></a>           pedu <span class="sc">==</span> <span class="st">&#39;some college&#39;</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb496-9"><a href="exploratory-data-analysis.html#cb496-9" aria-hidden="true" tabindex="-1"></a>           pedu <span class="sc">==</span> <span class="st">&#39;associate</span><span class="sc">\&#39;</span><span class="st">s degree&#39;</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb496-10"><a href="exploratory-data-analysis.html#cb496-10" aria-hidden="true" tabindex="-1"></a>           pedu <span class="sc">==</span> <span class="st">&#39;bachelor</span><span class="sc">\&#39;</span><span class="st">s degree&#39;</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb496-11"><a href="exploratory-data-analysis.html#cb496-11" aria-hidden="true" tabindex="-1"></a>           pedu <span class="sc">==</span> <span class="st">&#39;master</span><span class="sc">\&#39;</span><span class="st">s degree&#39;</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
+<span id="cb496-12"><a href="exploratory-data-analysis.html#cb496-12" aria-hidden="true" tabindex="-1"></a>         )) <span class="sc">%&gt;%</span> </span>
+<span id="cb496-13"><a href="exploratory-data-analysis.html#cb496-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(math <span class="sc">~</span> gender <span class="sc">+</span> pre <span class="sc">+</span> lunch <span class="sc">+</span> pedu <span class="sc">+</span> race,</span>
+<span id="cb496-14"><a href="exploratory-data-analysis.html#cb496-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> .) <span class="sc">%&gt;%</span> </span>
+<span id="cb496-15"><a href="exploratory-data-analysis.html#cb496-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = math ~ gender + pre + lunch + pedu + race, data = .)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -49.633  -8.869  -0.105   9.267  31.154 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  45.5909     1.8047  25.262  &lt; 2e-16 ***
+## gender        4.9492     0.8384   5.903 4.89e-09 ***
+## pre           5.6195     0.8716   6.448 1.77e-10 ***
+## lunch        10.8994     0.8728  12.488  &lt; 2e-16 ***
+## pedu          1.6662     0.2875   5.796 9.11e-09 ***
+## racegroup B   1.8897     1.6969   1.114 0.265707    
+## racegroup C   2.3755     1.5890   1.495 0.135234    
+## racegroup D   5.3573     1.6212   3.304 0.000986 ***
+## racegroup E  10.1181     1.7975   5.629 2.36e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 13.17 on 991 degrees of freedom
+## Multiple R-squared:  0.2513, Adjusted R-squared:  0.2453 
+## F-statistic: 41.58 on 8 and 991 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>How to interpret the results? what are the policies that can improve student math scores?</p>
 
 </div>
 </div>

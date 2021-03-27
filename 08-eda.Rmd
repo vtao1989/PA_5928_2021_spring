@@ -264,7 +264,97 @@ election %>%
 
 What can you learn from this plot about the relationship between election result and population density?
 
+## Case 4: Factors that influence students' performance
 
+The dataset is from this [link](http://roycekimmons.com/tools/generated_data/exams). This dataset includes scores from three exams and several demographic variables. We want to check the factors that could influence students' performance with a simple regression model.
 
+```{r message=FALSE}
+performance <- read_csv('StudentsPerformance.csv')
+```
 
+An overall view of the dataset.
+
+```{r}
+str(performance)
+```
+The names of some variables are very long. So we firstly rename these variables.
+
+```{r}
+performance <- performance %>% 
+  rename(race = `race/ethnicity`,
+         pedu = `parental level of education`,
+         pre = `test preparation course`,
+         math = `math score`)
+```
+
+Gender and math score.
+
+```{r}
+performance %>% 
+  ggplot(aes(gender, math)) +
+  geom_boxplot()
+```
+
+Race and math score.
+
+```{r}
+performance %>% 
+  ggplot(aes(race, math)) +
+  geom_boxplot()
+```
+
+Parental level of education and math score.
+
+```{r}
+performance %>% 
+  ggplot(aes(pedu, math)) +
+  geom_boxplot() +
+  scale_x_discrete(limits = c('some high school', 'high school', 'some college', 'associate\'s degree', 'bachelor\'s degree', 'master\'s degree')) ## from low to high levels
+```
+
+Lunch quality and math score.
+
+```{r}
+performance %>% 
+  ggplot(aes(lunch, math)) +
+  geom_boxplot()
+```
+
+Test preparation course and math score.
+
+```{r}
+performance %>% 
+  ggplot(aes(pre, math)) +
+  geom_boxplot()
+```
+
+Histogram of math score.
+
+```{r}
+performance %>% 
+  ggplot(aes(math)) +
+  geom_histogram(binwidth = 5)
+```
+
+Linear regression model.
+
+```{r}
+performance %>% 
+  mutate(gender = ifelse(gender == 'male', 1, 0),
+         pre = ifelse(pre == 'completed', 1, 0),
+         lunch = ifelse(lunch == 'standard', 1, 0),
+         pedu = case_when(
+           pedu == 'some high school' ~ 1,
+           pedu == 'high school' ~ 2,
+           pedu == 'some college' ~ 3,
+           pedu == 'associate\'s degree' ~ 4,
+           pedu == 'bachelor\'s degree' ~ 5,
+           pedu == 'master\'s degree' ~ 6,
+         )) %>% 
+  lm(math ~ gender + pre + lunch + pedu + race,
+     data = .) %>% 
+  summary()
+```
+
+How to interpret the results? what are the policies that can improve student math scores?
 

@@ -347,7 +347,7 @@ Sometimes, people from different groups may give the same variables with differe
 ```{r}
 minneapolis %>% 
   rename(TIME = YEAR) %>% ## rename the YEAR to TIME
-  left_join(poverty, by = c('TIME' = 'YEAR')) %>% 
+  left_join(poverty, by = c('TIME' = 'YEAR')) %>% ## join the data based on different column names
   head(10)
 ```
 
@@ -378,7 +378,7 @@ max_income <- minneapolis %>%
 head(max_income, 10)
 ```
 
-We will use ``pivot_wider()`` and ``pivot_longer()`` in ``tidyr`` to do the task.
+We will use ``pivot_wider()`` and ``pivot_longer()`` in ``tidyr`` package to do the task.
 
 ```{r}
 ## import the package
