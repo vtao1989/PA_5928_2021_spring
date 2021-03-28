@@ -7,7 +7,7 @@ install.packages('ggplot2') ## you only need to run this code once
 ```
 
 
-## Grammer of Graphics (gg)
+## Grammar of Graphics (gg)
 We have grammar for languages. Similarly, we have grammar for graphics. That's where ``gg`` of ``ggplot2`` comes from. ``ggplot2`` has seven grammatical elements listed in the table below [@datacamp1].
 
 | Element     | Description                                       |

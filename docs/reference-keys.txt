@@ -59,7 +59,7 @@ pie-chart
 boxplot
 color-in-r
 data-visualization-with-ggplot2
-grammer-of-graphics-gg
+grammar-of-graphics-gg
 data-aesthetics-and-geometries
 scatter-plot-1
 bar-plot-1
