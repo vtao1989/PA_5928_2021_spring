@@ -211,7 +211,7 @@ ggplot(minneapolis_2017, aes(factor(RACE), INCTOT)) +
   geom_boxplot()
 ```
 
-One problem of box plots is that they show the number of observations. For example, you do not have an idea how many points in each racial groups. We could use the geometry of jittering instead. Jittering randomly adds a little noise to the data points to avoid overlapping. The points in the plot below has been added some random noise in the direction of x axis.
+One problem of box plots is that they cannot show the number of observations. For example, you do not have an idea how many points in each racial groups. We could use the geometry of jittering instead. Jittering randomly adds a little noise to the data points to avoid overlapping. The points in the plot below has been added some random noise in the direction of x axis.
 
 ```{r}
 ggplot(minneapolis_2017, aes(factor(RACE), INCTOT)) + 
