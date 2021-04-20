@@ -3,7 +3,7 @@
 
 In this chapter, we are going to use R to add the statistics in the plots and carry out statistical analysis.
 
-In this section, we need ``dplyr``, ``ggplot2``, and the Minneapolis ACS dataset.
+We need ``dplyr``, ``ggplot2``, and the Minneapolis ACS dataset.
 
 ```{r, message=FALSE}
 library(dplyr) 
