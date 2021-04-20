@@ -83,7 +83,7 @@ fitting-the-general-trend-of-points
 plotting-distribution
 density-plot-of-distribution
 box-plot-of-distribution
-anotation-of-statistics
+annotation-of-statistics
 bar-plot-2
 line-plot-2
 simple-statistics

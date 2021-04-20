@@ -244,7 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1.3" data-path="statistics-in-r.html"><a href="statistics-in-r.html#density-plot-of-distribution"><i class="fa fa-check"></i><b>8.1.3</b> Density plot of distribution</a></li>
 <li class="chapter" data-level="8.1.4" data-path="statistics-in-r.html"><a href="statistics-in-r.html#box-plot-of-distribution"><i class="fa fa-check"></i><b>8.1.4</b> Box plot of distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#anotation-of-statistics"><i class="fa fa-check"></i><b>8.2</b> Anotation of statistics</a>
+<li class="chapter" data-level="8.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#annotation-of-statistics"><i class="fa fa-check"></i><b>8.2</b> Annotation of statistics</a>
 <ul>
 <li class="chapter" data-level="8.2.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#bar-plot-2"><i class="fa fa-check"></i><b>8.2.1</b> bar plot</a></li>
 <li class="chapter" data-level="8.2.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#line-plot-2"><i class="fa fa-check"></i><b>8.2.2</b> line plot</a></li>
@@ -361,7 +361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="exploratory-data-analysis.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_race, <span class="fu">aes</span>(YEAR, AvgInc, <span class="at">color =</span> RACE)) <span class="sc">+</span>  <span class="do">## line plot</span></span>
 <span id="cb475-2"><a href="exploratory-data-analysis.html#cb475-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb475-3"><a href="exploratory-data-analysis.html#cb475-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-238-1.png" width="672" />
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-239-1.png" width="672" />
 We may need to make it more readable to the audience by adding more elements and change the font size of some texts.</p>
 <div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="exploratory-data-analysis.html#cb476-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_race, <span class="fu">aes</span>(YEAR, AvgInc, <span class="at">color =</span> RACE)) <span class="sc">+</span>  <span class="do">## line plot</span></span>
 <span id="cb476-2"><a href="exploratory-data-analysis.html#cb476-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
@@ -378,7 +378,7 @@ We may need to make it more readable to the audience by adding more elements and
 <span id="cb476-13"><a href="exploratory-data-analysis.html#cb476-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
 <span id="cb476-14"><a href="exploratory-data-analysis.html#cb476-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
 <span id="cb476-15"><a href="exploratory-data-analysis.html#cb476-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-240-1.png" width="672" /></p>
 <p>Finally, we can combine the data manipulation and visualization codes together.</p>
 <div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="exploratory-data-analysis.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="do">## line plot of the relationships between race and income</span></span>
 <span id="cb477-2"><a href="exploratory-data-analysis.html#cb477-2" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="sc">%&gt;%</span> </span>
@@ -404,7 +404,7 @@ We may need to make it more readable to the audience by adding more elements and
 <span id="cb477-22"><a href="exploratory-data-analysis.html#cb477-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
 <span id="cb477-23"><a href="exploratory-data-analysis.html#cb477-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
 <span id="cb477-24"><a href="exploratory-data-analysis.html#cb477-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-240-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-241-1.png" width="672" /></p>
 <p>From this plot, we see that the personal income of minority groups are much lower than that of the White. In addition, the personal income of the African Americans are relatively stable during the study time period and has increased very little.</p>
 <p>You may want to save the plot.</p>
 <div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="exploratory-data-analysis.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&#39;race_income.jpg&#39;</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">600</span>)  <span class="do">## save the plot</span></span></code></pre></div>
@@ -442,7 +442,7 @@ We may need to make it more readable to the audience by adding more elements and
 <span id="cb479-28"><a href="exploratory-data-analysis.html#cb479-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
 <span id="cb479-29"><a href="exploratory-data-analysis.html#cb479-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
 <span id="cb479-30"><a href="exploratory-data-analysis.html#cb479-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-243-1.png" width="672" /></p>
 <p>We see that the employment rate of the minority groups have been improved a lot during the study period, especially for African Americans. However, the minority groups have relatively lower employment rate than the White.</p>
 </div>
 <div id="case-3-population-density-and-election-result-in-the-us-2020" class="section level2" number="9.3">
@@ -485,7 +485,7 @@ We may need to make it more readable to the audience by adding more elements and
 <span id="cb483-6"><a href="exploratory-data-analysis.html#cb483-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">popden =</span> B01001_calc_PopDensity) <span class="sc">%&gt;%</span> </span>
 <span id="cb483-7"><a href="exploratory-data-analysis.html#cb483-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(popden, <span class="sc">-</span>diff)) <span class="sc">+</span> <span class="do">## simple scatter plot</span></span>
 <span id="cb483-8"><a href="exploratory-data-analysis.html#cb483-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-245-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-246-1.png" width="672" /></p>
 <p>We transform the x axis with logarithm through <code>scale_x_log10()</code>. The plot looks much better.</p>
 <div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="exploratory-data-analysis.html#cb484-1" aria-hidden="true" tabindex="-1"></a>election <span class="sc">%&gt;%</span> </span>
 <span id="cb484-2"><a href="exploratory-data-analysis.html#cb484-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pop_density, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;county_fips&#39;</span><span class="ot">=</span><span class="st">&#39;GEOID&#39;</span>)) <span class="sc">%&gt;%</span> </span>
@@ -496,7 +496,7 @@ We may need to make it more readable to the audience by adding more elements and
 <span id="cb484-7"><a href="exploratory-data-analysis.html#cb484-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(popden, <span class="sc">-</span>diff)) <span class="sc">+</span></span>
 <span id="cb484-8"><a href="exploratory-data-analysis.html#cb484-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb484-9"><a href="exploratory-data-analysis.html#cb484-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="do">## transform the x axis with logarithm</span></span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-246-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-247-1.png" width="672" /></p>
 <p>Below are some steps to further improve the plot.</p>
 <ol style="list-style-type: decimal">
 <li>Map <code>popden</code> to the size of the points.<br />
@@ -542,7 +542,7 @@ We may need to make it more readable to the audience by adding more elements and
 <span id="cb485-22"><a href="exploratory-data-analysis.html#cb485-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),  <span class="do">## adjust font size for different components</span></span>
 <span id="cb485-23"><a href="exploratory-data-analysis.html#cb485-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
 <span id="cb485-24"><a href="exploratory-data-analysis.html#cb485-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-247-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-248-1.png" width="672" /></p>
 <p>What can you learn from this plot about the relationship between election result and population density?</p>
 </div>
 <div id="case-4-factors-that-influence-students-performance" class="section level2" number="9.4">
@@ -581,33 +581,33 @@ We may need to make it more readable to the audience by adding more elements and
 <div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="exploratory-data-analysis.html#cb490-1" aria-hidden="true" tabindex="-1"></a>performance <span class="sc">%&gt;%</span> </span>
 <span id="cb490-2"><a href="exploratory-data-analysis.html#cb490-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(gender, math)) <span class="sc">+</span></span>
 <span id="cb490-3"><a href="exploratory-data-analysis.html#cb490-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
 <p>Race and math score.</p>
 <div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="exploratory-data-analysis.html#cb491-1" aria-hidden="true" tabindex="-1"></a>performance <span class="sc">%&gt;%</span> </span>
 <span id="cb491-2"><a href="exploratory-data-analysis.html#cb491-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(race, math)) <span class="sc">+</span></span>
 <span id="cb491-3"><a href="exploratory-data-analysis.html#cb491-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
 <p>Parental level of education and math score.</p>
 <div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="exploratory-data-analysis.html#cb492-1" aria-hidden="true" tabindex="-1"></a>performance <span class="sc">%&gt;%</span> </span>
 <span id="cb492-2"><a href="exploratory-data-analysis.html#cb492-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(pedu, math)) <span class="sc">+</span></span>
 <span id="cb492-3"><a href="exploratory-data-analysis.html#cb492-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb492-4"><a href="exploratory-data-analysis.html#cb492-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="st">&#39;some high school&#39;</span>, <span class="st">&#39;high school&#39;</span>, <span class="st">&#39;some college&#39;</span>, <span class="st">&#39;associate</span><span class="sc">\&#39;</span><span class="st">s degree&#39;</span>, <span class="st">&#39;bachelor</span><span class="sc">\&#39;</span><span class="st">s degree&#39;</span>, <span class="st">&#39;master</span><span class="sc">\&#39;</span><span class="st">s degree&#39;</span>)) <span class="do">## from low to high levels</span></span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
 <p>Lunch quality and math score.</p>
 <div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="exploratory-data-analysis.html#cb493-1" aria-hidden="true" tabindex="-1"></a>performance <span class="sc">%&gt;%</span> </span>
 <span id="cb493-2"><a href="exploratory-data-analysis.html#cb493-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(lunch, math)) <span class="sc">+</span></span>
 <span id="cb493-3"><a href="exploratory-data-analysis.html#cb493-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
 <p>Test preparation course and math score.</p>
 <div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="exploratory-data-analysis.html#cb494-1" aria-hidden="true" tabindex="-1"></a>performance <span class="sc">%&gt;%</span> </span>
 <span id="cb494-2"><a href="exploratory-data-analysis.html#cb494-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(pre, math)) <span class="sc">+</span></span>
 <span id="cb494-3"><a href="exploratory-data-analysis.html#cb494-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
 <p>Histogram of math score.</p>
 <div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="exploratory-data-analysis.html#cb495-1" aria-hidden="true" tabindex="-1"></a>performance <span class="sc">%&gt;%</span> </span>
 <span id="cb495-2"><a href="exploratory-data-analysis.html#cb495-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(math)) <span class="sc">+</span></span>
 <span id="cb495-3"><a href="exploratory-data-analysis.html#cb495-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-257-1.png" width="672" /></p>
 <p>Linear regression model.</p>
 <div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="exploratory-data-analysis.html#cb496-1" aria-hidden="true" tabindex="-1"></a>performance <span class="sc">%&gt;%</span> </span>
 <span id="cb496-2"><a href="exploratory-data-analysis.html#cb496-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gender =</span> <span class="fu">ifelse</span>(gender <span class="sc">==</span> <span class="st">&#39;male&#39;</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
@@ -703,7 +703,7 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "subsection"
+"collapse": "section"
 }
 });
 });

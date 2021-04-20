@@ -80,7 +80,7 @@ p <- ggplot(minneapolis_2017, aes(factor(SEX), INCTOT))
 p + geom_boxplot()
 ```
 
-## Anotation of statistics
+## Annotation of statistics
 
 We can use ``geom_text()`` to annotate the statistics in the plot.
 

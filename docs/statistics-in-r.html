@@ -244,7 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1.3" data-path="statistics-in-r.html"><a href="statistics-in-r.html#density-plot-of-distribution"><i class="fa fa-check"></i><b>8.1.3</b> Density plot of distribution</a></li>
 <li class="chapter" data-level="8.1.4" data-path="statistics-in-r.html"><a href="statistics-in-r.html#box-plot-of-distribution"><i class="fa fa-check"></i><b>8.1.4</b> Box plot of distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#anotation-of-statistics"><i class="fa fa-check"></i><b>8.2</b> Anotation of statistics</a>
+<li class="chapter" data-level="8.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#annotation-of-statistics"><i class="fa fa-check"></i><b>8.2</b> Annotation of statistics</a>
 <ul>
 <li class="chapter" data-level="8.2.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#bar-plot-2"><i class="fa fa-check"></i><b>8.2.1</b> bar plot</a></li>
 <li class="chapter" data-level="8.2.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#line-plot-2"><i class="fa fa-check"></i><b>8.2.2</b> line plot</a></li>
@@ -297,106 +297,106 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 8</span> Statistics in R</h1>
 <p>In this chapter, we are going to use R to add the statistics in the plots and carry out statistical analysis.</p>
 <p>In this section, we need <code>dplyr</code>, <code>ggplot2</code>, and the Minneapolis ACS dataset.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="statistics-in-r.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) </span>
-<span id="cb1-2"><a href="statistics-in-r.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="statistics-in-r.html#cb1-3" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;minneapolis.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="statistics-in-r.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) </span>
+<span id="cb412-2"><a href="statistics-in-r.html#cb412-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb412-3"><a href="statistics-in-r.html#cb412-3" aria-hidden="true" tabindex="-1"></a>minneapolis <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;minneapolis.csv&#39;</span>)</span></code></pre></div>
 <div id="plotting-statistics" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Plotting statistics</h2>
 <div id="fitting-the-general-trend-of-points" class="section level3" number="8.1.1">
 <h3><span class="header-section-number">8.1.1</span> Fitting the general trend of points</h3>
 <p>You could fit a line to see the general trend of the scatter plot by using <code>stat_smooth()</code> in <code>ggplot2</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="statistics-in-r.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## select observations from 2017</span></span>
-<span id="cb2-2"><a href="statistics-in-r.html#cb2-2" aria-hidden="true" tabindex="-1"></a>minneapolis_2017 <span class="ot">&lt;-</span> <span class="fu">filter</span>(minneapolis, YEAR <span class="sc">==</span> <span class="dv">2017</span>)</span>
-<span id="cb2-3"><a href="statistics-in-r.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="statistics-in-r.html#cb2-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(AGE, INCTOT)) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="statistics-in-r.html#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span>
-<span id="cb2-6"><a href="statistics-in-r.html#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="statistics-in-r.html#cb2-7" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="co"># fit a linear line for the points</span></span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="statistics-in-r.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="do">## select observations from 2017</span></span>
+<span id="cb413-2"><a href="statistics-in-r.html#cb413-2" aria-hidden="true" tabindex="-1"></a>minneapolis_2017 <span class="ot">&lt;-</span> <span class="fu">filter</span>(minneapolis, YEAR <span class="sc">==</span> <span class="dv">2017</span>)</span>
+<span id="cb413-3"><a href="statistics-in-r.html#cb413-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-4"><a href="statistics-in-r.html#cb413-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(AGE, INCTOT)) <span class="sc">+</span></span>
+<span id="cb413-5"><a href="statistics-in-r.html#cb413-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span>
+<span id="cb413-6"><a href="statistics-in-r.html#cb413-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-7"><a href="statistics-in-r.html#cb413-7" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="co"># fit a linear line for the points</span></span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 454 rows containing non-finite values (stat_smooth).</code></pre>
 <pre><code>## Warning: Removed 454 rows containing missing values (geom_point).</code></pre>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="statistics-in-r.html#cb6-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&#39;loess&#39;</span>) <span class="co"># non-linear line</span></span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="statistics-in-r.html#cb417-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&#39;loess&#39;</span>) <span class="co"># non-linear line</span></span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 454 rows containing non-finite values (stat_smooth).</code></pre>
 <pre><code>## Warning: Removed 454 rows containing missing values (geom_point).</code></pre>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
 <p>It seems that the non-linear relationship makes more sense.</p>
 </div>
 <div id="plotting-distribution" class="section level3" number="8.1.2">
 <h3><span class="header-section-number">8.1.2</span> Plotting distribution</h3>
 <p>You could draw a histogram for the dataset with <code>geom_histogram()</code>. With the argument of <code>binwidth</code>, we can set the width of the bin.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="statistics-in-r.html#cb10-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(AGE))</span>
-<span id="cb10-2"><a href="statistics-in-r.html#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="statistics-in-r.html#cb10-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="co"># the width of each category is 5</span></span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="statistics-in-r.html#cb421-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(AGE))</span>
+<span id="cb421-2"><a href="statistics-in-r.html#cb421-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb421-3"><a href="statistics-in-r.html#cb421-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="co"># the width of each category is 5</span></span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-210-1.png" width="672" /></p>
 <p>Instead of the width of the bin, we could set number of the bins with <code>bins</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="statistics-in-r.html#cb11-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>) <span class="co"># the number of bins is 30</span></span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="statistics-in-r.html#cb422-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>) <span class="co"># the number of bins is 30</span></span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
 <p>By setting <code>aes(y = ..density..)</code> in <code>geom_histogram()</code>, the plot shows density instead of counts.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="statistics-in-r.html#cb12-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>( <span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">30</span>) <span class="co"># use density instead of count</span></span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="statistics-in-r.html#cb423-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>( <span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">30</span>) <span class="co"># use density instead of count</span></span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
 </div>
 <div id="density-plot-of-distribution" class="section level3" number="8.1.3">
 <h3><span class="header-section-number">8.1.3</span> Density plot of distribution</h3>
 <p>You could fit a density line for the histogram, which is a smooth line shows the distribution of the data.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="statistics-in-r.html#cb13-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>( <span class="at">y =</span> ..density..), <span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span> </span>
-<span id="cb13-2"><a href="statistics-in-r.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="st">&#39;Grey&#39;</span>) </span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="statistics-in-r.html#cb424-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>( <span class="at">y =</span> ..density..), <span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span> </span>
+<span id="cb424-2"><a href="statistics-in-r.html#cb424-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="st">&#39;Grey&#39;</span>) </span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
 <p><code>geom_freqpoly()</code> can serve a same purpose.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="statistics-in-r.html#cb14-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_freqpoly</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="statistics-in-r.html#cb425-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_freqpoly</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
 </div>
 <div id="box-plot-of-distribution" class="section level3" number="8.1.4">
 <h3><span class="header-section-number">8.1.4</span> Box plot of distribution</h3>
 <p>Another way to show more statistics about your data is box plot, which we have introduced before.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="statistics-in-r.html#cb15-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(<span class="fu">factor</span>(SEX), INCTOT))</span>
-<span id="cb15-2"><a href="statistics-in-r.html#cb15-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="statistics-in-r.html#cb426-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(<span class="fu">factor</span>(SEX), INCTOT))</span>
+<span id="cb426-2"><a href="statistics-in-r.html#cb426-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <pre><code>## Warning: Removed 454 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-215-1.png" width="672" /></p>
 </div>
 </div>
-<div id="anotation-of-statistics" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Anotation of statistics</h2>
+<div id="annotation-of-statistics" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Annotation of statistics</h2>
 <p>We can use <code>geom_text()</code> to annotate the statistics in the plot.</p>
 <div id="bar-plot-2" class="section level3" number="8.2.1">
 <h3><span class="header-section-number">8.2.1</span> bar plot</h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="statistics-in-r.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(<span class="at">x =</span> RACE)) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="statistics-in-r.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb17-3"><a href="statistics-in-r.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..), <span class="at">stat =</span> <span class="st">&#39;count&#39;</span>, <span class="at">vjust =</span> <span class="fl">1.5</span>, <span class="at">colour =</span> <span class="st">&#39;white&#39;</span>)</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="statistics-in-r.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## count the number of respondents based on RACE</span></span>
-<span id="cb18-2"><a href="statistics-in-r.html#cb18-2" aria-hidden="true" tabindex="-1"></a>minneaplis_race <span class="ot">&lt;-</span> minneapolis_2017 <span class="sc">%&gt;%</span> </span>
-<span id="cb18-3"><a href="statistics-in-r.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(RACE) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-4"><a href="statistics-in-r.html#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>())</span>
-<span id="cb18-5"><a href="statistics-in-r.html#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="statistics-in-r.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneaplis_race, <span class="fu">aes</span>(RACE, count)) <span class="sc">+</span></span>
-<span id="cb18-7"><a href="statistics-in-r.html#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb18-8"><a href="statistics-in-r.html#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> count), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>)</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="statistics-in-r.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(<span class="at">x =</span> RACE)) <span class="sc">+</span></span>
+<span id="cb428-2"><a href="statistics-in-r.html#cb428-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb428-3"><a href="statistics-in-r.html#cb428-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..), <span class="at">stat =</span> <span class="st">&#39;count&#39;</span>, <span class="at">vjust =</span> <span class="fl">1.5</span>, <span class="at">colour =</span> <span class="st">&#39;white&#39;</span>)</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="statistics-in-r.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="do">## count the number of respondents based on RACE</span></span>
+<span id="cb429-2"><a href="statistics-in-r.html#cb429-2" aria-hidden="true" tabindex="-1"></a>minneaplis_race <span class="ot">&lt;-</span> minneapolis_2017 <span class="sc">%&gt;%</span> </span>
+<span id="cb429-3"><a href="statistics-in-r.html#cb429-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(RACE) <span class="sc">%&gt;%</span> </span>
+<span id="cb429-4"><a href="statistics-in-r.html#cb429-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>())</span>
+<span id="cb429-5"><a href="statistics-in-r.html#cb429-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb429-6"><a href="statistics-in-r.html#cb429-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneaplis_race, <span class="fu">aes</span>(RACE, count)) <span class="sc">+</span></span>
+<span id="cb429-7"><a href="statistics-in-r.html#cb429-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb429-8"><a href="statistics-in-r.html#cb429-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> count), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>)</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
 </div>
 <div id="line-plot-2" class="section level3" number="8.2.2">
 <h3><span class="header-section-number">8.2.2</span> line plot</h3>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="statistics-in-r.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## calculate the average personal income for each year</span></span>
-<span id="cb19-2"><a href="statistics-in-r.html#cb19-2" aria-hidden="true" tabindex="-1"></a>minneapolis_year <span class="ot">&lt;-</span> minneapolis <span class="sc">%&gt;%</span> </span>
-<span id="cb19-3"><a href="statistics-in-r.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR) <span class="sc">%&gt;%</span> </span>
-<span id="cb19-4"><a href="statistics-in-r.html#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">AvgInc =</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T))</span>
-<span id="cb19-5"><a href="statistics-in-r.html#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="statistics-in-r.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_year, <span class="fu">aes</span>(YEAR, AvgInc)) <span class="sc">+</span></span>
-<span id="cb19-7"><a href="statistics-in-r.html#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linetype=</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span></span>
-<span id="cb19-8"><a href="statistics-in-r.html#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb19-9"><a href="statistics-in-r.html#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(AvgInc)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="statistics-in-r.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## calculate the average personal income for each racial group in each year</span></span>
-<span id="cb20-2"><a href="statistics-in-r.html#cb20-2" aria-hidden="true" tabindex="-1"></a>minneapolis_year_race <span class="ot">&lt;-</span> minneapolis <span class="sc">%&gt;%</span> </span>
-<span id="cb20-3"><a href="statistics-in-r.html#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR, RACE) <span class="sc">%&gt;%</span> </span>
-<span id="cb20-4"><a href="statistics-in-r.html#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">AvgInc =</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T))</span>
-<span id="cb20-5"><a href="statistics-in-r.html#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="statistics-in-r.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="do">## line plot of the trend of average personal income</span></span>
-<span id="cb20-7"><a href="statistics-in-r.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_year_race, <span class="fu">aes</span>(YEAR, AvgInc, <span class="at">linetype =</span> <span class="fu">factor</span>(RACE))) <span class="sc">+</span></span>
-<span id="cb20-8"><a href="statistics-in-r.html#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb20-9"><a href="statistics-in-r.html#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(AvgInc)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.4</span>)</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="statistics-in-r.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="do">## calculate the average personal income for each year</span></span>
+<span id="cb430-2"><a href="statistics-in-r.html#cb430-2" aria-hidden="true" tabindex="-1"></a>minneapolis_year <span class="ot">&lt;-</span> minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb430-3"><a href="statistics-in-r.html#cb430-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR) <span class="sc">%&gt;%</span> </span>
+<span id="cb430-4"><a href="statistics-in-r.html#cb430-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">AvgInc =</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T))</span>
+<span id="cb430-5"><a href="statistics-in-r.html#cb430-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb430-6"><a href="statistics-in-r.html#cb430-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_year, <span class="fu">aes</span>(YEAR, AvgInc)) <span class="sc">+</span></span>
+<span id="cb430-7"><a href="statistics-in-r.html#cb430-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linetype=</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span></span>
+<span id="cb430-8"><a href="statistics-in-r.html#cb430-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb430-9"><a href="statistics-in-r.html#cb430-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(AvgInc)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="statistics-in-r.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="do">## calculate the average personal income for each racial group in each year</span></span>
+<span id="cb431-2"><a href="statistics-in-r.html#cb431-2" aria-hidden="true" tabindex="-1"></a>minneapolis_year_race <span class="ot">&lt;-</span> minneapolis <span class="sc">%&gt;%</span> </span>
+<span id="cb431-3"><a href="statistics-in-r.html#cb431-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR, RACE) <span class="sc">%&gt;%</span> </span>
+<span id="cb431-4"><a href="statistics-in-r.html#cb431-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">AvgInc =</span> <span class="fu">mean</span>(INCTOT, <span class="at">na.rm =</span> T))</span>
+<span id="cb431-5"><a href="statistics-in-r.html#cb431-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb431-6"><a href="statistics-in-r.html#cb431-6" aria-hidden="true" tabindex="-1"></a><span class="do">## line plot of the trend of average personal income</span></span>
+<span id="cb431-7"><a href="statistics-in-r.html#cb431-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_year_race, <span class="fu">aes</span>(YEAR, AvgInc, <span class="at">linetype =</span> <span class="fu">factor</span>(RACE))) <span class="sc">+</span></span>
+<span id="cb431-8"><a href="statistics-in-r.html#cb431-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb431-9"><a href="statistics-in-r.html#cb431-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(AvgInc)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
 </div>
 </div>
 <div id="simple-statistics" class="section level2" number="8.3">
@@ -405,29 +405,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="mean-and-median" class="section level3" number="8.3.1">
 <h3><span class="header-section-number">8.3.1</span> Mean and median</h3>
 <p>We could use the base functions to do some simple statistical analysis directly.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="statistics-in-r.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(minneapolis_2017<span class="sc">$</span>AGE) <span class="co"># mean</span></span></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="statistics-in-r.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(minneapolis_2017<span class="sc">$</span>AGE) <span class="co"># mean</span></span></code></pre></div>
 <pre><code>## [1] 36.0889</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="statistics-in-r.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(minneapolis_2017<span class="sc">$</span>AGE) <span class="co"># median</span></span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="statistics-in-r.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(minneapolis_2017<span class="sc">$</span>AGE) <span class="co"># median</span></span></code></pre></div>
 <pre><code>## [1] 32</code></pre>
 </div>
 <div id="minimum-and-maximum-value" class="section level3" number="8.3.2">
 <h3><span class="header-section-number">8.3.2</span> Minimum and maximum value</h3>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="statistics-in-r.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(minneapolis_2017<span class="sc">$</span>AGE) <span class="co"># minimum value</span></span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="statistics-in-r.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(minneapolis_2017<span class="sc">$</span>AGE) <span class="co"># minimum value</span></span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="statistics-in-r.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(minneapolis_2017<span class="sc">$</span>AGE) <span class="co"># maximum value</span></span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="statistics-in-r.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(minneapolis_2017<span class="sc">$</span>AGE) <span class="co"># maximum value</span></span></code></pre></div>
 <pre><code>## [1] 95</code></pre>
 </div>
 <div id="quartile" class="section level3" number="8.3.3">
 <h3><span class="header-section-number">8.3.3</span> Quartile</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="statistics-in-r.html#cb29-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">quantile</span>(minneapolis_2017<span class="sc">$</span>AGE)</span>
-<span id="cb29-2"><a href="statistics-in-r.html#cb29-2" aria-hidden="true" tabindex="-1"></a>x <span class="co"># list of quartiles</span></span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="statistics-in-r.html#cb440-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">quantile</span>(minneapolis_2017<span class="sc">$</span>AGE)</span>
+<span id="cb440-2"><a href="statistics-in-r.html#cb440-2" aria-hidden="true" tabindex="-1"></a>x <span class="co"># list of quartiles</span></span></code></pre></div>
 <pre><code>##   0%  25%  50%  75% 100% 
 ##    0   20   32   52   95</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="statistics-in-r.html#cb31-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">2</span>] <span class="co"># select the value by its index</span></span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="statistics-in-r.html#cb442-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">2</span>] <span class="co"># select the value by its index</span></span></code></pre></div>
 <pre><code>## 25% 
 ##  20</code></pre>
 <p>You could add value from 0 to 1 in the <code>quantile()</code> to find a specific value, for example, 40%.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="statistics-in-r.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(minneapolis_2017<span class="sc">$</span>AGE, <span class="fl">0.4</span>) <span class="co"># 40% of the dataset</span></span></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="statistics-in-r.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(minneapolis_2017<span class="sc">$</span>AGE, <span class="fl">0.4</span>) <span class="co"># 40% of the dataset</span></span></code></pre></div>
 <pre><code>## 40% 
 ##  28</code></pre>
 </div>
@@ -471,28 +471,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>To quantify the fitness of the model, we use <span class="math inline">\(R^2\)</span> with a value from 0 to 1. When <span class="math inline">\(R^2\)</span> is close to 1, the model fits the dataset better. <span class="math inline">\(R^2\)</span> has a property that when adding more independent variables in the regression model, the <span class="math inline">\(R^2\)</span> will increase. There is another index called adjusted <span class="math inline">\(R^2\)</span>, which considers the number of variables in the models.</p>
 <p>Our example is the Minneapolis ACS population dataset, and we want to explore the relationship between <code>EDUC</code> (Education level) and <code>AGE</code> (Age). Let’s draw a scatter plot to see their distribution.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="statistics-in-r.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(AGE, EDUC)) <span class="sc">+</span></span>
-<span id="cb35-2"><a href="statistics-in-r.html#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="statistics-in-r.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(AGE, EDUC)) <span class="sc">+</span></span>
+<span id="cb446-2"><a href="statistics-in-r.html#cb446-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-224-1.png" width="672" />
 Because there are many overlapped points, we could add some noise to the positions of the points to help show all the points.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="statistics-in-r.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(AGE, EDUC)) <span class="sc">+</span></span>
-<span id="cb36-2"><a href="statistics-in-r.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="do">## add some noise to the positions of the points and set the size of the points to be 0.5</span></span></code></pre></div>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="statistics-in-r.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(AGE, EDUC)) <span class="sc">+</span></span>
+<span id="cb447-2"><a href="statistics-in-r.html#cb447-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="do">## add some noise to the positions of the points and set the size of the points to be 0.5</span></span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
 <p>Based on the plot, it seems there is a positive relationship between these two variables. We add a linear line to fit the relationship with <code>geom_smooth()</code>.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="statistics-in-r.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(AGE, EDUC)) <span class="sc">+</span></span>
-<span id="cb37-2"><a href="statistics-in-r.html#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb37-3"><a href="statistics-in-r.html#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="statistics-in-r.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(AGE, EDUC)) <span class="sc">+</span></span>
+<span id="cb448-2"><a href="statistics-in-r.html#cb448-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb448-3"><a href="statistics-in-r.html#cb448-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
 <p>To quantify this linear relationship, We could use <code>lm()</code> function to fit this linear relationship and use <code>summary()</code> function to see the result. In the function, the formula indicates the model in assumption. Here, our model in assumption is,</p>
 <p><span class="math display">\[EDUC = \beta_0 + \beta_1 \times AGE + \epsilon\]</span></p>
 <p>When we code this model in R, we do</p>
 <pre><code>EDUC ~ AGE</code></pre>
 <p>We only need to write down the variable names of the dependent variable and independent variables, and use <code>~</code> to connect them. No need to write the intercept and error term.</p>
 <p>We also need to indicate the name of the dataset in the function.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="statistics-in-r.html#cb40-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(EDUC <span class="sc">~</span> AGE,      <span class="co"># formula</span></span>
-<span id="cb40-2"><a href="statistics-in-r.html#cb40-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> minneapolis_2017) <span class="co"># dataset</span></span>
-<span id="cb40-3"><a href="statistics-in-r.html#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_fit)             <span class="co"># check result</span></span></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="statistics-in-r.html#cb451-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(EDUC <span class="sc">~</span> AGE,      <span class="co"># formula</span></span>
+<span id="cb451-2"><a href="statistics-in-r.html#cb451-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> minneapolis_2017) <span class="co"># dataset</span></span>
+<span id="cb451-3"><a href="statistics-in-r.html#cb451-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_fit)             <span class="co"># check result</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = EDUC ~ AGE, data = minneapolis_2017)
@@ -515,23 +515,23 @@ Because there are many overlapped points, we could add some noise to the positio
 <p>Based on the information, we could know that the estimated coefficient for the intercept is 4.04, its p-value is <span class="math inline">\(&lt; 2e-16\)</span> with a mark <span class="math inline">\(***\)</span>, showing it is significant at 99.9% level. The estimated coefficient for <code>AGE</code> is 0.08, its p-value is <span class="math inline">\(&lt;2e-16\)</span> with a mark <span class="math inline">\(***\)</span>, showing it is significant at 99.9% level.</p>
 <p>We could also know the <span class="math inline">\(R^2\)</span> is 0.224, and adjusted <span class="math inline">\(R^2\)</span> is 0.2237.</p>
 <p>We could use the codes below to check the <span class="math inline">\(R^2\)</span> of the model directly.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="statistics-in-r.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_fit)<span class="sc">$</span>r.squared   <span class="co"># value of R2</span></span></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="statistics-in-r.html#cb453-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_fit)<span class="sc">$</span>r.squared   <span class="co"># value of R2</span></span></code></pre></div>
 <pre><code>## [1] 0.2239978</code></pre>
 <p>And get the values of the coefficients directly.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="statistics-in-r.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(lm_fit)        <span class="co"># only check the coefficient</span></span></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="statistics-in-r.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(lm_fit)        <span class="co"># only check the coefficient</span></span></code></pre></div>
 <pre><code>## (Intercept)         AGE 
 ##  4.03740708  0.07868725</code></pre>
 <p>The model can be improved. From the scatter plot between <code>EDUC</code> and <code>AGE</code>, many respondents get to their highest level of education before the age of 25. After 25, <code>AGE</code> has trivial influence on <code>EDUC</code>. We, then, are interested in the relationship before the age of 25.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="statistics-in-r.html#cb46-1" aria-hidden="true" tabindex="-1"></a>minneapolis_age <span class="ot">&lt;-</span> <span class="fu">filter</span>(minneapolis_2017, AGE <span class="sc">&lt;=</span> <span class="dv">25</span>)</span>
-<span id="cb46-2"><a href="statistics-in-r.html#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-3"><a href="statistics-in-r.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_age, <span class="fu">aes</span>(AGE, EDUC)) <span class="sc">+</span></span>
-<span id="cb46-4"><a href="statistics-in-r.html#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb46-5"><a href="statistics-in-r.html#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="statistics-in-r.html#cb457-1" aria-hidden="true" tabindex="-1"></a>minneapolis_age <span class="ot">&lt;-</span> <span class="fu">filter</span>(minneapolis_2017, AGE <span class="sc">&lt;=</span> <span class="dv">25</span>)</span>
+<span id="cb457-2"><a href="statistics-in-r.html#cb457-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb457-3"><a href="statistics-in-r.html#cb457-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_age, <span class="fu">aes</span>(AGE, EDUC)) <span class="sc">+</span></span>
+<span id="cb457-4"><a href="statistics-in-r.html#cb457-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb457-5"><a href="statistics-in-r.html#cb457-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="statistics-in-r.html#cb48-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(EDUC <span class="sc">~</span> AGE, </span>
-<span id="cb48-2"><a href="statistics-in-r.html#cb48-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> minneapolis_age)</span>
-<span id="cb48-3"><a href="statistics-in-r.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_fit) </span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="statistics-in-r.html#cb459-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(EDUC <span class="sc">~</span> AGE, </span>
+<span id="cb459-2"><a href="statistics-in-r.html#cb459-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> minneapolis_age)</span>
+<span id="cb459-3"><a href="statistics-in-r.html#cb459-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_fit) </span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = EDUC ~ AGE, data = minneapolis_age)
@@ -553,9 +553,9 @@ Because there are many overlapped points, we could add some noise to the positio
 <p>The model provides better fitness to the dataset now.</p>
 <p>Most of the time, we need to examine the relationship between the dependent variable and more than one independent variable. In this case, drawing a plot to check the relationship before the analysis is not a good idea. We just do the regression directly.</p>
 <p>The example below examines the relationship between <code>EDUC</code> and <code>AGE</code>, <code>SEX</code>, and <code>RACE</code>. when there is more than one independent variables, we use <code>+</code> to connect them in the formula. <code>RACE</code> is a categorical variable, so we transform it to a factor.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="statistics-in-r.html#cb50-1" aria-hidden="true" tabindex="-1"></a>mlm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(EDUC <span class="sc">~</span> AGE <span class="sc">+</span> SEX <span class="sc">+</span> <span class="fu">factor</span>(RACE),</span>
-<span id="cb50-2"><a href="statistics-in-r.html#cb50-2" aria-hidden="true" tabindex="-1"></a>          minneapolis_2017)</span>
-<span id="cb50-3"><a href="statistics-in-r.html#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mlm_fit)</span></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="statistics-in-r.html#cb461-1" aria-hidden="true" tabindex="-1"></a>mlm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(EDUC <span class="sc">~</span> AGE <span class="sc">+</span> SEX <span class="sc">+</span> <span class="fu">factor</span>(RACE),</span>
+<span id="cb461-2"><a href="statistics-in-r.html#cb461-2" aria-hidden="true" tabindex="-1"></a>          minneapolis_2017)</span>
+<span id="cb461-3"><a href="statistics-in-r.html#cb461-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mlm_fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = EDUC ~ AGE + SEX + factor(RACE), data = minneapolis_2017)
@@ -577,7 +577,7 @@ Because there are many overlapped points, we could add some noise to the positio
 ## Residual standard error: 2.957 on 2852 degrees of freedom
 ## Multiple R-squared:  0.2955, Adjusted R-squared:  0.2945 
 ## F-statistic: 299.1 on 4 and 2852 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="statistics-in-r.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mlm_fit)<span class="sc">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="statistics-in-r.html#cb463-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mlm_fit)<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.2955301</code></pre>
 <p>Without careful research design, the relationships fitted by the regression model are all correlations, not causalities.</p>
 </div>
@@ -585,16 +585,16 @@ Because there are many overlapped points, we could add some noise to the positio
 <h2><span class="header-section-number">8.5</span> Logistic regression</h2>
 <p>The above two examples both use continuous variables as their dependent variables. How about using a binomial variable (i.e., dummy variable, 0 or 1 as its value) a dependent variable? Then we need to do logistic regression. There are many functions to well accomplish this. When interpreting the coefficients of the logistic regression result, the coefficient stands for the change of the log odds of the dependent variable to 1.</p>
 <p>Here, we introduce the <code>glm()</code> function. We need to indicate <code>family = binomial</code> in the function.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="statistics-in-r.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create a variable to indicate the poverty status of the respondents</span></span>
-<span id="cb54-2"><a href="statistics-in-r.html#cb54-2" aria-hidden="true" tabindex="-1"></a>minneapolis_poverty <span class="ot">&lt;-</span> minneapolis_2017 <span class="sc">%&gt;%</span> </span>
-<span id="cb54-3"><a href="statistics-in-r.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(INCTOT)) <span class="sc">%&gt;%</span> </span>
-<span id="cb54-4"><a href="statistics-in-r.html#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">poverty =</span> <span class="fu">ifelse</span>(INCTOT <span class="sc">&lt;=</span> <span class="dv">12228</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb54-5"><a href="statistics-in-r.html#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-6"><a href="statistics-in-r.html#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="do">## logistic regression</span></span>
-<span id="cb54-7"><a href="statistics-in-r.html#cb54-7" aria-hidden="true" tabindex="-1"></a>logit_reg <span class="ot">&lt;-</span> <span class="fu">glm</span>(poverty <span class="sc">~</span> AGE <span class="sc">+</span> EDUC <span class="sc">+</span> SEX <span class="sc">+</span> <span class="fu">factor</span>(RACE),</span>
-<span id="cb54-8"><a href="statistics-in-r.html#cb54-8" aria-hidden="true" tabindex="-1"></a>                 minneapolis_poverty,</span>
-<span id="cb54-9"><a href="statistics-in-r.html#cb54-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> binomial)</span>
-<span id="cb54-10"><a href="statistics-in-r.html#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_reg)</span></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="statistics-in-r.html#cb465-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create a variable to indicate the poverty status of the respondents</span></span>
+<span id="cb465-2"><a href="statistics-in-r.html#cb465-2" aria-hidden="true" tabindex="-1"></a>minneapolis_poverty <span class="ot">&lt;-</span> minneapolis_2017 <span class="sc">%&gt;%</span> </span>
+<span id="cb465-3"><a href="statistics-in-r.html#cb465-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(INCTOT)) <span class="sc">%&gt;%</span> </span>
+<span id="cb465-4"><a href="statistics-in-r.html#cb465-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">poverty =</span> <span class="fu">ifelse</span>(INCTOT <span class="sc">&lt;=</span> <span class="dv">12228</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb465-5"><a href="statistics-in-r.html#cb465-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb465-6"><a href="statistics-in-r.html#cb465-6" aria-hidden="true" tabindex="-1"></a><span class="do">## logistic regression</span></span>
+<span id="cb465-7"><a href="statistics-in-r.html#cb465-7" aria-hidden="true" tabindex="-1"></a>logit_reg <span class="ot">&lt;-</span> <span class="fu">glm</span>(poverty <span class="sc">~</span> AGE <span class="sc">+</span> EDUC <span class="sc">+</span> SEX <span class="sc">+</span> <span class="fu">factor</span>(RACE),</span>
+<span id="cb465-8"><a href="statistics-in-r.html#cb465-8" aria-hidden="true" tabindex="-1"></a>                 minneapolis_poverty,</span>
+<span id="cb465-9"><a href="statistics-in-r.html#cb465-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> binomial)</span>
+<span id="cb465-10"><a href="statistics-in-r.html#cb465-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_reg)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = poverty ~ AGE + EDUC + SEX + factor(RACE), family = binomial, 
@@ -676,7 +676,7 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "subsection"
+"collapse": "section"
 }
 });
 });
