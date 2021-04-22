@@ -269,12 +269,33 @@ summary(lm_fit)
 ```
 The model provides better fitness to the dataset now.
 
-Most of the time, we need to examine the relationship between the dependent variable and more than one independent variable. In this case, drawing a plot to check the relationship before the analysis is not a good idea. We just do the regression directly.
+Most of the time, we need to examine the relationship between the dependent variable and more than one independent variable. The example below examines the relationship between ``EDUC`` and ``AGE``, ``SEX``, and ``RACE``. 
 
-The example below examines the relationship between ``EDUC`` and ``AGE``, ``SEX``, and ``RACE``. when there is more than one independent variables, we use ``+`` to connect them in the formula. ``RACE`` is a categorical variable, so we transform it to a factor.
+Education level and age.
 
 ```{r}
-mlm_fit <- lm(EDUC ~ AGE + SEX + factor(RACE),
+ggplot(minneapolis_2017, aes(AGE, EDUC)) +
+  geom_jitter(size = 0.5)
+```
+
+Education level and gender.
+
+```{r}
+ggplot(minneapolis_2017, aes(factor(SEX), EDUC)) +
+  geom_boxplot()
+```
+
+Education level and racial group.
+
+```{r}
+ggplot(minneapolis_2017, aes(factor(RACE), EDUC)) +
+  geom_boxplot()
+```
+
+When there is more than one independent variables, we use ``+`` to connect them in the formula. ``RACE`` and ``SEX`` are both categorical variables, so we transform it to factors. 
+
+```{r}
+mlm_fit <- lm(EDUC ~ AGE + factor(SEX) + factor(RACE),
           minneapolis_2017)
 summary(mlm_fit)
 summary(mlm_fit)$r.squared
@@ -295,7 +316,7 @@ minneapolis_poverty <- minneapolis_2017 %>%
   mutate(poverty = ifelse(INCTOT <= 12228, 1, 0))
 
 ## logistic regression
-logit_reg <- glm(poverty ~ AGE + EDUC + SEX + factor(RACE),
+logit_reg <- glm(poverty ~ AGE + EDUC + factor(SEX) + factor(RACE),
                  minneapolis_poverty,
                  family = binomial)
 summary(logit_reg)

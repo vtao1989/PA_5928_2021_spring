@@ -551,14 +551,26 @@ Because there are many overlapped points, we could add some noise to the positio
 ## Multiple R-squared:  0.8531, Adjusted R-squared:  0.8529 
 ## F-statistic:  5841 on 1 and 1006 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The model provides better fitness to the dataset now.</p>
-<p>Most of the time, we need to examine the relationship between the dependent variable and more than one independent variable. In this case, drawing a plot to check the relationship before the analysis is not a good idea. We just do the regression directly.</p>
-<p>The example below examines the relationship between <code>EDUC</code> and <code>AGE</code>, <code>SEX</code>, and <code>RACE</code>. when there is more than one independent variables, we use <code>+</code> to connect them in the formula. <code>RACE</code> is a categorical variable, so we transform it to a factor.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="statistics-in-r.html#cb50-1" aria-hidden="true" tabindex="-1"></a>mlm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(EDUC <span class="sc">~</span> AGE <span class="sc">+</span> SEX <span class="sc">+</span> <span class="fu">factor</span>(RACE),</span>
-<span id="cb50-2"><a href="statistics-in-r.html#cb50-2" aria-hidden="true" tabindex="-1"></a>          minneapolis_2017)</span>
-<span id="cb50-3"><a href="statistics-in-r.html#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mlm_fit)</span></code></pre></div>
+<p>Most of the time, we need to examine the relationship between the dependent variable and more than one independent variable. The example below examines the relationship between <code>EDUC</code> and <code>AGE</code>, <code>SEX</code>, and <code>RACE</code>.</p>
+<p>Education level and age.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="statistics-in-r.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(AGE, EDUC)) <span class="sc">+</span></span>
+<span id="cb50-2"><a href="statistics-in-r.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>Education level and gender.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="statistics-in-r.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(<span class="fu">factor</span>(SEX), EDUC)) <span class="sc">+</span></span>
+<span id="cb51-2"><a href="statistics-in-r.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>Education level and racial group.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="statistics-in-r.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_2017, <span class="fu">aes</span>(<span class="fu">factor</span>(RACE), EDUC)) <span class="sc">+</span></span>
+<span id="cb52-2"><a href="statistics-in-r.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p>When there is more than one independent variables, we use <code>+</code> to connect them in the formula. <code>RACE</code> and <code>SEX</code> are both categorical variables, so we transform it to factors.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="statistics-in-r.html#cb53-1" aria-hidden="true" tabindex="-1"></a>mlm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(EDUC <span class="sc">~</span> AGE <span class="sc">+</span> <span class="fu">factor</span>(SEX) <span class="sc">+</span> <span class="fu">factor</span>(RACE),</span>
+<span id="cb53-2"><a href="statistics-in-r.html#cb53-2" aria-hidden="true" tabindex="-1"></a>          minneapolis_2017)</span>
+<span id="cb53-3"><a href="statistics-in-r.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mlm_fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = EDUC ~ AGE + SEX + factor(RACE), data = minneapolis_2017)
+## lm(formula = EDUC ~ AGE + factor(SEX) + factor(RACE), data = minneapolis_2017)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -566,9 +578,9 @@ Because there are many overlapped points, we could add some noise to the positio
 ## 
 ## Coefficients:
 ##                Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)    5.020836   0.208105  24.126   &lt;2e-16 ***
+## (Intercept)    4.976819   0.136087  36.571   &lt;2e-16 ***
 ## AGE            0.070253   0.002684  26.170   &lt;2e-16 ***
-## SEX           -0.044017   0.110679  -0.398    0.691    
+## factor(SEX)2  -0.044017   0.110679  -0.398    0.691    
 ## factor(RACE)2 -2.413424   0.160769 -15.012   &lt;2e-16 ***
 ## factor(RACE)3 -1.714259   0.159498 -10.748   &lt;2e-16 ***
 ## ---
@@ -577,7 +589,7 @@ Because there are many overlapped points, we could add some noise to the positio
 ## Residual standard error: 2.957 on 2852 degrees of freedom
 ## Multiple R-squared:  0.2955, Adjusted R-squared:  0.2945 
 ## F-statistic: 299.1 on 4 and 2852 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="statistics-in-r.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mlm_fit)<span class="sc">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="statistics-in-r.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mlm_fit)<span class="sc">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.2955301</code></pre>
 <p>Without careful research design, the relationships fitted by the regression model are all correlations, not causalities.</p>
 </div>
@@ -585,20 +597,20 @@ Because there are many overlapped points, we could add some noise to the positio
 <h2><span class="header-section-number">8.5</span> Logistic regression</h2>
 <p>The above two examples both use continuous variables as their dependent variables. How about using a binomial variable (i.e., dummy variable, 0 or 1 as its value) a dependent variable? Then we need to do logistic regression. There are many functions to well accomplish this. When interpreting the coefficients of the logistic regression result, the coefficient stands for the change of the log odds of the dependent variable to 1.</p>
 <p>Here, we introduce the <code>glm()</code> function. We need to indicate <code>family = binomial</code> in the function.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="statistics-in-r.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create a variable to indicate the poverty status of the respondents</span></span>
-<span id="cb54-2"><a href="statistics-in-r.html#cb54-2" aria-hidden="true" tabindex="-1"></a>minneapolis_poverty <span class="ot">&lt;-</span> minneapolis_2017 <span class="sc">%&gt;%</span> </span>
-<span id="cb54-3"><a href="statistics-in-r.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(INCTOT)) <span class="sc">%&gt;%</span> </span>
-<span id="cb54-4"><a href="statistics-in-r.html#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">poverty =</span> <span class="fu">ifelse</span>(INCTOT <span class="sc">&lt;=</span> <span class="dv">12228</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb54-5"><a href="statistics-in-r.html#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-6"><a href="statistics-in-r.html#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="do">## logistic regression</span></span>
-<span id="cb54-7"><a href="statistics-in-r.html#cb54-7" aria-hidden="true" tabindex="-1"></a>logit_reg <span class="ot">&lt;-</span> <span class="fu">glm</span>(poverty <span class="sc">~</span> AGE <span class="sc">+</span> EDUC <span class="sc">+</span> SEX <span class="sc">+</span> <span class="fu">factor</span>(RACE),</span>
-<span id="cb54-8"><a href="statistics-in-r.html#cb54-8" aria-hidden="true" tabindex="-1"></a>                 minneapolis_poverty,</span>
-<span id="cb54-9"><a href="statistics-in-r.html#cb54-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> binomial)</span>
-<span id="cb54-10"><a href="statistics-in-r.html#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_reg)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="statistics-in-r.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create a variable to indicate the poverty status of the respondents</span></span>
+<span id="cb57-2"><a href="statistics-in-r.html#cb57-2" aria-hidden="true" tabindex="-1"></a>minneapolis_poverty <span class="ot">&lt;-</span> minneapolis_2017 <span class="sc">%&gt;%</span> </span>
+<span id="cb57-3"><a href="statistics-in-r.html#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(INCTOT)) <span class="sc">%&gt;%</span> </span>
+<span id="cb57-4"><a href="statistics-in-r.html#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">poverty =</span> <span class="fu">ifelse</span>(INCTOT <span class="sc">&lt;=</span> <span class="dv">12228</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb57-5"><a href="statistics-in-r.html#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="statistics-in-r.html#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="do">## logistic regression</span></span>
+<span id="cb57-7"><a href="statistics-in-r.html#cb57-7" aria-hidden="true" tabindex="-1"></a>logit_reg <span class="ot">&lt;-</span> <span class="fu">glm</span>(poverty <span class="sc">~</span> AGE <span class="sc">+</span> EDUC <span class="sc">+</span> <span class="fu">factor</span>(SEX) <span class="sc">+</span> <span class="fu">factor</span>(RACE),</span>
+<span id="cb57-8"><a href="statistics-in-r.html#cb57-8" aria-hidden="true" tabindex="-1"></a>                 minneapolis_poverty,</span>
+<span id="cb57-9"><a href="statistics-in-r.html#cb57-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> binomial)</span>
+<span id="cb57-10"><a href="statistics-in-r.html#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_reg)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## glm(formula = poverty ~ AGE + EDUC + SEX + factor(RACE), family = binomial, 
-##     data = minneapolis_poverty)
+## glm(formula = poverty ~ AGE + EDUC + factor(SEX) + factor(RACE), 
+##     family = binomial, data = minneapolis_poverty)
 ## 
 ## Deviance Residuals: 
 ##     Min       1Q   Median       3Q      Max  
@@ -606,10 +618,10 @@ Because there are many overlapped points, we could add some noise to the positio
 ## 
 ## Coefficients:
 ##                Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)    3.018926   0.270700  11.152  &lt; 2e-16 ***
+## (Intercept)    3.115161   0.233282  13.354  &lt; 2e-16 ***
 ## AGE           -0.031852   0.002971 -10.720  &lt; 2e-16 ***
 ## EDUC          -0.367547   0.022532 -16.312  &lt; 2e-16 ***
-## SEX            0.096235   0.101052   0.952    0.341    
+## factor(SEX)2   0.096235   0.101052   0.952    0.341    
 ## factor(RACE)2  0.646833   0.145549   4.444 8.83e-06 ***
 ## factor(RACE)3  0.168694   0.146323   1.153    0.249    
 ## ---
