@@ -307,20 +307,52 @@ Without careful research design, the relationships fitted by the regression mode
 
 The above two examples both use continuous variables as their dependent variables. How about using a binomial variable (i.e., dummy variable, 0 or 1 as its value) a dependent variable? Then we need to do logistic regression. There are many functions to well accomplish this. When interpreting the coefficients of the logistic regression result, the coefficient stands for the change of the log odds of the dependent variable to 1.
 
-Here, we introduce the ``glm()`` function. We need to indicate ``family = binomial`` in the function.
-
 ```{r}
 ## create a variable to indicate the poverty status of the respondents
 minneapolis_poverty <- minneapolis_2017 %>% 
   filter(!is.na(INCTOT)) %>% 
   mutate(poverty = ifelse(INCTOT <= 12228, 1, 0))
+```
 
+Poverty level and age.
+
+```{r}
+ggplot(minneapolis_poverty, aes(AGE, fill = factor(poverty))) +
+  geom_histogram()
+```
+
+Poverty and education level.
+
+```{r}
+ggplot(minneapolis_poverty, aes(EDUC, fill = factor(poverty))) +
+  geom_bar()
+```
+
+Poverty and gender.
+
+```{r}
+ggplot(minneapolis_poverty, aes(SEX, fill = factor(poverty))) +
+  geom_bar()
+```
+
+Poverty and racial group.
+
+```{r}
+ggplot(minneapolis_poverty, aes(RACE, fill = factor(poverty))) +
+  geom_bar()
+```
+
+
+Here, we introduce the ``glm()`` function. We need to indicate ``family = binomial`` in the function.
+
+```{r}
 ## logistic regression
 logit_reg <- glm(poverty ~ AGE + EDUC + factor(SEX) + factor(RACE),
                  minneapolis_poverty,
                  family = binomial)
 summary(logit_reg)
 ```
+
 
 Most of the information is similar with regression ones except that the logistic regression does not have $R^2$ and adjusted $R^2$. It uses ``AIC`` (Akaike information criterion) in indicate the goodness of the model. If one model has a smaller AIC, it is better.
 

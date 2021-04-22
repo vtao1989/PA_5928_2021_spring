@@ -596,17 +596,33 @@ Because there are many overlapped points, we could add some noise to the positio
 <div id="logistic-regression" class="section level2" number="8.5">
 <h2><span class="header-section-number">8.5</span> Logistic regression</h2>
 <p>The above two examples both use continuous variables as their dependent variables. How about using a binomial variable (i.e., dummy variable, 0 or 1 as its value) a dependent variable? Then we need to do logistic regression. There are many functions to well accomplish this. When interpreting the coefficients of the logistic regression result, the coefficient stands for the change of the log odds of the dependent variable to 1.</p>
-<p>Here, we introduce the <code>glm()</code> function. We need to indicate <code>family = binomial</code> in the function.</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="statistics-in-r.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create a variable to indicate the poverty status of the respondents</span></span>
 <span id="cb57-2"><a href="statistics-in-r.html#cb57-2" aria-hidden="true" tabindex="-1"></a>minneapolis_poverty <span class="ot">&lt;-</span> minneapolis_2017 <span class="sc">%&gt;%</span> </span>
 <span id="cb57-3"><a href="statistics-in-r.html#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(INCTOT)) <span class="sc">%&gt;%</span> </span>
-<span id="cb57-4"><a href="statistics-in-r.html#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">poverty =</span> <span class="fu">ifelse</span>(INCTOT <span class="sc">&lt;=</span> <span class="dv">12228</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb57-5"><a href="statistics-in-r.html#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-6"><a href="statistics-in-r.html#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="do">## logistic regression</span></span>
-<span id="cb57-7"><a href="statistics-in-r.html#cb57-7" aria-hidden="true" tabindex="-1"></a>logit_reg <span class="ot">&lt;-</span> <span class="fu">glm</span>(poverty <span class="sc">~</span> AGE <span class="sc">+</span> EDUC <span class="sc">+</span> <span class="fu">factor</span>(SEX) <span class="sc">+</span> <span class="fu">factor</span>(RACE),</span>
-<span id="cb57-8"><a href="statistics-in-r.html#cb57-8" aria-hidden="true" tabindex="-1"></a>                 minneapolis_poverty,</span>
-<span id="cb57-9"><a href="statistics-in-r.html#cb57-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> binomial)</span>
-<span id="cb57-10"><a href="statistics-in-r.html#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_reg)</span></code></pre></div>
+<span id="cb57-4"><a href="statistics-in-r.html#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">poverty =</span> <span class="fu">ifelse</span>(INCTOT <span class="sc">&lt;=</span> <span class="dv">12228</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
+<p>Poverty level and age.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="statistics-in-r.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_poverty, <span class="fu">aes</span>(AGE, <span class="at">fill =</span> <span class="fu">factor</span>(poverty))) <span class="sc">+</span></span>
+<span id="cb58-2"><a href="statistics-in-r.html#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>Poverty and education level.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="statistics-in-r.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_poverty, <span class="fu">aes</span>(EDUC, <span class="at">fill =</span> <span class="fu">factor</span>(poverty))) <span class="sc">+</span></span>
+<span id="cb60-2"><a href="statistics-in-r.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>Poverty and gender.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="statistics-in-r.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_poverty, <span class="fu">aes</span>(SEX, <span class="at">fill =</span> <span class="fu">factor</span>(poverty))) <span class="sc">+</span></span>
+<span id="cb61-2"><a href="statistics-in-r.html#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>Poverty and racial group.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="statistics-in-r.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(minneapolis_poverty, <span class="fu">aes</span>(RACE, <span class="at">fill =</span> <span class="fu">factor</span>(poverty))) <span class="sc">+</span></span>
+<span id="cb62-2"><a href="statistics-in-r.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="PA_5928_2021_spring_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p>Here, we introduce the <code>glm()</code> function. We need to indicate <code>family = binomial</code> in the function.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="statistics-in-r.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="do">## logistic regression</span></span>
+<span id="cb63-2"><a href="statistics-in-r.html#cb63-2" aria-hidden="true" tabindex="-1"></a>logit_reg <span class="ot">&lt;-</span> <span class="fu">glm</span>(poverty <span class="sc">~</span> AGE <span class="sc">+</span> EDUC <span class="sc">+</span> <span class="fu">factor</span>(SEX) <span class="sc">+</span> <span class="fu">factor</span>(RACE),</span>
+<span id="cb63-3"><a href="statistics-in-r.html#cb63-3" aria-hidden="true" tabindex="-1"></a>                 minneapolis_poverty,</span>
+<span id="cb63-4"><a href="statistics-in-r.html#cb63-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> binomial)</span>
+<span id="cb63-5"><a href="statistics-in-r.html#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_reg)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = poverty ~ AGE + EDUC + factor(SEX) + factor(RACE), 
