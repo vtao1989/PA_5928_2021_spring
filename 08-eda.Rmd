@@ -2,7 +2,7 @@
 
 We are going to use what we have learned so far to do exploratory data analysis. It is also a practice for data manipulation and visualization.
 
-Instead of importing ``dplyr`` and ``ggplot2``, we import ``tidyverse`` this time. ``tidyverse`` includes both ``dplyr`` and ``ggplot2``. Besides, it also has some other useful packages, such as ``tidyr`` (data manipulation) and ``stringr`` (deal with characteristics and string data).
+Instead of importing ``dplyr`` and ``ggplot2``, we import ``tidyverse`` this time. ``tidyverse`` includes both ``dplyr`` and ``ggplot2``. Besides, it also has some other useful packages, such as ``tidyr`` (data manipulation) and ``stringr`` (dealing with characteristics and string data).
 
 ```{r}
 library(tidyverse)
@@ -82,7 +82,7 @@ ggplot(minneapolis_race, aes(YEAR, AvgInc, color = RACE)) +  ## line plot
   labs(x = 'Year',
        y = 'Average personal income (Dollars)',
        color = 'RACE',
-       title = 'Race and personal income in Minneaplis (2010-2019)') +
+       title = 'Race and personal income in Minneapolis (2010-2019)') +
   scale_x_continuous(breaks = c(2010:2019)) +  ## adjust x axis tick labels
   theme_bw() + 
   theme(legend.position = 'bottom', ## adjust legend position
@@ -111,7 +111,7 @@ minneapolis %>%
   labs(x = 'Year',
        y = 'Average personal income (Dollars)',
        color = 'RACE',
-       title = 'Race and personal income in Minneaplis (2010-2019)') +
+       title = 'Race and personal income in Minneapolis (2010-2019)') +
   scale_x_continuous(breaks = c(2010:2019)) +  ## adjust x axis tick labels
   theme_bw() + 
   theme(legend.position = 'bottom', ## adjust legend position
@@ -154,7 +154,7 @@ minneapolis %>%
   labs(x = 'Year',
        y = 'Average employment rate (%)',
        color = 'RACE',
-       title = 'Race and employment rate in Minneaplis (2010-2019)') +
+       title = 'Race and employment rate in Minneapolis (2010-2019)') +
   scale_x_continuous(breaks = c(2010:2019)) +
   scale_y_continuous(limits = c(70, 100),
                      breaks = c(75, 80, 85, 90, 95, 100)) +
