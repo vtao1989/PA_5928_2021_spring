@@ -81,7 +81,7 @@ ggplot(minneapolis_race, aes(YEAR, AvgInc, color = RACE)) +  ## line plot
   geom_point() +
   labs(x = 'Year',
        y = 'Average personal income (Dollars)',
-       color = 'RACE',
+       color = 'Race',
        title = 'Race and personal income in Minneapolis (2010-2019)') +
   scale_x_continuous(breaks = c(2010:2019)) +  ## adjust x axis tick labels
   theme_bw() + 
@@ -110,7 +110,7 @@ minneapolis %>%
   geom_point() +
   labs(x = 'Year',
        y = 'Average personal income (Dollars)',
-       color = 'RACE',
+       color = 'Race',
        title = 'Race and personal income in Minneapolis (2010-2019)') +
   scale_x_continuous(breaks = c(2010:2019)) +  ## adjust x axis tick labels
   theme_bw() + 
@@ -153,7 +153,7 @@ minneapolis %>%
   geom_point() +
   labs(x = 'Year',
        y = 'Average employment rate (%)',
-       color = 'RACE',
+       color = 'Race',
        title = 'Race and employment rate in Minneapolis (2010-2019)') +
   scale_x_continuous(breaks = c(2010:2019)) +
   scale_y_continuous(limits = c(70, 100),
